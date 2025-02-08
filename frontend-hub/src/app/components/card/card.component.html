@@ -23,8 +23,10 @@
   <div class="flex pl-2 pr-4 mt-3">
     <img src="../../../assets/bxs_map.svg" alt="map icon" class="mr-2" />
     <div>
-      <p class="text-base text-[#323232]">{{ card?.location?.street }}</p>
-      <p class="text-sm text-[#242424]">
+      <p class="text-base text-[var(--card-location-street-color)]">
+        {{ card?.location?.street }}
+      </p>
+      <p class="text-sm text-[var(--card-location-city-state-country-color)]">
         <strong>
           {{ card?.location?.city }}, {{ card?.location?.state }} -
           {{ card?.location?.country }}</strong
