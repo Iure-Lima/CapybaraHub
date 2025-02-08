@@ -7,6 +7,6 @@
     <img src="../../../assets/mdi_user.svg" alt="Icon User" />
   </div>
   @if (loginContainerActive) {
-  <app-login-container></app-login-container>
+  <app-login-container (login)="receiveLogin($event)"></app-login-container>
   }
 </section>

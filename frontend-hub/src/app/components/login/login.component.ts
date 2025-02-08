@@ -15,4 +15,9 @@ export class LoginComponent{
     this.loginContainerActive  = !this.loginContainerActive;
   }
 
+  receiveLogin(data: {email:string, password:string}){
+    console.log('Received login:', data);
+    this.toggleLoginContainer();
+  }
+
 }
