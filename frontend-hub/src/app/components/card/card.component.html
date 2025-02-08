@@ -1,0 +1,47 @@
+<section
+  class="w-80 h-86 bg-[var(--card-background-color)] rounded-lg shadow-md flex flex-col"
+>
+  <img
+    [src]="card?.image"
+    alt="image for the hotel"
+    class="w-full h-50 rounded-t-lg shadow-md"
+  />
+  <div class="flex mt-3.5 w-full pl-2 pr-4 justify-between">
+    <h3 class="text-xl fort-normal text-[var(--card-font-color)]">
+      {{ card?.name }}
+    </h3>
+    <div class="flex w-7 h-full">
+      <p class="text-lg w-2.5 h-5 text-[var(--color-title)] mr-px">
+        {{ card?.rating }}
+      </p>
+      <img
+        src="../../../assets/material-symbols_star-rounded.svg"
+        alt="star rating"
+      />
+    </div>
+  </div>
+  <div class="flex pl-2 pr-4 mt-3">
+    <img src="../../../assets/bxs_map.svg" alt="map icon" class="mr-2" />
+    <div>
+      <p class="text-base text-[var(--card-location-street-color)]">
+        {{ card?.location?.street }}
+      </p>
+      <p class="text-sm text-[var(--card-location-city-state-country-color)]">
+        <strong>
+          {{ card?.location?.city }}, {{ card?.location?.state }} -
+          {{ card?.location?.country }}</strong
+        >
+      </p>
+    </div>
+  </div>
+  <div class="relative">
+    <button
+      class="flex bg-[var(--card-font-color)] rounded-sm mt-2 h-7.5 w-26 text-white cursor-pointer items-center justify-around absolute right-2"
+    >
+      Book<img
+        src="../../../assets/solar_calendar-bold.svg"
+        alt="icon calendar"
+      />
+    </button>
+  </div>
+</section>

@@ -12,7 +12,7 @@ export class MockDataService {
 
     for (let i = 0; i < imagesURLs.length; i++){
       this.mockData.push({
-        id: 1,
+        id: i + 1,
         name: 'Hotel Conchitas',
         rating: 5,
         image: imagesURLs[i],
@@ -21,7 +21,7 @@ export class MockDataService {
     }
   }
 
-  getHotels(): HotelCard[] {
+  getHotelsCards(): HotelCard[] {
     return this.mockData;
   }
 }
