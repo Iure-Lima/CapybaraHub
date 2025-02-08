@@ -8,6 +8,11 @@ import { LoginContainerComponent } from "./login-container/login-container.compo
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
-export class LoginComponent {
+export class LoginComponent{
+  loginContainerActive = false;
+
+  toggleLoginContainer() {
+    this.loginContainerActive  = !this.loginContainerActive;
+  }
 
 }
