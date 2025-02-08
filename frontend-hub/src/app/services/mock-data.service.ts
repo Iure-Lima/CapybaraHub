@@ -21,7 +21,7 @@ export class MockDataService {
     }
   }
 
-  getHotels(): HotelCard[] {
+  getHotelsCards(): HotelCard[] {
     return this.mockData;
   }
 }

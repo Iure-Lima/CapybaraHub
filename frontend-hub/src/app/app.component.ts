@@ -2,16 +2,20 @@ import { Component } from '@angular/core';
 import { HeaderComponent } from "./components/header/header.component";
 // biome-ignore lint/style/useImportType: <explanation>
 import { MockDataService } from './services/mock-data.service';
+import { CardListComponent } from "./components/card-list/card-list.component";
+import type { HotelCard } from './models/hotel.card.model';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [HeaderComponent],
+  imports: [HeaderComponent, CardListComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
+  cardList: HotelCard[];
+
   constructor(private dataService:MockDataService){
-    console.log(this.dataService.getHotels());
+    this.cardList = this.dataService.getHotelsCards();
   }
 }
