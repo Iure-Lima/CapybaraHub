@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { HeaderComponent } from "./components/header/header.component";
+// biome-ignore lint/style/useImportType: <explanation>
+import { MockDataService } from './services/mock-data.service';
 
 @Component({
   selector: 'app-root',
@@ -9,5 +11,7 @@ import { HeaderComponent } from "./components/header/header.component";
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'frontend-hub';
+  constructor(private dataService:MockDataService){
+    console.log(this.dataService.getHotels());
+  }
 }
