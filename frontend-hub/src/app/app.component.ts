@@ -1,13 +1,17 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { HeaderComponent } from "./components/header/header.component";
+// biome-ignore lint/style/useImportType: <explanation>
+import { MockDataService } from './services/mock-data.service';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [HeaderComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'frontend-hub';
+  constructor(private dataService:MockDataService){
+    console.log(this.dataService.getHotels());
+  }
 }
