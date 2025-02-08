@@ -1,21 +1,14 @@
 import { Component, Input, type OnChanges, type SimpleChanges } from '@angular/core';
 import type { HotelCard } from '../../models/hotel.card.model';
+import { CardComponent } from "../card/card.component";
 
 @Component({
   selector: 'app-card-list',
   standalone: true,
-  imports: [],
+  imports: [CardComponent],
   templateUrl: './card-list.component.html',
   styleUrl: './card-list.component.scss'
 })
-export class CardListComponent implements OnChanges{
+export class CardListComponent{
   @Input() cardsList: HotelCard[] = [];
-
-  ngOnChanges(changes: SimpleChanges): void {
-    // biome-ignore lint/complexity/useLiteralKeys: <explanation>
-    if(changes['cardsList']){
-      console.log(this.cardsList)
-    }
-  }
-
 }
