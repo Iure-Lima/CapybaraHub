@@ -1,14 +1,14 @@
 export type HotelCard = {
   id: number;
-  name:string;
+  name: string;
   rating: number;
   location: Location;
-  image:string
-}
+  image: string;
+};
 
 type Location = {
   street: string;
   city: string;
-  state:string;
+  state: string;
   country: string;
-}
+};

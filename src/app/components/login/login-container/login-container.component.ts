@@ -8,16 +8,15 @@ import { FormsModule, type NgForm } from '@angular/forms';
   templateUrl: './login-container.component.html',
 })
 export class LoginContainerComponent {
-  email = "";
-  password = "";
+  email = '';
+  password = '';
 
-  @Output() login = new EventEmitter<{email:string,password:string}>();
+  @Output() login = new EventEmitter<{ email: string; password: string }>();
 
-  onSubmit(form:NgForm){
+  onSubmit(form: NgForm) {
     if (form.valid) {
       this.login.emit(form.value);
       form.resetForm();
     }
   }
-
 }

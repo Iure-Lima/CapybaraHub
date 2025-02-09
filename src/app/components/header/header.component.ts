@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { SearchComponent } from "../search/search.component";
-import { LoginComponent } from "../login/login.component";
+import { SearchComponent } from '../search/search.component';
+import { LoginComponent } from '../login/login.component';
 
 @Component({
   selector: 'app-header',
@@ -8,6 +8,4 @@ import { LoginComponent } from "../login/login.component";
   imports: [SearchComponent, LoginComponent],
   templateUrl: './header.component.html',
 })
-export class HeaderComponent {
-
-}
+export class HeaderComponent {}

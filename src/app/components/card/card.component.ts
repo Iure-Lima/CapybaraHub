@@ -7,7 +7,6 @@ import type { HotelCard } from '../../models/hotel.card.model';
   imports: [],
   templateUrl: './card.component.html',
 })
-export class CardComponent{
+export class CardComponent {
   @Input() card?: HotelCard;
-
 }
