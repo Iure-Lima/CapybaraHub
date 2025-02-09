@@ -10,7 +10,6 @@ import type { HotelCard } from './models/hotel.card.model';
   standalone: true,
   imports: [HeaderComponent, CardListComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
 })
 export class AppComponent {
   cardList: HotelCard[];

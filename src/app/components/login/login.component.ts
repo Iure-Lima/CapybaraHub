@@ -6,7 +6,6 @@ import { LoginContainerComponent } from "./login-container/login-container.compo
   standalone: true,
   imports: [LoginContainerComponent],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.scss'
 })
 export class LoginComponent{
   loginContainerActive = false;

@@ -6,7 +6,6 @@ import { FormsModule, type NgForm } from '@angular/forms';
   standalone: true,
   imports: [FormsModule],
   templateUrl: './login-container.component.html',
-  styleUrl: './login-container.component.scss'
 })
 export class LoginContainerComponent {
   email = "";

@@ -7,7 +7,6 @@ import { LoginComponent } from "../login/login.component";
   standalone: true,
   imports: [SearchComponent, LoginComponent],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
 
