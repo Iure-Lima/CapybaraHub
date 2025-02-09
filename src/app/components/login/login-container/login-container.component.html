@@ -11,7 +11,7 @@
       id="name"
       name="email"
       placeholder="Email"
-      class="w-36 h-7 text-base border-2 border-[var(--card-font-color)] rounded-lg pl-2 shadow-md mb-2"
+      class="w-36 h-7 text-base border-2 border-card-foreground rounded-lg pl-2 shadow-md mb-2"
       [(ngModel)]="email"
       #emailRef="ngModel"
       required
@@ -25,7 +25,7 @@
       id="password"
       name="password"
       placeholder="Password"
-      class="w-36 h-7 text-base border-2 border-[var(--card-font-color)] rounded-lg pl-2 shadow-md"
+      class="w-36 h-7 text-base border-2 border-card-foreground rounded-lg pl-2 shadow-md"
       [(ngModel)]="password"
       #passwordRef="ngModel"
       minlength="5"
@@ -35,7 +35,7 @@
     <span class="text-red-500 text-xs"> Invalid Format </span>}
 
     <button
-      class="cursor-pointer text-white bg-[var(--card-font-color)] w-16 h-6 rounded-md mt-5"
+      class="cursor-pointer text-white bg-card-foreground w-16 h-6 rounded-md mt-5"
       type="submit"
       [disabled]="formLogin.invalid"
     >

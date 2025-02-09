@@ -1,20 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap");
 @import "tailwindcss";
 
-:root {
-  //Colors
+@theme {
   --color-header: rgba(232, 232, 232, 0.44);
   --color-title: #304e00;
-  --card-background-color: #f2eeeef5;
-  --card-font-color: #618725f7;
-  --search-font-color: #676767;
+  --color-card: #f2eeeef5;
+  --color-card-foreground: #618725f7;
+  --color-search-foreground: #676767;
   --card-location-street-color: #323232;
   --card-location-city-state-country-color: #242424;
 
-  //Font
-  --font-family-primary: "Rubik";
-}
-
-* {
-  font-family: var(--font-family-primary);
+  --font-sans: "Geist", sans-serif;
 }

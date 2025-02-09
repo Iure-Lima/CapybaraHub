@@ -1,5 +1,5 @@
 {
-  "name": "@orbit-hub/web",
+  "name": "orbit-hub-web",
   "version": "0.1.0",
   "private": true,
   "scripts": {
