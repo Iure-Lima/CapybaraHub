@@ -1,0 +1,46 @@
+<form
+  [formGroup]="formLogin"
+  (ngSubmit)="onSubmitLogin()"
+  class="flex flex-col"
+>
+  <p-floatLabel class="mb-4">
+    <input
+      pInputText
+      type="email"
+      autocomplete="off"
+      id="email"
+      formControlName="email"
+      class="w-full"
+    />
+    <label for="email">E-mail</label>
+  </p-floatLabel>
+  @if (formLogin.get('email')?.invalid && formLogin.get('email')?.touched) {
+  <small class="text-red-500 mb-4"> Enter a valid E-mail. </small>
+  }
+
+  <p-floatLabel class="mb-4">
+    <p-password
+      formControlName="password"
+      [feedback]="false"
+      [toggleMask]="true"
+      [style]="{ width: '100%' }"
+      inputStyleClass="w-full"
+    />
+    <label for="password">Password</label>
+  </p-floatLabel>
+
+  @if (formLogin.get('password')?.invalid && formLogin.get('password')?.touched)
+  {
+  <small class="text-red-500 mb-4"> Password is required. </small>}
+
+  <div class="w-full flex justify-between">
+    <p-button label="Cancelar" severity="secondary" />
+    <button
+      pButton
+      pRipple
+      label="Login"
+      class="p-button-success"
+      type="submit"
+    ></button>
+  </div>
+</form>

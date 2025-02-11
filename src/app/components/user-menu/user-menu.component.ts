@@ -1,22 +1,21 @@
 import { Component } from '@angular/core';
+import { AuthenticationContainerComponent } from './authentication-container/authentication-container.component';
 
 @Component({
   selector: 'app-user-menu',
   standalone: true,
-  imports: [],
+  imports: [AuthenticationContainerComponent],
   templateUrl: './user-menu.component.html',
   styleUrl: './user-menu.component.scss'
 })
 export class UserMenuComponent {
-  loginContainerActive = false;
+  authenticationContainerActive = true;
 
-  toggleLoginContainer() {
-    this.loginContainerActive  = !this.loginContainerActive;
+  toggleAuthenticationContainer() {
+    this.authenticationContainerActive  = !this.authenticationContainerActive;
   }
 
-  receiveLogin(data: {email:string, password:string}){
-    console.log('Received login:', data);
-    this.toggleLoginContainer();
+  eventCloseAuthentication(){
+    this.toggleAuthenticationContainer();
   }
-
 }

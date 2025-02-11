@@ -1,0 +1,24 @@
+<div
+  class="absolute inset-0 w-screen h-screen z-50 top-0 left-0 fixed backdrop-blur-xs flex items-center justify-center"
+>
+  <p-dialog
+    [modal]="true"
+    [(visible)]="visible"
+    [style]="{ width: '30rem' }"
+    [showHeader]="false"
+    (onHide)="closeAuthenticationContainer()"
+    [dismissableMask]="true"
+  >
+    <p-tabView>
+      <p-tabPanel header="Login">
+        <app-login></app-login>
+      </p-tabPanel>
+      <p-tabPanel header="Registrer">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis nemo
+        incidunt architecto ab aliquam id vitae aspernatur perferendis error
+        accusamus voluptatem esse eos at libero tempore et, fugiat ducimus
+        officiis.
+      </p-tabPanel>
+    </p-tabView>
+  </p-dialog>
+</div>
