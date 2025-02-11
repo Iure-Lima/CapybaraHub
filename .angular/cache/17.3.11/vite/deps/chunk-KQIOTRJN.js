@@ -2283,7 +2283,7 @@ function appendMissingHeadersDetection(url, headers, headersToInclude) {
   });
 }
 
-// node_modules/.pnpm/@angular+platform-browser@17.3.12_@angular+animations@17.3.12_@angular+core@17.3.12_rxj_7e1c45b4545d549534142dcb087c86bf/node_modules/@angular/platform-browser/fesm2022/platform-browser.mjs
+// node_modules/.pnpm/@angular+platform-browser@17.3.12_@angular+animations@17.3.12_@angular+core@17.3.12_rxjs@7.8._2bpqe34dqbqduhdioc3f44qsdq/node_modules/@angular/platform-browser/fesm2022/platform-browser.mjs
 var GenericBrowserDomAdapter = class extends DomAdapter {
   constructor() {
     super(...arguments);
@@ -4157,4 +4157,4 @@ export {
    * License: MIT
    *)
 */
-//# sourceMappingURL=chunk-FOEDIC6W.js.map
+//# sourceMappingURL=chunk-KQIOTRJN.js.map

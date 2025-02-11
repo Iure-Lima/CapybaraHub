@@ -1,6 +1,6 @@
 import {
   Title
-} from "./chunk-FOEDIC6W.js";
+} from "./chunk-KQIOTRJN.js";
 import {
   DOCUMENT,
   HashLocationStrategy,
@@ -115,7 +115,7 @@ import {
   ɵɵsanitizeUrlOrResourceUrl
 } from "./chunk-CB6JLD5G.js";
 
-// node_modules/.pnpm/@angular+router@17.3.12_@angular+common@17.3.12_@angular+core@17.3.12_rxjs@7.8.1_zone.j_008df09ec2f60804ac468b84d288de51/node_modules/@angular/router/fesm2022/router.mjs
+// node_modules/.pnpm/@angular+router@17.3.12_@angular+common@17.3.12_@angular+core@17.3.12_rxjs@7.8.1_zone.js@0.14_wzl7fbci52ud5ugxssjee4jt7e/node_modules/@angular/router/fesm2022/router.mjs
 var PRIMARY_OUTLET = "primary";
 var RouteTitleKey = Symbol("RouteTitle");
 var ParamsAsMap = class {
