@@ -1,16 +1,14 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
-import { DialogModule } from 'primeng/dialog';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
-import { TabViewModule } from 'primeng/tabview';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [TabViewModule, InputTextModule,ButtonModule, DialogModule, ReactiveFormsModule,PasswordModule,FloatLabelModule],
+  imports: [InputTextModule,ButtonModule, ReactiveFormsModule,PasswordModule,FloatLabelModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })

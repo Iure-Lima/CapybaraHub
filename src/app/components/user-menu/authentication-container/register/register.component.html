@@ -1,0 +1,100 @@
+<form
+  [formGroup]="registerForm"
+  (ngSubmit)="onSubmitRegister()"
+  class="flex flex-col"
+>
+  <div class="grid grid-cols-auto-fit grid-cols-2 gap-4 w-full mb-4">
+    <div class="w-full">
+      <p-floatLabel>
+        <input
+          id="Fullname"
+          type="text"
+          pInputText
+          formControlName="fullname"
+          class="w-full"
+          autocomplete="off"
+        />
+        <label for="Fullname">Full name</label>
+      </p-floatLabel>
+      @if (registerForm.get('fullname')?.invalid &&
+      registerForm.get('fullname')?.touched) {
+      <small class="text-red-500 mb-4"
+        >Full name must be longer than 5 characters</small
+      >}
+    </div>
+
+    <div class="w-full">
+      <p-floatLabel>
+        <input
+          id="email"
+          type="email"
+          autocomplete="off"
+          pInputText
+          formControlName="email"
+          class="w-full"
+        />
+        <label for="email">E-mail</label>
+      </p-floatLabel>
+      @if (registerForm.get('email')?.invalid &&
+      registerForm.get('email')?.touched) {
+      <small class="text-red-500 mb-4"> E-mail Invalid </small>}
+    </div>
+  </div>
+  <div class="w-full mb-4">
+    <p-floatLabel>
+      <input
+        id="phone"
+        type="text"
+        pInputText
+        formControlName="phone"
+        class="w-full"
+        autocomplete="off"
+      />
+      <label for="phone">Phone</label>
+    </p-floatLabel>
+    @if (registerForm.get('phone')?.invalid &&
+    registerForm.get('phone')?.touched) {
+    <small class="text-red-500 mb-4">Invalid Phone</small>}
+  </div>
+  <div class="w-full mb-4">
+    <p-floatLabel>
+      <p-password
+        formControlName="password"
+        [feedback]="false"
+        [toggleMask]="true"
+        [style]="{ width: '100%' }"
+        inputStyleClass="w-full"
+      />
+      <label for="password">Password</label>
+    </p-floatLabel>
+    @if (registerForm.get('password')?.invalid &&
+    registerForm.get('password')?.touched) {
+    <small class="text-red-500 mb-4"
+      >Password must be longer than 5 characters</small
+    >}
+  </div>
+  <div class="w-full mb-4">
+    <p-floatLabel>
+      <p-password
+        formControlName="confirmPassword"
+        [feedback]="false"
+        [toggleMask]="true"
+        [style]="{ width: '100%' }"
+        inputStyleClass="w-full"
+      />
+      <label for="confirmPassword">Confirm Password</label>
+    </p-floatLabel>
+    @if (isEqual && registerForm.get('confirmPassword')?.touched) {
+    <small class="text-red-500 mb-4">Passwords don't match</small>}
+  </div>
+  <div class="w-full flex justify-between">
+    <p-button label="Cancel" severity="secondary" class="w-full" />
+    <button
+      pButton
+      pRipple
+      label="Register"
+      class="p-button-success"
+      type="submit"
+    ></button>
+  </div>
+</form>

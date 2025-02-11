@@ -4,7 +4,7 @@
   <p-dialog
     [modal]="true"
     [(visible)]="visible"
-    [style]="{ width: '30rem' }"
+    [style]="{ width: '35rem' }"
     [showHeader]="false"
     (onHide)="closeAuthenticationContainer()"
     [dismissableMask]="true"
@@ -14,10 +14,7 @@
         <app-login></app-login>
       </p-tabPanel>
       <p-tabPanel header="Registrer">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis nemo
-        incidunt architecto ab aliquam id vitae aspernatur perferendis error
-        accusamus voluptatem esse eos at libero tempore et, fugiat ducimus
-        officiis.
+        <app-register></app-register>
       </p-tabPanel>
     </p-tabView>
   </p-dialog>

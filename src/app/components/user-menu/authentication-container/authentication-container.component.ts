@@ -1,17 +1,13 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import {TabViewModule} from "primeng/tabview"
 import { DialogModule } from 'primeng/dialog';
-import { InputTextModule } from 'primeng/inputtext';
-import { ButtonModule } from 'primeng/button';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { PasswordModule } from 'primeng/password';
-import { FloatLabelModule } from 'primeng/floatlabel';
 import { LoginComponent } from "./login/login.component";
+import { RegisterComponent } from "./register/register.component";
 
 @Component({
   selector: 'app-authentication-container',
   standalone: true,
-  imports: [TabViewModule, DialogModule,LoginComponent],
+  imports: [TabViewModule, DialogModule, LoginComponent, RegisterComponent],
   templateUrl: './authentication-container.component.html',
   styleUrl: './authentication-container.component.scss'
 })
