@@ -1,31 +1,37 @@
 {
-  "hash": "2ab76911",
-  "configHash": "ca40b7c7",
-  "lockfileHash": "ec5df8cb",
-  "browserHash": "ea063342",
+  "hash": "116f749f",
+  "configHash": "8c0e096a",
+  "lockfileHash": "41f2591d",
+  "browserHash": "c96dd69e",
   "optimized": {
     "@angular/core": {
       "src": "../../../../../node_modules/.pnpm/@angular+core@17.3.12_rxjs@7.8.1_zone.js@0.14.10/node_modules/@angular/core/fesm2022/core.mjs",
       "file": "@angular_core.js",
-      "fileHash": "4937c89f",
+      "fileHash": "a707aab7",
       "needsInterop": false
     },
     "@angular/forms": {
       "src": "../../../../../node_modules/.pnpm/@angular+forms@17.3.12_@angular+common@17.3.12_@angular+core@17.3.12_rxjs@7.8.1_zone.js@0.14._kqutdeycwvykhonkaxnagj6gse/node_modules/@angular/forms/fesm2022/forms.mjs",
       "file": "@angular_forms.js",
-      "fileHash": "032fdc81",
+      "fileHash": "c04d6a95",
       "needsInterop": false
     },
     "@angular/platform-browser": {
       "src": "../../../../../node_modules/.pnpm/@angular+platform-browser@17.3.12_@angular+animations@17.3.12_@angular+core@17.3.12_rxjs@7.8._2bpqe34dqbqduhdioc3f44qsdq/node_modules/@angular/platform-browser/fesm2022/platform-browser.mjs",
       "file": "@angular_platform-browser.js",
-      "fileHash": "f2d28824",
+      "fileHash": "97c746ce",
+      "needsInterop": false
+    },
+    "@angular/platform-browser/animations": {
+      "src": "../../../../../node_modules/.pnpm/@angular+platform-browser@17.3.12_@angular+animations@17.3.12_@angular+core@17.3.12_rxjs@7.8._2bpqe34dqbqduhdioc3f44qsdq/node_modules/@angular/platform-browser/fesm2022/animations.mjs",
+      "file": "@angular_platform-browser_animations.js",
+      "fileHash": "56c86827",
       "needsInterop": false
     },
     "@angular/router": {
       "src": "../../../../../node_modules/.pnpm/@angular+router@17.3.12_@angular+common@17.3.12_@angular+core@17.3.12_rxjs@7.8.1_zone.js@0.14_wzl7fbci52ud5ugxssjee4jt7e/node_modules/@angular/router/fesm2022/router.mjs",
       "file": "@angular_router.js",
-      "fileHash": "a2c96b2c",
+      "fileHash": "e0e7bd47",
       "needsInterop": false
     }
   },

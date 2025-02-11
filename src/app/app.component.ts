@@ -8,7 +8,7 @@ import type { HotelCard } from './models/hotel.card.model';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [HeaderComponent, CardListComponent],
+  imports: [HeaderComponent, CardListComponent,],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
