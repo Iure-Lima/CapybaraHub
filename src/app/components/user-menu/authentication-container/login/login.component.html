@@ -34,12 +34,17 @@
   <small class="text-red-500 mb-4"> Password is required. </small>}
 
   <div class="w-full flex justify-between">
-    <p-button label="Cancel" severity="secondary" />
+    <button
+      pButton
+      pRipple
+      label="Cancel"
+      class="p-button-danger w-40 sm:w-48 px-6 py-3"
+    ></button>
     <button
       pButton
       pRipple
       label="Login"
-      class="p-button-success"
+      class="p-button-success w-40 sm:w-48 px-6 py-3"
       type="submit"
     ></button>
   </div>

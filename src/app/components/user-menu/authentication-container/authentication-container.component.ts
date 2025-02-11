@@ -20,7 +20,6 @@ export class AuthenticationContainerComponent {
     }
 
   closeAuthenticationContainer() {
-    console.log("oi")
     this.toggleAuthenticationContainer();
     this.eventClose.emit();
   }
