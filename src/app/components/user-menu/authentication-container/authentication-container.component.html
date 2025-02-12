@@ -12,7 +12,7 @@
   >
     <p-tabView>
       <p-tabPanel header="Login">
-        <app-login (event)="showError()"></app-login>
+        <app-login (event)="showMessage($event)"></app-login>
       </p-tabPanel>
       <p-tabPanel header="Registrer">
         <app-register></app-register>

@@ -10,10 +10,11 @@ export class LoginService {
 
   constructor(private http: HttpClient) { }
 
-  login(email: string, password: string): Observable<object> {
+  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+  login(email: string, password: string): Observable<any> {
     if (!email || !password){
       throw new Error('Email e senha são obrigatórios.');
     }
-    return this.http.post(`${environment.apiUrl}/auth/signin`, { email, password }).pipe()
+    return this.http.post(`${environment.apiUrl}/auth/signin`, { email, password })
   }
 }

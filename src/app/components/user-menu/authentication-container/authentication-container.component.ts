@@ -29,8 +29,12 @@ export class AuthenticationContainerComponent {
     this.eventClose.emit();
   }
 
-  showError(){
-    this.message.add({severity: 'error', summary:'Invalid Credentials', detail:'invalid credentials'})
+  showMessage(message: string){
+    if (message === 'success'){
+      this.message.add({severity: 'success', summary:'Login successfully'})
+    }else if (message === 'error'){
+      this.message.add({severity: 'error', summary:'Invalid Credentials', detail:'invalid credentials'})
+    }
   }
 
 }

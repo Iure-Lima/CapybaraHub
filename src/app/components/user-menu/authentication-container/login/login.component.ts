@@ -4,6 +4,7 @@ import { ButtonModule } from 'primeng/button';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
+import { AuthService } from '../../../../services/auth/auth.service';
 import { LoginService } from '../../../../services/auth/login.service';
 
 @Component({
@@ -14,9 +15,9 @@ import { LoginService } from '../../../../services/auth/login.service';
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
-  constructor(private login: LoginService){}
+  constructor(private login: LoginService, private auth: AuthService){}
 
-  @Output() event = new EventEmitter();
+  @Output() event = new EventEmitter<string>();
 
 
   formLogin = new FormGroup({
@@ -30,11 +31,12 @@ export class LoginComponent {
       const password:string = this.formLogin.get('password')?.value ?? "unknown";
       this.login.login(email,password).subscribe(
         response => {
-          console.log('Login bem-sucedido!', response);
+          this.auth.saveToken(response?.accessToken)
+          this.event.emit('success');
         },
         error => {
           if (error.status === 401){
-            this.event.emit();
+            this.event.emit('error');
           }
         }
       );
