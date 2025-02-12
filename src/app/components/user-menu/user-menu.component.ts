@@ -9,7 +9,7 @@ import { AuthenticationContainerComponent } from './authentication-container/aut
   styleUrl: './user-menu.component.scss'
 })
 export class UserMenuComponent {
-  authenticationContainerActive = true;
+  authenticationContainerActive = false;
 
   toggleAuthenticationContainer() {
     this.authenticationContainerActive  = !this.authenticationContainerActive;
