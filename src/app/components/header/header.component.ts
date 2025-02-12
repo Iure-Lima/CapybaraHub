@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { LoginComponent } from '../login/login.component';
-import { SearchComponent } from '../search/search.component';
+import { SearchComponent } from "../search/search.component";
+import { UserMenuComponent } from "../user-menu/user-menu.component";
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [SearchComponent, LoginComponent],
+  imports: [SearchComponent, UserMenuComponent],
   templateUrl: './header.component.html',
 })
 export class HeaderComponent {}

@@ -2,7 +2,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap");
 @import "tailwindcss";
 
-@theme {
+:root {
   --color-header: rgba(232, 232, 232, 0.44);
   --color-title: #304e00;
   --color-card: #f2eeeef5;
@@ -10,6 +10,9 @@
   --color-search-foreground: #676767;
   --card-location-street-color: #323232;
   --card-location-city-state-country-color: #242424;
+  --font-family-primary: "DM Sans", serif;
+}
 
-  --font-sans: "Geist", sans-serif;
+* {
+  font-family: var(--font-family-primary);
 }
