@@ -1,5 +1,5 @@
 <section
-  class="w-80 h-86 bg-[var(--card-background-color)] rounded-lg shadow-md flex flex-col"
+  class="w-80 h-86 bg-card rounded-lg shadow-md flex flex-col"
 >
   <img
     [src]="card?.image"
@@ -7,11 +7,11 @@
     class="w-full h-50 rounded-t-lg shadow-md"
   />
   <div class="flex mt-3.5 w-full pl-2 pr-4 justify-between">
-    <h3 class="text-xl fort-normal text-[var(--card-font-color)]">
+    <h3 class="text-xl fort-normal text-card-foreground">
       {{ card?.name }}
     </h3>
     <div class="flex w-7 h-full">
-      <p class="text-lg w-2.5 h-5 text-[var(--color-title)] mr-px">
+      <p class="text-lg w-2.5 h-5 text-title mr-px">
         {{ card?.rating }}
       </p>
       <img
@@ -36,7 +36,7 @@
   </div>
   <div class="relative">
     <button
-      class="flex bg-[var(--card-font-color)] rounded-sm mt-2 h-7.5 w-26 text-white cursor-pointer items-center justify-around absolute right-2"
+      class="flex bg-card-foreground rounded-sm mt-2 h-7.5 w-26 text-white cursor-pointer items-center justify-around absolute right-2"
     >
       Book<img
         src="../../../assets/solar_calendar-bold.svg"
