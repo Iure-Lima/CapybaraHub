@@ -1,10 +1,10 @@
 import {
-  TimesIcon
-} from "./chunk-APPQRCRV.js";
-import {
   Ripple,
   RippleModule
 } from "./chunk-IQGEYWUP.js";
+import {
+  TimesIcon
+} from "./chunk-APPQRCRV.js";
 import {
   BaseIcon,
   ConnectedOverlayScrollHandler,
