@@ -17,6 +17,7 @@ import { RegisterComponent } from "./register/register.component";
 export class AuthenticationContainerComponent {
   visible = true;
   @Output() eventClose = new EventEmitter();
+  @Output() eventAuth = new EventEmitter<string>();
 
   constructor(private message: MessageService) { }
 
@@ -31,7 +32,7 @@ export class AuthenticationContainerComponent {
 
   showMessage(message: string){
     if (message === 'success'){
-      this.message.add({severity: 'success', summary:'Login successfully'})
+      this.eventAuth.emit('success');
     }else if (message === 'error'){
       this.message.add({severity: 'error', summary:'Invalid Credentials', detail:'invalid credentials'})
     }

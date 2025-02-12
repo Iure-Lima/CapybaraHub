@@ -1,3 +1,4 @@
+<p-toast />
 <section class="w-48">
   <div
     class="flex justify-center cursor-pointer select-none"
@@ -9,6 +10,7 @@
   @if (authenticationContainerActive) {
   <app-authentication-container
     (eventClose)="eventCloseAuthentication()"
+    (eventAuth)="show($event)"
   ></app-authentication-container>
   }
 </section>
