@@ -12,7 +12,6 @@ export class RegisterService {
 
   // biome-ignore lint/suspicious/noExplicitAny: <explanation>
   registerUser(user: UserRegister): Observable<any> {
-    console.log(user)
     return this.http.post(`${environment.apiUrl}/auth/signup`, user)
   }
 

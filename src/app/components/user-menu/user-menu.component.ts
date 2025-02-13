@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
+import { Alert } from '../../models/alert.model';
 import { AuthenticationContainerComponent } from './authentication-container/authentication-container.component';
 
 @Component({
@@ -24,8 +25,8 @@ export class UserMenuComponent {
     this.toggleAuthenticationContainer();
   }
 
-  show(message:string){
-    this.message.add({severity: message, summary:'Login successfully'})
+  show(data: Alert){
+    this.message.add({severity: data.type, summary:data.summary, detail:data.detail})
     this.eventCloseAuthentication()
   }
 }

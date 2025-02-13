@@ -4,6 +4,7 @@ import { ButtonModule } from 'primeng/button';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
+import { Alert } from '../../../../models/alert.model';
 import { AuthService } from '../../../../services/auth/auth.service';
 import { LoginService } from '../../../../services/auth/login.service';
 
@@ -19,7 +20,7 @@ export class LoginComponent {
 
   constructor(private login: LoginService, private auth: AuthService){}
 
-  @Output() event = new EventEmitter<string>();
+  @Output() event = new EventEmitter<Alert>();
   @Output() eventCancelled = new EventEmitter();
 
 
@@ -41,12 +42,12 @@ export class LoginComponent {
       this.login.login(email,password).subscribe({
         next: (response) =>{
           this.auth.saveToken(response?.accessToken)
-          this.event.emit('success');
+          this.event.emit({type:'success', summary:"Login Successfully", detail:""});
         },
         error: (error) => {
           this.sendLogin = false;
           if (error.status === 401){
-            this.event.emit('error');
+            this.event.emit({type:'error', summary:"Login Failed", detail:"Invalid Credentials"});
           }
         },
         complete: () => {this.sendLogin = false},

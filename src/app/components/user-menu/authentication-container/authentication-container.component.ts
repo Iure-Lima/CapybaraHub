@@ -3,6 +3,7 @@ import { MessageService } from 'primeng/api';
 import { DialogModule } from 'primeng/dialog';
 import { TabViewModule } from "primeng/tabview";
 import { ToastModule } from 'primeng/toast';
+import { Alert } from '../../../models/alert.model';
 import { LoginComponent } from "./login/login.component";
 import { RegisterComponent } from "./register/register.component";
 
@@ -17,7 +18,7 @@ import { RegisterComponent } from "./register/register.component";
 export class AuthenticationContainerComponent {
   visible = true;
   @Output() eventClose = new EventEmitter();
-  @Output() eventAuth = new EventEmitter<string>();
+  @Output() eventAuth = new EventEmitter<Alert>();
 
   constructor(private message: MessageService) { }
 
@@ -30,11 +31,11 @@ export class AuthenticationContainerComponent {
     this.eventClose.emit();
   }
 
-  showMessage(message: string){
-    if (message === 'success'){
-      this.eventAuth.emit('success');
-    }else if (message === 'error'){
-      this.message.add({severity: 'error', summary:'Invalid Credentials', detail:'invalid credentials'})
+  showMessage(data:Alert){
+    if (data?.type === 'success'){
+      this.eventAuth.emit(data);
+    }else if (data?.type === 'error'){
+      this.message.add({severity: data.type, summary:data.summary, detail:data.detail})
     }
   }
 
