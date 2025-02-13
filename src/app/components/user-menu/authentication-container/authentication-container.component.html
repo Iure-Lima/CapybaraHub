@@ -18,7 +18,10 @@
         ></app-login>
       </p-tabPanel>
       <p-tabPanel header="Registrer">
-        <app-register></app-register>
+        <app-register
+          (closeEvent)="closeAuthenticationContainer()"
+          (event)="showMessage($event)"
+        ></app-register>
       </p-tabPanel>
     </p-tabView>
   </p-dialog>
