@@ -18,12 +18,18 @@ export class LoginComponent {
   constructor(private login: LoginService, private auth: AuthService){}
 
   @Output() event = new EventEmitter<string>();
+  @Output() eventCancelled = new EventEmitter();
 
 
   formLogin = new FormGroup({
     email: new FormControl("",[Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required, Validators.minLength(5)])
   })
+
+  eventCancel(){
+    this.formLogin.reset();
+    this.eventCancelled.emit();
+  }
 
   onSubmitLogin(){
     if (this.formLogin.valid){

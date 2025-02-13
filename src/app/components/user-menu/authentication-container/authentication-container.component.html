@@ -12,7 +12,10 @@
   >
     <p-tabView>
       <p-tabPanel header="Login">
-        <app-login (event)="showMessage($event)"></app-login>
+        <app-login
+          (eventCancelled)="closeAuthenticationContainer()"
+          (event)="showMessage($event)"
+        ></app-login>
       </p-tabPanel>
       <p-tabPanel header="Registrer">
         <app-register></app-register>
