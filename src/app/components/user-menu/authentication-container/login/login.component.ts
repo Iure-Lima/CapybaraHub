@@ -15,6 +15,8 @@ import { LoginService } from '../../../../services/auth/login.service';
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
+  sendLogin=false;
+
   constructor(private login: LoginService, private auth: AuthService){}
 
   @Output() event = new EventEmitter<string>();
@@ -33,19 +35,22 @@ export class LoginComponent {
 
   onSubmitLogin(){
     if (this.formLogin.valid){
+      this.sendLogin = true;
       const email:string = this.formLogin.get('email')?.value ?? "unknown";
       const password:string = this.formLogin.get('password')?.value ?? "unknown";
-      this.login.login(email,password).subscribe(
-        response => {
+      this.login.login(email,password).subscribe({
+        next: (response) =>{
           this.auth.saveToken(response?.accessToken)
           this.event.emit('success');
         },
-        error => {
+        error: (error) => {
+          this.sendLogin = false;
           if (error.status === 401){
             this.event.emit('error');
           }
-        }
-      );
+        },
+        complete: () => {this.sendLogin = false},
+      });
     }
   }
 
