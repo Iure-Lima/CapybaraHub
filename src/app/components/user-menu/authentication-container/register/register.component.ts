@@ -1,9 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { type AbstractControl, FormControl, FormGroup, ReactiveFormsModule, type ValidationErrors, type ValidatorFn, Validators } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
+import { Alert } from '../../../../models/alert.model';
+import { UserRegister } from '../../../../models/user.register.model';
+import { AuthService } from '../../../../services/auth/auth.service';
+import { RegisterService } from '../../../../services/auth/register.service';
 
 @Component({
   selector: 'app-register',
@@ -21,12 +25,40 @@ export class RegisterComponent {
     confirmPassword: new FormControl('', [Validators.required])
   },{validators:this.matchPasswords()})
 
+  sendRegister = false;
+
+  @Output() closeEvent = new EventEmitter();
+  @Output() event = new EventEmitter<Alert>();
+
+  constructor(private register: RegisterService, private auth: AuthService){}
+
   onSubmitRegister(){
-    if (this.registerForm.invalid){
-      console.log("Please enter")
-    } else {
-      console.log("Register Successful!")
+    if (this.registerForm.valid){
+      this.sendRegister = true;
+      const user: UserRegister = {
+        name: this.registerForm.get('fullname')?.value ?? "unknown",
+        email: this.registerForm.get('email')?.value ?? "unknown",
+        phone: this.registerForm.get('phone')?.value ?? "unknown",
+        password: this.registerForm.get('password')?.value ?? "unknown"
+      }
+      this.register.registerUser(user).subscribe({
+        next: (response) =>{
+          this.auth.saveToken(response?.accessToken)
+          this.event.emit({type:'success', summary:"Register Successfully", detail:"Your account has been registered"})
+        },
+        error:(error) =>{
+          this.sendRegister = false
+          if (error.status === 400){
+            this.event.emit({type:'error', summary:"Register Failed", detail:""})
+          }
+        },
+        complete: () => {this.sendRegister = false},
+      })
     }
+  }
+
+  closeRegister(){
+    this.closeEvent.emit();
   }
 
   matchPasswords(): ValidatorFn {

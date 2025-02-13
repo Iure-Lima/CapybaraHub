@@ -1,6 +1,7 @@
 <div
   class="absolute inset-0 w-screen h-screen z-50 top-0 left-0 fixed backdrop-blur-xs flex items-center justify-center"
 >
+  <p-toast />
   <p-dialog
     [modal]="true"
     [(visible)]="visible"
@@ -11,10 +12,16 @@
   >
     <p-tabView>
       <p-tabPanel header="Login">
-        <app-login></app-login>
+        <app-login
+          (eventCancelled)="closeAuthenticationContainer()"
+          (event)="showMessage($event)"
+        ></app-login>
       </p-tabPanel>
       <p-tabPanel header="Registrer">
-        <app-register></app-register>
+        <app-register
+          (closeEvent)="closeAuthenticationContainer()"
+          (event)="showMessage($event)"
+        ></app-register>
       </p-tabPanel>
     </p-tabView>
   </p-dialog>

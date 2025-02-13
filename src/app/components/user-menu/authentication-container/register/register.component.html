@@ -26,7 +26,7 @@
     <div class="w-full">
       <p-floatLabel>
         <input
-          id="email"
+          id="email-register"
           type="email"
           autocomplete="off"
           pInputText
@@ -97,6 +97,8 @@
       pButton
       pRipple
       label="Cancel"
+      type="button"
+      (click)="closeRegister()"
       class="p-button-danger w-40 sm:w-48 px-6 py-3"
     ></button>
     <button
@@ -105,6 +107,7 @@
       label="Register"
       class="p-button-success w-40 sm:w-48 px-6 py-3"
       type="submit"
+      [disabled]="sendRegister"
     ></button>
   </div>
 </form>
