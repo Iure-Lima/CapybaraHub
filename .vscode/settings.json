@@ -9,7 +9,7 @@
   "[html]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.codeActionsOnSave": {
-      "quickfix": "explicit",
+      "quickfix": "explicit"
     }
   },
   "typescript.tsdk": "node_modules/typescript/lib",
