@@ -1,14 +1,11 @@
-export type HotelCard = {
-  id: number;
+import { Location } from "./location.model";
+
+export interface HotelCard {
+  _id: string;
   name: string;
+  email: string;
+  phone: string;
   rating: number;
   location: Location;
   image: string;
-};
-
-type Location = {
-  street: string;
-  city: string;
-  state: string;
-  country: string;
 };

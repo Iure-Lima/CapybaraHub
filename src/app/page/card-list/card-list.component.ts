@@ -1,8 +1,8 @@
 import {
-    Component
+  Component
 } from '@angular/core';
 import { CardComponent } from '../../components/card/card.component';
-import type { HotelCard } from '../../models/hotel.card.model';
+import { RoomCard } from '../../models/room.model';
 import { MockDataService } from '../../services/mock-data.service';
 
 @Component({
@@ -12,9 +12,9 @@ import { MockDataService } from '../../services/mock-data.service';
   templateUrl: './card-list.component.html',
 })
 export class CardListComponent {
-  cardList: HotelCard[];
+  roomList!: RoomCard[];
 
   constructor(private dataService: MockDataService) {
-    this.cardList = this.dataService.getHotelsCards();
+    this.roomList = this.dataService.getRooms()
   }
 }

@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import type { HotelCard } from '../models/hotel.card.model';
+import { RoomCard } from '../models/room.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MockDataService {
-  private mockData: HotelCard[] = [];
+  private hotelData: HotelCard[] = [];
+  private roomData: RoomCard[] = [];
 
   constructor() {
     const imagesURLs: string[] = [
@@ -18,8 +20,8 @@ export class MockDataService {
     ];
 
     for (let i = 0; i < imagesURLs.length; i++) {
-      this.mockData.push({
-        id: i + 1,
+      this.hotelData.push({
+        _id: `${i + 1}`,
         name: 'Hotel Conchitas',
         rating: 5,
         image: imagesURLs[i],
@@ -28,12 +30,41 @@ export class MockDataService {
           city: 'Coroico',
           state: 'La Paz',
           country: 'Bolivia',
+          number: 0,
+          postalCode: '00000000000000'
         },
+        email: 'test@example',
+        phone: '5993039090'
+      });
+    }
+
+    for (let i = 0; i < this.hotelData.length; i++) {
+      this.roomData.push({
+        _id: `${i + 1}`,
+        hotelId: `${i + 1}`,
+        roomTypeId: '1',
+        pricePerNight: '500.00',
+        roomNumber: 1,
+        status: 'Available',
+        images: [imagesURLs[0], imagesURLs[1], imagesURLs[2]],
+        rating: 4.7
       });
     }
   }
 
   getHotelsCards(): HotelCard[] {
-    return this.mockData;
+    return this.hotelData;
+  }
+
+  getRooms(): RoomCard[] {
+    return this.roomData;
+  }
+
+  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+  getHotelById(id: number): HotelCard | any {
+    const hotel = this.hotelData.find((hotel) => hotel._id === `${id}`);
+    if (hotel){
+      return hotel;
+    }
   }
 }

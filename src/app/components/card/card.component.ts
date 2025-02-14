@@ -1,5 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
-import type { HotelCard } from '../../models/hotel.card.model';
+import { Component, Input } from '@angular/core';
+import { HotelCard } from '../../models/hotel.card.model';
+import { RoomCard } from '../../models/room.model';
+import { MockDataService } from '../../services/mock-data.service';
 
 @Component({
   selector: 'app-card',
@@ -8,5 +10,8 @@ import type { HotelCard } from '../../models/hotel.card.model';
   templateUrl: './card.component.html',
 })
 export class CardComponent {
-  @Input() card?: HotelCard;
+  @Input() roomCard?: RoomCard;
+  hotelData?: HotelCard
+
+  constructor(private service: MockDataService){}
 }
