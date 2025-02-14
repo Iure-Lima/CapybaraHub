@@ -1,1 +1,39 @@
-<p>not-found works!</p>
+<section
+  class="relative w-full h-screen flex flex-col justify-center items-start text-white text-left px-12"
+>
+  <!-- Imagem de fundo -->
+  <div class="absolute inset-0 bg-cover bg-center img"></div>
+
+  <!-- Overlay escuro para melhor contraste -->
+  <div class="absolute inset-0 bg-black opacity-50"></div>
+
+  <div class="relative z-10 max-w-2xl">
+    <h1 class="text-5xl font-bold mb-4">
+      🌍 Ops! Parece que você se perdeu no universo do Orbit Hub... 🚀
+    </h1>
+    <p class="text-lg mb-4">
+      A página que você procura não existe ou foi movida para outra galáxia. Mas
+      não se preocupe, estamos aqui para te ajudar a encontrar o que precisa!
+    </p>
+    <blockquote class="italic text-gray-300 text-lg mb-6">
+      "A jornada importa mais do que o destino." – Ralph Waldo Emerson
+    </blockquote>
+    <p class="text-lg mb-6">
+      Enquanto você explora novos caminhos, que tal voltar para a
+      <a
+        routerLink="/home"
+        class="text-indigo-400 underline hover:text-indigo-300 cursor-pointer"
+        >página inicial</a
+      >
+      ou descobrir
+      <span class="text-indigo-400">novos destinos incríveis</span> para sua
+      estadia?
+    </p>
+    <a
+      routerLink="/home"
+      class="px-6 py-3 bg-indigo-500 text-white rounded-lg shadow-lg hover:bg-indigo-600 transition cursor-pointer"
+    >
+      Voltar para o início
+    </a>
+  </div>
+</section>
