@@ -1,24 +1,52 @@
-<div class="w-80 bg-white shadow-lg rounded-lg overflow-hidden">
-  <!-- Imagem de Fundo -->
-  <div class="h-48 bg-gray-300 relative">
+<div class="w-80 bg-white shadow-lg rounded-lg overflow-hidden select-none">
+  <div class="h-48 bg-gray-300 relative flex justify-center items-center">
     <div
-      class="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-10 h-2 bg-gray-500 rounded-full"
+      class="absolute w-full h-full inset-0 bg-gradient-to-t from-black via-black/10 to-transparent"
     ></div>
+    <img
+      [src]="currentImage"
+      alt="Room Image"
+      class="w-full h-full object-cover"
+    />
+    <div class="absolute bottom-2 flex gap-2">
+      @for (img of roomCard.images; track $index) {
+      <button
+        class="w-6 h-1.5 bg-indigo-700 rounded-full transition-all duration-300 cursor-pointer"
+        (click)="changeImage($index)"
+        [ngClass]="{
+          'bg-gradient-to-r from-yellow-400 to-orange-500 w-8 w-8':
+            $index === currentIndex
+        }"
+      ></button>
+      }
+    </div>
   </div>
 
-  <div class="p-4">
+  <div class="p-2">
     <div class="flex justify-between items-center">
-      <!-- <h2 class="text-lg font-bold truncate w-56">
-        {{  }} Aqui entra o nome (endereço do hotel)
-      </h2> -->
+      <h2
+        class="text-lg font-bold truncate w-56"
+        [title]="hotelData?.location?.city"
+      >
+        {{ hotelData?.location?.city }}, {{ hotelData?.location?.country }}
+      </h2>
       <div class="flex items-center">
-        <!-- <span class="text-gray-600">{{  }}</span> aqui entra a avaliação do quarto -->
-        <i class="pi pi-star text-yellow-500 ml-1"></i>
+        <span class="text-gray-600">{{ roomCard.rating }}</span>
+        <i class="pi pi-star-fill text-yellow-500 ml-1"></i>
       </div>
     </div>
-    <!-- <p class="text-gray-500">{{ card?.location }}</p>  aqui vai entrar alguma parte da localização-->
-    <!-- <p class="text-black font-bold">
-      R${{ card.price }} <span class="font-normal">night</span> aqui entra o price, que vai ser passado por dois pipes, um para converter para moeda
-    </p> -->
+    <p class="text-gray-500">{{ hotelData?.location?.street }}</p>
+    <p class="text-black font-bold">
+      {{ roomCard.pricePerNight }} <span class="font-normal">night</span>
+    </p>
+  </div>
+  <div class="p-2 flex justify-end">
+    <a
+      href=""
+      class="px-3 py-2 text-white font-semibold bg-gradient-to-r from-indigo-500 to-blue-500 rounded-lg flex items-center gap-2 transition-all duration-300 hover:from-blue-700 hover:to-indigo-700"
+    >
+      Book
+      <i class="pi pi-calendar"></i>
+    </a>
   </div>
 </div>

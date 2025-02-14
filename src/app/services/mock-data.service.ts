@@ -61,8 +61,8 @@ export class MockDataService {
   }
 
   // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-  getHotelById(id: number): HotelCard | any {
-    const hotel = this.hotelData.find((hotel) => hotel._id === `${id}`);
+  getHotelById(id: string): HotelCard | any {
+    const hotel = this.hotelData.find((hotel) => hotel._id === id);
     if (hotel){
       return hotel;
     }
