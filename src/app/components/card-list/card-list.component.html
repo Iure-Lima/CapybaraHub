@@ -1,7 +1,7 @@
 <section
   class="w-full grid grid-cols-3 h-full py-8 px-21 gap-8 justify-items-center"
 >
-  @for (card of cardsList; track $index) {
+  @for (card of cardList; track $index) {
   <app-card [card]="card"></app-card>
   }
 </section>

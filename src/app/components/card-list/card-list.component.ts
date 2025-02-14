@@ -1,10 +1,8 @@
 import {
-  Component,
-  Input,
-  type OnChanges,
-  type SimpleChanges,
+  Component
 } from '@angular/core';
 import type { HotelCard } from '../../models/hotel.card.model';
+import { MockDataService } from '../../services/mock-data.service';
 import { CardComponent } from '../card/card.component';
 
 @Component({
@@ -14,5 +12,9 @@ import { CardComponent } from '../card/card.component';
   templateUrl: './card-list.component.html',
 })
 export class CardListComponent {
-  @Input() cardsList: HotelCard[] = [];
+  cardList: HotelCard[];
+
+  constructor(private dataService: MockDataService) {
+    this.cardList = this.dataService.getHotelsCards();
+  }
 }
