@@ -1,26 +1,25 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { MessageService } from 'primeng/api';
 import { DialogModule } from 'primeng/dialog';
 import { TabViewModule } from "primeng/tabview";
-import { ToastModule } from 'primeng/toast';
 import { Alert } from '../../../models/alert.model';
+import { AlertService } from '../../../services/alert/alert.service';
 import { LoginComponent } from "./login/login.component";
 import { RegisterComponent } from "./register/register.component";
 
 @Component({
   selector: 'app-authentication-container',
   standalone: true,
-  imports: [TabViewModule, DialogModule, LoginComponent, RegisterComponent,ToastModule],
+  imports: [TabViewModule, DialogModule, LoginComponent, RegisterComponent],
   templateUrl: './authentication-container.component.html',
   styleUrl: './authentication-container.component.scss',
-  providers:[MessageService]
+  providers:[]
 })
 export class AuthenticationContainerComponent {
   visible = true;
   @Output() eventClose = new EventEmitter();
   @Output() eventAuth = new EventEmitter<Alert>();
 
-  constructor(private message: MessageService) { }
+  constructor(private alertService: AlertService) { }
 
   toggleAuthenticationContainer() {
         this.visible  = !this.visible;
@@ -33,9 +32,10 @@ export class AuthenticationContainerComponent {
 
   showMessage(data:Alert){
     if (data?.severity === 'success'){
+      this.alertService.addAlert(data)
       this.eventAuth.emit(data);
     }else if (data?.severity === 'error'){
-      this.message.add(data)
+      this.alertService.addAlert(data)
     }
   }
 

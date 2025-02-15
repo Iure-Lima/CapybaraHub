@@ -4,7 +4,7 @@ import { ButtonModule } from 'primeng/button';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
-import { Alert } from '../../../../models/alert.model';
+import { AlertService } from '../../../../services/alert/alert.service';
 import { AuthService } from '../../../../services/auth/auth.service';
 import { LoginService } from '../../../../services/auth/login.service';
 
@@ -18,9 +18,8 @@ import { LoginService } from '../../../../services/auth/login.service';
 export class LoginComponent {
   sendLogin=false;
 
-  constructor(private login: LoginService, private auth: AuthService){}
+  constructor(private login: LoginService, private auth: AuthService, private alertService: AlertService){}
 
-  @Output() event = new EventEmitter<Alert>();
   @Output() eventCancelled = new EventEmitter();
 
 
@@ -42,12 +41,12 @@ export class LoginComponent {
       this.login.login(email,password).subscribe({
         next: (response) =>{
           this.auth.saveToken(response?.accessToken)
-          this.event.emit({severity:'success', summary:"Login Successfully", detail:""});
+          this.alertService.addAlert({severity:'success', summary:"Login Successfully", detail:""});
         },
         error: (error) => {
           this.sendLogin = false;
           if (error.status === 401){
-            this.event.emit({severity:'error', summary:"Login Failed", detail:"Invalid Credentials"});
+            this.alertService.addAlert({severity:'error', summary:"Login Failed", detail:"Invalid Credentials"});
           }
         },
         complete: () => {this.sendLogin = false},
