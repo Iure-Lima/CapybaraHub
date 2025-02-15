@@ -1,9 +1,10 @@
 import {
-    Component
+  Component
 } from '@angular/core';
 import { CardComponent } from '../../components/card/card.component';
-import type { HotelCard } from '../../models/hotel.card.model';
-import { MockDataService } from '../../services/mock-data.service';
+import { RoomCard } from '../../models/room.model';
+import { AlertService } from '../../services/alert/alert.service';
+import { RoomService } from '../../services/room/room.service';
 
 @Component({
   selector: 'app-card-list',
@@ -12,9 +13,14 @@ import { MockDataService } from '../../services/mock-data.service';
   templateUrl: './card-list.component.html',
 })
 export class CardListComponent {
-  cardList: HotelCard[];
+  roomList!: RoomCard[];
 
-  constructor(private dataService: MockDataService) {
-    this.cardList = this.dataService.getHotelsCards();
+  constructor(private room: RoomService, private alertService: AlertService) {
+    this.room.getAllRooms().subscribe({
+      next: (response) =>{
+        this.roomList = response.data;
+      },
+      error: (error) => this.alertService.addAlert({severity: 'error', summary:`${error.status} ${error.statusText}`,detail:"An error occurred while loading rooms."})
+    })
   }
 }

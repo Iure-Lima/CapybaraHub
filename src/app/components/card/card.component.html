@@ -1,47 +1,52 @@
-<section
-  class="w-80 h-86 bg-card rounded-lg shadow-md flex flex-col"
->
-  <img
-    [src]="card?.image"
-    alt="image for the hotel"
-    class="w-full h-50 rounded-t-lg shadow-md"
-  />
-  <div class="flex mt-3.5 w-full pl-2 pr-4 justify-between">
-    <h3 class="text-xl fort-normal text-card-foreground">
-      {{ card?.name }}
-    </h3>
-    <div class="flex w-7 h-full">
-      <p class="text-lg w-2.5 h-5 text-title mr-px">
-        {{ card?.rating }}
-      </p>
-      <img
-        src="../../../assets/material-symbols_star-rounded.svg"
-        alt="star rating"
-      />
+<div class="w-80 bg-white shadow-lg rounded-lg overflow-hidden select-none">
+  <div class="h-48 bg-gray-300 relative flex justify-center items-center">
+    <div
+      class="absolute w-full h-full inset-0 bg-gradient-to-t from-black via-black/10 to-transparent"
+    ></div>
+    <img
+      [src]="currentImage"
+      alt="Room Image"
+      class="w-full h-full object-cover"
+    />
+    <div class="absolute bottom-2 flex gap-2">
+      @for (img of roomCard.images; track $index) {
+      <button
+        class="w-6 h-1.5 bg-indigo-700 rounded-full transition-all duration-300 cursor-pointer"
+        (click)="changeImage($index)"
+        [ngClass]="{
+          'bg-gradient-to-r from-yellow-400 to-orange-500 w-8 w-8':
+            $index === currentIndex
+        }"
+      ></button>
+      }
     </div>
   </div>
-  <div class="flex pl-2 pr-4 mt-3">
-    <img src="../../../assets/bxs_map.svg" alt="map icon" class="mr-2" />
-    <div>
-      <p class="text-base text-[var(--card-location-street-color)]">
-        {{ card?.location?.street }}
-      </p>
-      <p class="text-sm text-[var(--card-location-city-state-country-color)]">
-        <strong>
-          {{ card?.location?.city }}, {{ card?.location?.state }} -
-          {{ card?.location?.country }}</strong
-        >
-      </p>
+
+  <div class="p-2">
+    <div class="flex justify-between items-center">
+      <h2
+        class="text-lg font-bold truncate w-56"
+        [title]="hotelData?.address?.city"
+      >
+        {{ hotelData?.address?.city }}, {{ hotelData?.address?.country }}
+      </h2>
+      <div class="flex items-center">
+        <span class="text-gray-600">{{ roomCard.rating }}</span>
+        <i class="pi pi-star-fill text-yellow-500 ml-1"></i>
+      </div>
     </div>
+    <p class="text-gray-500">{{ hotelData?.address?.street }}</p>
+    <p class="text-black font-bold">
+      {{ roomCard.pricePerNight }} <span class="font-normal">night</span>
+    </p>
   </div>
-  <div class="relative">
-    <button
-      class="flex bg-card-foreground rounded-sm mt-2 h-7.5 w-26 text-white cursor-pointer items-center justify-around absolute right-2"
+  <div class="p-2 flex justify-end">
+    <a
+      href=""
+      class="px-3 py-2 text-white font-semibold bg-gradient-to-r from-indigo-500 to-blue-500 rounded-lg flex items-center gap-2 transition-all duration-300 hover:from-blue-700 hover:to-indigo-700"
     >
-      Book<img
-        src="../../../assets/solar_calendar-bold.svg"
-        alt="icon calendar"
-      />
-    </button>
+      Book
+      <i class="pi pi-calendar"></i>
+    </a>
   </div>
-</section>
+</div>

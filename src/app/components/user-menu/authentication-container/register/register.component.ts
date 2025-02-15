@@ -4,8 +4,8 @@ import { ButtonModule } from 'primeng/button';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
-import { Alert } from '../../../../models/alert.model';
 import { UserRegister } from '../../../../models/user.register.model';
+import { AlertService } from '../../../../services/alert/alert.service';
 import { AuthService } from '../../../../services/auth/auth.service';
 import { RegisterService } from '../../../../services/auth/register.service';
 
@@ -28,9 +28,8 @@ export class RegisterComponent {
   sendRegister = false;
 
   @Output() closeEvent = new EventEmitter();
-  @Output() event = new EventEmitter<Alert>();
 
-  constructor(private register: RegisterService, private auth: AuthService){}
+  constructor(private register: RegisterService, private auth: AuthService, private alertService: AlertService){}
 
   onSubmitRegister(){
     if (this.registerForm.valid){
@@ -44,12 +43,12 @@ export class RegisterComponent {
       this.register.registerUser(user).subscribe({
         next: (response) =>{
           this.auth.saveToken(response?.accessToken)
-          this.event.emit({type:'success', summary:"Register Successfully", detail:"Your account has been registered"})
+          this.alertService.addAlert({severity:'success', summary:"Register Successfully", detail:"Your account has been registered"})
         },
         error:(error) =>{
           this.sendRegister = false
           if (error.status === 400){
-            this.event.emit({type:'error', summary:"Register Failed", detail:""})
+            this.alertService.addAlert({severity:'error', summary:"Register Failed", detail:""})
           }
         },
         complete: () => {this.sendRegister = false},

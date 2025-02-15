@@ -26,7 +26,7 @@ export class UserMenuComponent {
   }
 
   show(data: Alert){
-    this.message.add({severity: data.type, summary:data.summary, detail:data.detail})
+    this.message.add(data)
     this.eventCloseAuthentication()
   }
 }
