@@ -3,7 +3,7 @@ import {
 } from '@angular/core';
 import { CardComponent } from '../../components/card/card.component';
 import { RoomCard } from '../../models/room.model';
-import { MockDataService } from '../../services/mock-data.service';
+import { RoomService } from '../../services/room/room.service';
 
 @Component({
   selector: 'app-card-list',
@@ -14,7 +14,12 @@ import { MockDataService } from '../../services/mock-data.service';
 export class CardListComponent {
   roomList!: RoomCard[];
 
-  constructor(private dataService: MockDataService) {
-    this.roomList = this.dataService.getRooms()
+  constructor(private room: RoomService) {
+    this.room.getAllRooms().subscribe({
+      next: (response) =>{
+        this.roomList = response;
+      },
+      error: (error) => console.error('Error:', error)
+    })
   }
 }

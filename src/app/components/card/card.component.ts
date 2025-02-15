@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { HotelCard } from '../../models/hotel.card.model';
 import { RoomCard } from '../../models/room.model';
-import { MockDataService } from '../../services/mock-data.service';
+import { HotelService } from '../../services/hotel/hotel.service';
 
 @Component({
   selector: 'app-card',
@@ -16,10 +16,15 @@ export class CardComponent implements OnInit {
   currentIndex = 0;
   currentImage!: string;
 
-  constructor(private service: MockDataService){}
+  constructor(private hotelService: HotelService){}
   ngOnInit(): void {
     this.currentImage = this.roomCard.images[0];
-    this.hotelData = this.service.getHotelById(this.roomCard._id)
+    this.hotelService.getHotelById(this.roomCard._id).subscribe({
+      next: (response) => {
+        this.hotelData = response;
+      },
+      error: (error) => console.error('Error:', error)
+    })
   }
 
   changeImage(index:number){

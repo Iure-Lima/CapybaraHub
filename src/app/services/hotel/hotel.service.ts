@@ -24,7 +24,7 @@ export class HotelService {
     return this.http.get<HotelCard[]>(`${environment.apiUrl}/hotels`,{params:{page, limit}} )
   }
 
-  getAllHotelWithSort(sortFactor: string, order:OrderModel){
+  getAllHotelWithSort(sortFactor: string, order:OrderModel): Observable<HotelCard[]> {
     return this.http.get<HotelCard[]>(`${environment.apiUrl}/hotels/sorted`,{params:{sortFactor, order}} )
   }
 
