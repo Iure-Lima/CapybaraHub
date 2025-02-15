@@ -1,5 +1,5 @@
 export type Alert = {
-  type: string;
+  severity: string;
   summary: string;
   detail:string
 }

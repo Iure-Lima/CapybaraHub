@@ -32,10 +32,10 @@ export class AuthenticationContainerComponent {
   }
 
   showMessage(data:Alert){
-    if (data?.type === 'success'){
+    if (data?.severity === 'success'){
       this.eventAuth.emit(data);
-    }else if (data?.type === 'error'){
-      this.message.add({severity: data.type, summary:data.summary, detail:data.detail})
+    }else if (data?.severity === 'error'){
+      this.message.add(data)
     }
   }
 

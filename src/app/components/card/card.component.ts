@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { HotelCard } from '../../models/hotel.card.model';
 import { RoomCard } from '../../models/room.model';
+import { AlertService } from '../../services/alert/alert.service';
 import { HotelService } from '../../services/hotel/hotel.service';
 
 @Component({
@@ -16,14 +17,14 @@ export class CardComponent implements OnInit {
   currentIndex = 0;
   currentImage!: string;
 
-  constructor(private hotelService: HotelService){}
+  constructor(private hotelService: HotelService, private alertService: AlertService){}
   ngOnInit(): void {
     this.currentImage = this.roomCard.images[0];
     this.hotelService.getHotelById(this.roomCard.hotel).subscribe({
       next: (response) => {
         this.hotelData = response;
       },
-      error: (error) => console.error('Error:', error)
+      error: (error) => this.alertService.addAlert({severity: 'error', summary:`${error.status} ${error.statusText}`,detail:"An error occurred while loading rooms."})
     })
   }
 

@@ -42,12 +42,12 @@ export class LoginComponent {
       this.login.login(email,password).subscribe({
         next: (response) =>{
           this.auth.saveToken(response?.accessToken)
-          this.event.emit({type:'success', summary:"Login Successfully", detail:""});
+          this.event.emit({severity:'success', summary:"Login Successfully", detail:""});
         },
         error: (error) => {
           this.sendLogin = false;
           if (error.status === 401){
-            this.event.emit({type:'error', summary:"Login Failed", detail:"Invalid Credentials"});
+            this.event.emit({severity:'error', summary:"Login Failed", detail:"Invalid Credentials"});
           }
         },
         complete: () => {this.sendLogin = false},

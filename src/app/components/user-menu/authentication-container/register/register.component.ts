@@ -44,12 +44,12 @@ export class RegisterComponent {
       this.register.registerUser(user).subscribe({
         next: (response) =>{
           this.auth.saveToken(response?.accessToken)
-          this.event.emit({type:'success', summary:"Register Successfully", detail:"Your account has been registered"})
+          this.event.emit({severity:'success', summary:"Register Successfully", detail:"Your account has been registered"})
         },
         error:(error) =>{
           this.sendRegister = false
           if (error.status === 400){
-            this.event.emit({type:'error', summary:"Register Failed", detail:""})
+            this.event.emit({severity:'error', summary:"Register Failed", detail:""})
           }
         },
         complete: () => {this.sendRegister = false},
