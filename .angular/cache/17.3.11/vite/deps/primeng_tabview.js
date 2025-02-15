@@ -1,22 +1,22 @@
 import {
   TimesIcon
-} from "./chunk-2NYCFQHL.js";
+} from "./chunk-RGIEGMNN.js";
 import {
   Ripple,
   RippleModule
-} from "./chunk-TSYVKVHR.js";
+} from "./chunk-ITD5Q7AR.js";
 import {
   BaseIcon,
   ConnectedOverlayScrollHandler,
   DomHandler
-} from "./chunk-372AGPZZ.js";
+} from "./chunk-4VGOBU6S.js";
 import {
   PrimeNGConfig,
   PrimeTemplate,
   SharedModule,
   UniqueComponentId,
   zindexutils
-} from "./chunk-BATGMQND.js";
+} from "./chunk-J5FODN74.js";
 import {
   CommonModule,
   NgClass,
@@ -25,7 +25,7 @@ import {
   NgStyle,
   NgTemplateOutlet,
   isPlatformBrowser
-} from "./chunk-76VZINWQ.js";
+} from "./chunk-ANSPO3JP.js";
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -46,7 +46,6 @@ import {
   ViewChild,
   ViewContainerRef,
   ViewEncapsulation$1,
-  __spreadValues,
   booleanAttribute,
   forwardRef,
   numberAttribute,
@@ -88,7 +87,10 @@ import {
   ɵɵtext,
   ɵɵtextInterpolate,
   ɵɵviewQuery
-} from "./chunk-CB6JLD5G.js";
+} from "./chunk-6TNV7336.js";
+import {
+  __spreadValues
+} from "./chunk-RVCEVX75.js";
 
 // node_modules/.pnpm/primeng@17.18.15_@angular+common@17.3.12_@angular+core@17.3.12_rxjs@7.8.1_zone.js@0.14.10__rx_5tsxzkhbwb7njpfvrtjleoykji/node_modules/primeng/fesm2022/primeng-icons-chevronleft.mjs
 var ChevronLeftIcon = class _ChevronLeftIcon extends BaseIcon {

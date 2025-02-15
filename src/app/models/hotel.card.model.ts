@@ -6,6 +6,6 @@ export interface HotelCard {
   email: string;
   phone: string;
   rating: number;
-  location: Location;
+  address: Location;
   image: string;
 };

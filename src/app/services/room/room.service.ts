@@ -11,8 +11,10 @@ export class RoomService {
 
   constructor(private http: HttpClient) { }
 
-  getAllRooms() : Observable<RoomCard[]> {
-    return this.http.get<RoomCard[]>(`${environment.apiUrl}/rooms`)
+  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+  getAllRooms() : Observable<any> {
+    // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+    return this.http.get<any>(`${environment.apiUrl}/rooms`)
   }
 
   getRoomById(id: string): Observable<RoomCard>{

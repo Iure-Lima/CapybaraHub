@@ -26,16 +26,16 @@
     <div class="flex justify-between items-center">
       <h2
         class="text-lg font-bold truncate w-56"
-        [title]="hotelData?.location?.city"
+        [title]="hotelData?.address?.city"
       >
-        {{ hotelData?.location?.city }}, {{ hotelData?.location?.country }}
+        {{ hotelData?.address?.city }}, {{ hotelData?.address?.country }}
       </h2>
       <div class="flex items-center">
         <span class="text-gray-600">{{ roomCard.rating }}</span>
         <i class="pi pi-star-fill text-yellow-500 ml-1"></i>
       </div>
     </div>
-    <p class="text-gray-500">{{ hotelData?.location?.street }}</p>
+    <p class="text-gray-500">{{ hotelData?.address?.street }}</p>
     <p class="text-black font-bold">
       {{ roomCard.pricePerNight }} <span class="font-normal">night</span>
     </p>

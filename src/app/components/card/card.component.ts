@@ -19,7 +19,7 @@ export class CardComponent implements OnInit {
   constructor(private hotelService: HotelService){}
   ngOnInit(): void {
     this.currentImage = this.roomCard.images[0];
-    this.hotelService.getHotelById(this.roomCard._id).subscribe({
+    this.hotelService.getHotelById(this.roomCard.hotel).subscribe({
       next: (response) => {
         this.hotelData = response;
       },

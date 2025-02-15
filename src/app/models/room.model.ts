@@ -1,6 +1,6 @@
 export interface RoomCard {
   _id: string;
-  hotelId: string,
+  hotel: string,
   roomTypeId: string,
   pricePerNight: string,
   roomNumber: number,

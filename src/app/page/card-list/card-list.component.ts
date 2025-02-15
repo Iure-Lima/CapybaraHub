@@ -17,7 +17,7 @@ export class CardListComponent {
   constructor(private room: RoomService) {
     this.room.getAllRooms().subscribe({
       next: (response) =>{
-        this.roomList = response;
+        this.roomList = response.data;
       },
       error: (error) => console.error('Error:', error)
     })
