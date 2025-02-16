@@ -27,23 +27,32 @@ export class BookingComponent {
 
   book(){
     this.bookingService.createBooking({
-      customerId: '',
-      hotelId: this.cacheDatas.room._id,
-      roomId: this.cacheDatas.room._id,
-      checkInDate: this.cacheDatas.selectDate[0],
-      checkOutDate: this.cacheDatas.selectDate[1] ? this.cacheDatas.selectDate[1] : this.cacheDatas.selectDate[0],
+      customer: '',
+      hotel: this.cacheDatas.room._id,
+      room: this.cacheDatas.room._id,
+      checkInDate: this.cacheDatas.selectDate[0].toISOString(),
+      checkoutDate: this.cacheDatas.selectDate[1] ? this.cacheDatas.selectDate[1].toISOString() : this.cacheDatas.selectDate[0].toISOString(),
       totalPrice: this.cacheDatas.totalPrice,
       status: 'pending'
     }).subscribe({
       next: (response) => {
         this.cacheBookingService.clearDataCache()
-        this.router.navigate(['/reservations'])
+        this.alertService.addAlert({
+          severity: 'success',
+          summary: 'Booking completed successfully',
+          detail: ''
+        })
+        this.router.navigate(['/home'])
       },
-      error: (error) => this.alertService.addAlert({
-        severity: 'error',
-        summary: 'Error while booking the room',
-        detail: ''
-      })
+      error: (error) => {
+        console.log(error)
+        this.alertService.addAlert({
+          severity: 'error',
+          summary: 'Error while booking the room',
+          detail: ''
+        })
+
+      }
     })
   }
 

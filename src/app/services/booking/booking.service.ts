@@ -14,9 +14,15 @@ export class BookingService {
 
   // biome-ignore lint/suspicious/noExplicitAny: <explanation>
   createBooking(data:Booking): Observable<any> {
-    return this.http.post(`${environment.apiUrl}/bookings`, {
-      headers: { 'Authorization': `Bearer ${this.authService.getToken()}` },
-      body: data
+    const userId = this.authService.getUserId();
+    if (userId) {
+      data.customer = userId;
+    }
+    return this.http.post(`${environment.apiUrl}/bookings`, data, {
+      headers: {
+        'Authorization': `Bearer ${this.authService.getToken()}`,
+        'Content-Type': 'application/json'
+      }
     });
   }
 }

@@ -18,7 +18,7 @@ export class CacheBookingService {
     },
     selectDate: [],
     guest: '',
-    totalPrice: 0,
+    totalPrice: '',
     totalNights: 0,
     totalPriceWithNights: 0
   };
@@ -45,7 +45,7 @@ export class CacheBookingService {
       },
       selectDate: [],
       guest: '',
-      totalPrice: 0,
+      totalPrice: '',
       totalNights: 0,
       totalPriceWithNights: 0
     };

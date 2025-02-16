@@ -1,9 +1,9 @@
 export type Booking = {
-  customerId: string;
-  hotelId: string;
-  roomId: string;
-  checkInDate: Date;
-  checkOutDate: Date;
+  customer: string;
+  hotel: string;
+  room: string;
+  checkInDate: string;
+  checkoutDate: string;
   totalPrice: string;
   status: Status;
 }
