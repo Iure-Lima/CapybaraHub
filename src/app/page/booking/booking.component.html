@@ -67,9 +67,11 @@
     <div class="flex items-center">
       <div class="w-16 h-16 bg-gray-300 rounded-lg"></div>
       <div class="ml-4">
+        <!-- Aqui vai vim o nome do quarto (Ainda precisa ser adicionado no banco de dados) -->
         <p class="font-medium text-gray-800">Flat com vista mar em Porto ...</p>
         <div class="flex items-center text-sm text-gray-600">
-          <span class="bg-gray-300 rounded-full w-5 h-5"></span>
+          <i class="pi pi-star-fill" style="color: yellow"></i>
+          <!-- Aqui vai entrar as avaliações do quarto (Ainda precisa de adição dessa propriedade na base de dados) -->
           <span class="ml-2">4.83</span>
         </div>
       </div>
@@ -78,8 +80,13 @@
     <!-- Detalhes do Preço -->
     <div class="border-t mt-4 pt-4 text-sm text-gray-600">
       <div class="flex justify-between">
-        <p>R$975 × 4 nights</p>
-        <p class="font-medium text-gray-800">$1,024</p>
+        <p>
+          R$ {{ cacheDatas?.room?.pricePerNight }} ×
+          {{ cacheDatas?.totalNights }} nights
+        </p>
+        <p class="font-medium text-gray-800">
+          $ {{ cacheDatas?.totalPriceWithNights }}
+        </p>
       </div>
       <div class="flex justify-between mt-2">
         <p class="underline">Services fee</p>
@@ -89,7 +96,7 @@
         class="border-t mt-4 pt-4 flex justify-between text-lg font-semibold text-gray-900"
       >
         <p>Total booking</p>
-        <p>$1,209</p>
+        <p>$ {{ cacheDatas?.totalPrice }}</p>
       </div>
     </div>
   </div>
