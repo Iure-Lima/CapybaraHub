@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { HotelCard } from '../../models/hotel.card.model';
 import { RoomCard } from '../../models/room.model';
 import { AlertService } from '../../services/alert/alert.service';
@@ -8,7 +9,7 @@ import { HotelService } from '../../services/hotel/hotel.service';
 @Component({
   selector: 'app-card',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './card.component.html',
 })
 export class CardComponent implements OnInit {
