@@ -115,7 +115,7 @@ export class ReservationsComponent implements DoCheck {
       totalNights: this.totalNights,
       totalPriceWithNights: this.totalPriceWithNights
     })
-    this.router.navigate(['/booking'])
+    this.router.navigate(['/booking', this.room._id])
   }
 
 }
