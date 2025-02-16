@@ -102,8 +102,7 @@ export class ReservationsComponent implements DoCheck {
   }
 
   getNumberOfDays(startDate: Date, endDate: Date): number {
-    const diffInMs = endDate.getTime() - startDate.getTime();
-    return diffInMs / (1000 * 60 * 60 * 24) + 1;
+    return Math.ceil((endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24) + 1);
   }
 
 }
