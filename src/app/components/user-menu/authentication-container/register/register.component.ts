@@ -44,6 +44,7 @@ export class RegisterComponent {
         next: (response) =>{
           this.auth.saveToken(response?.accessToken)
           this.alertService.addAlert({severity:'success', summary:"Register Successfully", detail:"Your account has been registered"})
+          this.closeRegister()
         },
         error:(error) =>{
           this.sendRegister = false

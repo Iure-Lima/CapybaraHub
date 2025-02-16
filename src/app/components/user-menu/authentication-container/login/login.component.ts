@@ -42,6 +42,7 @@ export class LoginComponent {
         next: (response) =>{
           this.auth.saveToken(response?.accessToken)
           this.alertService.addAlert({severity:'success', summary:"Login Successfully", detail:""});
+          this.eventCancel();
         },
         error: (error) => {
           this.sendLogin = false;

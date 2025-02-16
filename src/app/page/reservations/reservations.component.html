@@ -1,0 +1,187 @@
+<div class="max-w-5xl mx-auto p-4 select-none">
+  <!-- Title and Share Button -->
+  <div class="flex justify-between items-center mb-4">
+    <!-- Aqui vai entrar o nome do quarto, ainda precisamos adicionar isso no backend -->
+    <h1 class="text-2xl font-bold">Flat com vista mar em Porto de Galinhas</h1>
+    <button
+      class="px-6 py-3 cursor-pointer text-white font-semibold rounded-lg bg-gradient-to-r from-indigo-500 via-blue-500 to-indigo-500 transition-all duration-300 hover:bg-gradient-to-r hover:from-blue-500 hover:via-indigo-500 hover:to-blue-500 items-center space-x-2"
+    >
+      <i class="pi pi-share-alt"></i>
+      <span>Share</span>
+    </button>
+  </div>
+
+  <!-- Image Grid -->
+  <div
+    class="grid gap-2 mb-4"
+    [ngClass]="{
+      'grid-cols-1': room.images.length === 1,
+      'grid-cols-2': room.images.length >= 2,
+    }"
+  >
+    @if (room.images.length === 1) {
+    <div class="w-full h-80">
+      <img
+        [src]="room.images[0]"
+        alt="Image 1"
+        class="w-full h-full object-cover rounded-md"
+      />
+    </div>
+    } @if (room.images.length ===2) {
+    <div class="h-80">
+      <img
+        [src]="room.images[0]"
+        alt="Image 1"
+        class="w-full h-full object-cover rounded-md"
+      />
+    </div>
+    <div class="h-80">
+      <img
+        [src]="room.images[1]"
+        alt="Image 2"
+        class="w-full h-full object-cover rounded-md"
+      />
+    </div>
+    }
+
+    <!-- Se houver 3 imagens -->
+    @if (room.images.length === 3) {
+    <div class="h-full">
+      <img
+        [src]="room.images[0]"
+        alt="Image 1"
+        class="w-full h-full object-cover rounded-md"
+      />
+    </div>
+    <div class="grid grid-rows-2 gap-2">
+      <div class="h-40">
+        <img
+          [src]="room.images[1]"
+          alt="Image 2"
+          class="w-full h-full object-cover rounded-md"
+        />
+      </div>
+      <div class="h-40">
+        <img
+          [src]="room.images[2]"
+          alt="Image 3"
+          class="w-full h-full object-cover rounded-md"
+        />
+      </div>
+    </div>
+    }
+  </div>
+
+  <div class="flex justify-between mt-6">
+    <!-- Room and Hotel Information -->
+    <div class="w-1/2 pr-4">
+      <div class="pb-4 mb-4">
+        <h2 class="text-lg font-semibold">
+          Entire rental: Room {{ room.roomNumber }} ,
+          {{ hotel.address.city }}
+        </h2>
+        <!-- Esses dados mais para frente virão de maneira automatica -->
+        <p class="text-gray-600">3 guests • 1 bedroom • 2 beds</p>
+      </div>
+
+      <div class="border-b border-t pt-2 pb-2 mb-4 border-gray-300">
+        <div class="flex items-center space-x-2">
+          <img
+            [src]="hotel.image"
+            alt="Hotel Logo"
+            class="w-12 h-12 rounded-full"
+          />
+          <span class="text-lg font-semibold">{{ hotel.name }}</span>
+        </div>
+      </div>
+
+      <!-- Room Features -->
+      <!-- Esses dados também vão vir depois da api -->
+      <div class="space-y-2 mb-4">
+        <div>
+          <div class="flex items-center space-x-2">
+            <i class="pi pi-bed"></i>
+            <span class="font-medium">Single - 1 bed</span>
+          </div>
+          <p class="text-gray-600">Cozy room, perfect for solo travelers.</p>
+        </div>
+
+        <div class="pt-2">
+          <div class="flex items-center space-x-2">
+            <i class="pi pi-key"></i>
+            <span class="font-medium">Self check-in</span>
+          </div>
+          <p class="text-gray-600">
+            Easy and independent check-in with staff support if needed.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Booking Section -->
+    <div class="border p-4 rounded-lg shadow-md w-1/2">
+      <div class="text-lg font-bold mb-6">
+        R$ {{ room.pricePerNight }}
+        <span class="text-sm font-normal">night</span>
+      </div>
+
+      <div class="flex flex-col">
+        <div class="flex flex-col">
+          <div class="flex flex-col">
+            <!-- Aqui tem que adicionar um piper para quando o usuário tive com outro idioma e dinheiro selecionado apareça o formato correto -->
+            <p-floatLabel>
+              <p-calendar
+                selectionMode="range"
+                [styleClass]="'custom-calendar'"
+                [(ngModel)]="selectedDates"
+                [style]="{ width: '100%' }"
+                dateFormat="dd/mm/yy"
+                [disabledDates]="disabledDates"
+                [minDate]="today"
+                [showIcon]="true"
+                [showOnFocus]="true"
+                [numberOfMonths]="2"
+                inputId="buttondisplay"
+                [touchUI]="true"
+                [readonlyInput]="true"
+              >
+              </p-calendar>
+              <label for="check-in-check-out">Data Range Selection</label>
+            </p-floatLabel>
+
+            <p-dropdown
+              [options]="guestOptions"
+              [(ngModel)]="selectedGuests"
+              placeholder="Select guests"
+              class="my-4"
+              [style]="{ width: '100%' }"
+            ></p-dropdown>
+
+            <button
+              class="w-full bg-blue-500 text-white py-2 cursor-pointer bg-gradient-to-r from-indigo-700 via-blue-700 to-indigo-700 transition-all duration-300 hover:bg-gradient-to-r hover:from-blue-700 hover:via-indigo-700 hover:to-blue-700"
+              (click)="book()"
+            >
+              Book
+            </button>
+          </div>
+          <div class="text-sm text-gray-500 mt-2">You won't be charged yet</div>
+
+          @if (selectedDates.length > 0){
+          <div class="flex justify-between mt-2">
+            <span>R$ {{ room.pricePerNight }} x {{ totalNights }} nights</span>
+            <span>R$ {{ totalPriceWithNights }}</span>
+          </div>
+          <div class="flex justify-between">
+            <span>Service fee</span>
+            <span>R$ {{ 185 }}</span>
+          </div>
+          <div class="flex justify-between font-bold border-t mt-2 pt-2">
+            <span>Total booking</span>
+            <span>R$ {{ totalPrice }}</span>
+          </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
