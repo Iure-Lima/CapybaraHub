@@ -7,4 +7,8 @@ export class AuthService {
   saveToken(token:string){
     localStorage.setItem('accessToken', token);
   }
+
+  getToken(): string | null{
+    return localStorage.getItem('accessToken');
+  }
 }
