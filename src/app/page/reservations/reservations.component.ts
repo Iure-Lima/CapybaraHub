@@ -107,15 +107,24 @@ export class ReservationsComponent implements DoCheck {
   }
 
   book(){
-    this.cacheBookingService.setDataCache({
-      room: this.room,
-      selectDate: this.selectedDates,
-      guest: this.selectedGuests,
-      totalPrice: this.totalPrice,
-      totalNights: this.totalNights,
-      totalPriceWithNights: this.totalPriceWithNights
-    })
-    this.router.navigate(['/booking', this.room._id])
+    if (this.selectedGuests && this.selectedDates.length > 0){
+      this.cacheBookingService.setDataCache({
+        room: this.room,
+        selectDate: this.selectedDates,
+        guest: this.selectedGuests,
+        totalPrice: this.totalPrice,
+        totalNights: this.totalNights,
+        totalPriceWithNights: this.totalPriceWithNights
+      })
+      this.router.navigate(['/booking', this.room._id])
+    }else{
+      this.alertService.addAlert({
+        severity: 'error',
+        summary: 'Error while booking',
+        detail: 'Please select a guest and at least two dates'
+      })
+    }
+
   }
 
 }
