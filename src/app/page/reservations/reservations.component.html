@@ -1,6 +1,7 @@
 <div class="max-w-5xl mx-auto p-4 select-none">
   <!-- Title and Share Button -->
   <div class="flex justify-between items-center mb-4">
+    <!-- Aqui vai entrar o nome do quarto, ainda precisamos adicionar isso no backend -->
     <h1 class="text-2xl font-bold">Flat com vista mar em Porto de Galinhas</h1>
     <button
       class="px-6 py-3 cursor-pointer text-white font-semibold rounded-lg bg-gradient-to-r from-indigo-500 via-blue-500 to-indigo-500 transition-all duration-300 hover:bg-gradient-to-r hover:from-blue-500 hover:via-indigo-500 hover:to-blue-500 items-center space-x-2"
@@ -11,35 +12,91 @@
   </div>
 
   <!-- Image Grid -->
-  <div class="grid grid-cols-2 gap-2 mb-4">
-    <div class="h-full bg-gray-300"></div>
-    <div class="grid grid-rows-2 gap-2">
-      <div class="h-40 bg-gray-300"></div>
-      <div class="h-40 bg-gray-300"></div>
+  <div
+    class="grid gap-2 mb-4"
+    [ngClass]="{
+      'grid-cols-1': room.images.length === 1,
+      'grid-cols-2': room.images.length >= 2,
+    }"
+  >
+    @if (room.images.length === 1) {
+    <div class="w-full h-80">
+      <img
+        [src]="room.images[0]"
+        alt="Image 1"
+        class="w-full h-full object-cover rounded-md"
+      />
     </div>
+    } @if (room.images.length ===2) {
+    <div class="h-80">
+      <img
+        [src]="room.images[0]"
+        alt="Image 1"
+        class="w-full h-full object-cover rounded-md"
+      />
+    </div>
+    <div class="h-80">
+      <img
+        [src]="room.images[1]"
+        alt="Image 2"
+        class="w-full h-full object-cover rounded-md"
+      />
+    </div>
+    }
+
+    <!-- Se houver 3 imagens -->
+    @if (room.images.length === 3) {
+    <div class="h-full">
+      <img
+        [src]="room.images[0]"
+        alt="Image 1"
+        class="w-full h-full object-cover rounded-md"
+      />
+    </div>
+    <div class="grid grid-rows-2 gap-2">
+      <div class="h-40">
+        <img
+          [src]="room.images[1]"
+          alt="Image 2"
+          class="w-full h-full object-cover rounded-md"
+        />
+      </div>
+      <div class="h-40">
+        <img
+          [src]="room.images[2]"
+          alt="Image 3"
+          class="w-full h-full object-cover rounded-md"
+        />
+      </div>
+    </div>
+    }
   </div>
 
   <div class="flex justify-between mt-6">
-    <!-- Hotel Info -->
+    <!-- Room and Hotel Information -->
     <div class="w-1/2 pr-4">
-      <!-- Room and Hotel Information -->
       <div class="pb-4 mb-4">
-        <h2 class="text-lg font-semibold">Entire rental: Room 123, Recife</h2>
+        <h2 class="text-lg font-semibold">
+          Entire rental: Room {{ room.roomNumber }} ,
+          {{ hotel.address.city }}
+        </h2>
+        <!-- Esses dados mais para frente virão de maneira automatica -->
         <p class="text-gray-600">3 guests • 1 bedroom • 2 beds</p>
       </div>
 
       <div class="border-b border-t pt-2 pb-2 mb-4 border-gray-300">
         <div class="flex items-center space-x-2">
           <img
-            src="assets/hotel-logo.png"
+            [src]="hotel.image"
             alt="Hotel Logo"
             class="w-12 h-12 rounded-full"
           />
-          <span class="text-lg font-semibold">Orbit Hotel</span>
+          <span class="text-lg font-semibold">{{ hotel.name }}</span>
         </div>
       </div>
 
       <!-- Room Features -->
+      <!-- Esses dados também vão vir depois da api -->
       <div class="space-y-2 mb-4">
         <div>
           <div class="flex items-center space-x-2">
@@ -64,7 +121,8 @@
     <!-- Booking Section -->
     <div class="border p-4 rounded-lg shadow-md w-1/2">
       <div class="text-lg font-bold mb-6">
-        R$975 <span class="text-sm font-normal">night</span>
+        R$ {{ room.pricePerNight }}
+        <span class="text-sm font-normal">night</span>
       </div>
 
       <div class="flex flex-col">
@@ -107,18 +165,20 @@
           </div>
           <div class="text-sm text-gray-500 mt-2">You won't be charged yet</div>
 
+          @if (selectedDates.length > 0){
           <div class="flex justify-between mt-2">
-            <span>R$975 x 4 nights</span>
-            <span>R$1,024</span>
+            <span>R$ {{ room.pricePerNight }} x {{ totalNights }} nights</span>
+            <span>R$ {{ totalPriceWithNights }}</span>
           </div>
           <div class="flex justify-between">
             <span>Service fee</span>
-            <span>R$185</span>
+            <span>R$ {{ 185 }}</span>
           </div>
           <div class="flex justify-between font-bold border-t mt-2 pt-2">
             <span>Total booking</span>
-            <span>R$1,209</span>
+            <span>R$ {{ totalPrice }}</span>
           </div>
+          }
         </div>
       </div>
     </div>
