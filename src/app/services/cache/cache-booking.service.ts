@@ -5,8 +5,7 @@ import { CacheBooking } from '../../models/cache-booking-model';
   providedIn: 'root'
 })
 export class CacheBookingService {
-  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-  private dataCache: any;
+  private dataCache: CacheBooking | null = null;
 
   setDataCache(data: CacheBooking){
     this.dataCache = data;

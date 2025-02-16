@@ -8,6 +8,7 @@ import { FloatLabelModule } from 'primeng/floatlabel';
 import { HotelCard } from '../../models/hotel.card.model';
 import { RoomCard } from '../../models/room.model';
 import { AlertService } from '../../services/alert/alert.service';
+import { CacheBookingService } from '../../services/cache/cache-booking.service';
 import { HotelService } from '../../services/hotel/hotel.service';
 import { RoomService } from '../../services/room/room.service';
 
@@ -56,7 +57,7 @@ export class ReservationsComponent implements DoCheck {
     image: ''
   };
 
-  constructor(private roomService: RoomService, private hotelService: HotelService, private route : ActivatedRoute, private alertService: AlertService, private router: Router){
+  constructor(private roomService: RoomService, private hotelService: HotelService, private route : ActivatedRoute, private alertService: AlertService, private router: Router, private cacheBookingService: CacheBookingService){
     // biome-ignore lint/complexity/useLiteralKeys: <explanation>
     this.roomService.getRoomById(this.route.snapshot.params['id']).subscribe({
       next: (response) => {
@@ -103,6 +104,18 @@ export class ReservationsComponent implements DoCheck {
 
   getNumberOfDays(startDate: Date, endDate: Date): number {
     return Math.ceil((endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24) + 1);
+  }
+
+  book(){
+    this.cacheBookingService.setDataCache({
+      room: this.room,
+      selectDate: this.selectedDates,
+      guest: this.selectedGuests,
+      totalPrice: this.totalPrice,
+      totalNights: this.totalNights,
+      totalPriceWithNights: this.totalPriceWithNights
+    })
+    this.router.navigate(['/booking'])
   }
 
 }
