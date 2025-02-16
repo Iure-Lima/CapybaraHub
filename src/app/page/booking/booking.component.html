@@ -28,7 +28,28 @@
       <div class="flex text-gray-600 text-sm border-b pb-3">
         <div class="mr-10">
           <p class="font-medium">Dates</p>
-          <p>Feb 15 - 20</p>
+          @if (!isOneDate) {
+          <p>
+            {{
+              cacheDatas.selectDate[0].toLocaleString("en-US", {
+                month: "short"
+              })
+            }}
+            {{ cacheDatas.selectDate[0].getDate() }} -
+            {{
+              cacheDatas.selectDate[1].toLocaleString("en-US", {
+                month: "short"
+              })
+            }}
+            {{ cacheDatas.selectDate[1].getDate() }}
+          </p>
+          } @if (isOneDate) {
+          {{
+            cacheDatas.selectDate[0].toLocaleString("en-US", {
+              month: "short"
+            })
+          }}
+          {{ cacheDatas.selectDate[0].getDate() }} }
         </div>
         <div>
           <p class="font-medium">Guests</p>
