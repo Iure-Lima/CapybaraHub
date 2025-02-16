@@ -4,7 +4,7 @@ export type CacheBooking = {
   room: RoomCard,
   selectDate: Date[],
   guest: string,
-  totalPrice: number,
+  totalPrice: string,
   totalNights: number,
   totalPriceWithNights:number
 }

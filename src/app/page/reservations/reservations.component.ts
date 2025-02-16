@@ -112,7 +112,7 @@ export class ReservationsComponent implements DoCheck {
         room: this.room,
         selectDate: this.selectedDates,
         guest: this.selectedGuests,
-        totalPrice: this.totalPrice,
+        totalPrice: `${this.totalPrice}`,
         totalNights: this.totalNights,
         totalPriceWithNights: this.totalPriceWithNights
       })
