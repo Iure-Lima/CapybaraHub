@@ -107,7 +107,7 @@
     <div class="border-t mt-4 pt-4 text-sm text-gray-600">
       <div class="flex justify-between">
         <p>
-          R$ {{ cacheDatas.room.pricePerNight }} ×
+          {{ cacheDatas.room.pricePerNight | currency : "USD" }} ×
           {{ cacheDatas.totalNights }} nights
         </p>
         <p class="font-medium text-gray-800">
