@@ -37,7 +37,8 @@
     </div>
     <p class="text-gray-500">{{ hotelData?.address?.street }}</p>
     <p class="text-black font-bold">
-      {{ roomCard.pricePerNight }} <span class="font-normal">night</span>
+      {{ roomCard.pricePerNight | currency : "USD" }}
+      <span class="font-normal">night</span>
     </p>
   </div>
   <div class="p-2 flex justify-end">
