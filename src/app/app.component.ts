@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { FooterComponent } from './components/footer/footer.component';
@@ -17,7 +17,7 @@ import { AlertService } from './services/alert/alert.service';
 })
 export class AppComponent implements OnInit{
 
-  constructor(private messageService: MessageService, private alertService:AlertService){}
+  constructor(private messageService: MessageService, private alertService:AlertService, public router: Router ){}
   ngOnInit(): void {
     this.alertService.alertObservable.subscribe(alert =>{
       if(alert){
