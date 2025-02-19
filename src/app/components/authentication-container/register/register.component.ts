@@ -48,7 +48,7 @@ export class RegisterComponent {
         },
         error:(error) =>{
           this.sendRegister = false
-          if (error.status === 400){
+          if (error.status >= 400){
             this.alertService.addAlert({severity:'error', summary:"Register Failed", detail:""})
           }
         },

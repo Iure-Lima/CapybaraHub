@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CalendarModule } from 'primeng/calendar';
 import { DropdownModule } from 'primeng/dropdown';
 import { FloatLabelModule } from 'primeng/floatlabel';
+import { ImageModule } from 'primeng/image';
 import { HotelCard } from '../../models/hotel.card.model';
 import { RoomCard } from '../../models/room.model';
 import { AlertService } from '../../services/alert/alert.service';
@@ -12,10 +13,11 @@ import { CacheBookingService } from '../../services/cache/cache-booking.service'
 import { HotelService } from '../../services/hotel/hotel.service';
 import { RoomService } from '../../services/room/room.service';
 
+
 @Component({
   selector: 'app-reservations',
   standalone: true,
-  imports: [CalendarModule, FormsModule, DropdownModule, FloatLabelModule, NgClass],
+  imports: [CalendarModule, FormsModule, DropdownModule, FloatLabelModule, NgClass, ImageModule],
   templateUrl: './reservations.component.html',
   styleUrl: './reservations.component.css'
 })

@@ -1,14 +1,15 @@
-<section class="w-48">
+<section>
   <div
-    class="flex justify-center cursor-pointer select-none"
-    (click)="toggleAuthenticationContainer()"
+    class="flex justify-center items-center cursor-pointer select-none"
+    (click)="userEvent($event)"
   >
     <p class="text-xl mr-3.5">Login</p>
-    <i class="pi pi-user" style="font-size: 1.5rem"></i>
+    <p-avatar icon="pi pi-user" size="large" shape="circle" />
   </div>
   @if (authenticationContainerActive) {
   <app-authentication-container
     (eventClose)="eventCloseAuthentication()"
   ></app-authentication-container>
   }
+  <p-menu #menu [model]="optionsMenu" [popup]="true" />
 </section>

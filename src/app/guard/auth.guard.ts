@@ -1,6 +1,5 @@
 import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
-import { jwtDecode } from 'jwt-decode';
 import { AlertService } from '../services/alert/alert.service';
 import { AuthService } from '../services/auth/auth.service';
 
@@ -11,7 +10,7 @@ export const authGuard: CanActivateFn = (route, state) => {
 
   const token = authService.getToken();
 
-  if (token && isTokenValid(token)) {
+  if (token && authService.isTokenValid()) {
     return true;
   }
   alertService.addAlert({
@@ -21,16 +20,4 @@ export const authGuard: CanActivateFn = (route, state) => {
   })
   router.navigate(['/home']);
   return false;
-};
-
-const isTokenValid = (token: string): boolean => {
-  try {
-    // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-    const decoded: any = jwtDecode(token);
-    const currentTime = Date.now() / 1000;
-
-    return decoded.exp > currentTime;
-  } catch (error) {
-    return false;
-  }
 };

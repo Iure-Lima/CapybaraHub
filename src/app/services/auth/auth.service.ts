@@ -18,6 +18,10 @@ export class AuthService {
     return decodedToken?.sub || null;
   }
 
+  logout(): void{
+    localStorage.removeItem('accessToken');
+  }
+
   // biome-ignore lint/suspicious/noExplicitAny: <explanation>
   getDecodedToken(): any {
     const token = this.getToken();
@@ -27,6 +31,22 @@ export class AuthService {
       return jwtDecode(token);
     } catch (error) {
       return null;
+    }
+  }
+  isTokenValid(): boolean {
+    const token = this.getToken();
+    if (!token) return false;
+    return this.isTokenValidJWT(token);
+  }
+
+  isTokenValidJWT(token: string): boolean {
+    try {
+      // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+      const decoded: any = jwtDecode(token);
+      const currentTime = Date.now() / 1000;
+      return decoded.exp > currentTime;
+    } catch (error) {
+      return false;
     }
   }
 }
