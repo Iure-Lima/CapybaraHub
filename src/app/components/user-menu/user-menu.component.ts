@@ -1,25 +1,50 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
-import { MessageService } from 'primeng/api';
-import { OverlayPanel, OverlayPanelModule } from 'primeng/overlaypanel';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
+import { MenuItem, MessageService } from 'primeng/api';
+import { Menu, MenuModule } from 'primeng/menu';
 import { ToastModule } from 'primeng/toast';
 import { Alert } from '../../models/alert.model';
 import { AuthenticationContainerComponent } from '../authentication-container/authentication-container.component';
 
+
 @Component({
   selector: 'app-user-menu',
   standalone: true,
-  imports: [ToastModule, AuthenticationContainerComponent, OverlayPanelModule],
+  imports: [ToastModule, AuthenticationContainerComponent, MenuModule],
   templateUrl: './user-menu.component.html',
   styleUrl: './user-menu.component.scss',
   providers: [MessageService]
 })
-export class UserMenuComponent {
+export class UserMenuComponent implements OnInit {
   authenticationContainerActive = false;
   userIsAuthenticated = true;
-  @ViewChild('op') overlayPanel!: OverlayPanel;
-  @ViewChild('target', { static: true }) targetElement!: ElementRef;
+  @ViewChild('menu') menu!:Menu;
+  optionsMenu: MenuItem[] | undefined
 
-  constructor(private message: MessageService){}
+  constructor(private message: MessageService, private router: Router){}
+
+  ngOnInit(): void {
+    this.optionsMenu = [];
+  }
+
+  // Referencias para colocar as opções no menu
+    // {
+    //     label: 'Router Link',
+    //     icon: 'pi pi-palette',
+    //     route: '/guides/csslayer'
+    // },
+    // {
+    //     label: 'Programmatic',
+    //     icon: 'pi pi-link',
+    //     command: () => {
+    //         this.router.navigate(['/installation']);
+    //     }
+    // },
+    // {
+    //     label: 'External',
+    //     icon: 'pi pi-home',
+    //     url: 'https://angular.io//'
+    // }
 
   toggleAuthenticationContainer() {
     this.authenticationContainerActive  = !this.authenticationContainerActive;
@@ -36,8 +61,7 @@ export class UserMenuComponent {
 
   userEvent(event: Event){
     if (this.userIsAuthenticated){
-      if (this.overlayPanel){}
-      this.overlayPanel.toggle(event, this.targetElement.nativeElement);
+      this.menu.toggle(event)
     }else{
       this.toggleAuthenticationContainer()
     }

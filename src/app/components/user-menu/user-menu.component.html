@@ -4,17 +4,13 @@
     (click)="userEvent($event)"
   >
     <p class="text-xl mr-3.5">Login</p>
-    <i class="pi pi-user" style="font-size: 1.5rem" #target></i>
+    <i class="pi pi-user" style="font-size: 1.5rem"></i>
   </div>
   @if (authenticationContainerActive) {
   <app-authentication-container
     (eventClose)="eventCloseAuthentication()"
   ></app-authentication-container>
   } @if (userIsAuthenticated) {
-  <p-overlayPanel #op [dismissable]="true">
-    <ng-template pTemplate="content">
-      <p>This OverlayPanel was opened by Parent!</p>
-    </ng-template>
-  </p-overlayPanel>
+  <p-menu #menu [model]="optionsMenu" [popup]="true" />
   }
 </section>
