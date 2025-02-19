@@ -10,7 +10,6 @@
   <app-authentication-container
     (eventClose)="eventCloseAuthentication()"
   ></app-authentication-container>
-  } @if (userIsAuthenticated) {
-  <p-menu #menu [model]="optionsMenu" [popup]="true" />
   }
+  <p-menu #menu [model]="optionsMenu" [popup]="true" />
 </section>

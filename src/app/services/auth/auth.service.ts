@@ -18,6 +18,10 @@ export class AuthService {
     return decodedToken?.sub || null;
   }
 
+  logout(): void{
+    localStorage.removeItem('accessToken');
+  }
+
   // biome-ignore lint/suspicious/noExplicitAny: <explanation>
   getDecodedToken(): any {
     const token = this.getToken();

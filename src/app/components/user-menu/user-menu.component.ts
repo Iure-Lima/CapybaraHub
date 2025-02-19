@@ -18,7 +18,7 @@ import { AuthenticationContainerComponent } from '../authentication-container/au
 })
 export class UserMenuComponent implements OnInit {
   authenticationContainerActive = false;
-  userIsAuthenticated = true;
+  userIsAuthenticated = false;
   @ViewChild('menu') menu!:Menu;
   optionsMenu: MenuItem[] | undefined
 
@@ -40,6 +40,7 @@ export class UserMenuComponent implements OnInit {
         label: 'Logout',
         icon: 'pi pi-power-off',
         command: () => {
+          this.authService.logout();
           this.userIsAuthenticated = false
         }
       }
@@ -60,8 +61,8 @@ export class UserMenuComponent implements OnInit {
   }
 
   userEvent(event: Event){
+    this.userIsAuthenticated = this.authService.isTokenValid();
     if (this.userIsAuthenticated){
-      console.log(event)
       this.menu.toggle(event)
     }else{
       this.toggleAuthenticationContainer()
