@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { DialogModule } from 'primeng/dialog';
 import { TabViewModule } from "primeng/tabview";
-import { Alert } from '../../../models/alert.model';
-import { AlertService } from '../../../services/alert/alert.service';
+import { Alert } from '../../models/alert.model';
+import { AlertService } from '../../services/alert/alert.service';
 import { LoginComponent } from "./login/login.component";
 import { RegisterComponent } from "./register/register.component";
 

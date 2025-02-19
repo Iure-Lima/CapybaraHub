@@ -4,13 +4,14 @@ import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
+import { SearchComponent } from "./components/search/search.component";
 import { Alert } from './models/alert.model';
 import { AlertService } from './services/alert/alert.service';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [HeaderComponent, FooterComponent, RouterModule, ToastModule],
+  imports: [HeaderComponent, FooterComponent, RouterModule, ToastModule, SearchComponent],
   providers:[MessageService],
   templateUrl: './app.component.html',
 })
