@@ -24,27 +24,26 @@ export class UserMenuComponent implements OnInit {
   constructor(private message: MessageService, private router: Router){}
 
   ngOnInit(): void {
-    this.optionsMenu = [];
+    this.optionsMenu = [
+      {
+        label:"My Bookings",
+        icon: 'pi pi-calendar-plus',
+        command: () => this.router.navigate([""])
+      },
+      {
+        label:'Profile',
+        icon: 'pi pi-user',
+        command: () => this.router.navigate([''])
+      },
+      {
+        label: 'Logout',
+        icon: 'pi pi-power-off',
+        command: () => {
+          this.userIsAuthenticated = false
+        }
+      }
+    ];
   }
-
-  // Referencias para colocar as opções no menu
-    // {
-    //     label: 'Router Link',
-    //     icon: 'pi pi-palette',
-    //     route: '/guides/csslayer'
-    // },
-    // {
-    //     label: 'Programmatic',
-    //     icon: 'pi pi-link',
-    //     command: () => {
-    //         this.router.navigate(['/installation']);
-    //     }
-    // },
-    // {
-    //     label: 'External',
-    //     icon: 'pi pi-home',
-    //     url: 'https://angular.io//'
-    // }
 
   toggleAuthenticationContainer() {
     this.authenticationContainerActive  = !this.authenticationContainerActive;
@@ -61,6 +60,7 @@ export class UserMenuComponent implements OnInit {
 
   userEvent(event: Event){
     if (this.userIsAuthenticated){
+      console.log(event)
       this.menu.toggle(event)
     }else{
       this.toggleAuthenticationContainer()
