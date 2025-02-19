@@ -4,6 +4,7 @@ import { MenuItem, MessageService } from 'primeng/api';
 import { Menu, MenuModule } from 'primeng/menu';
 import { ToastModule } from 'primeng/toast';
 import { Alert } from '../../models/alert.model';
+import { AuthService } from '../../services/auth/auth.service';
 import { AuthenticationContainerComponent } from '../authentication-container/authentication-container.component';
 
 
@@ -21,7 +22,7 @@ export class UserMenuComponent implements OnInit {
   @ViewChild('menu') menu!:Menu;
   optionsMenu: MenuItem[] | undefined
 
-  constructor(private message: MessageService, private router: Router){}
+  constructor(private message: MessageService, private router: Router, private authService: AuthService){}
 
   ngOnInit(): void {
     this.optionsMenu = [

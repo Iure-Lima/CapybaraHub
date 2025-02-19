@@ -29,4 +29,20 @@ export class AuthService {
       return null;
     }
   }
+  isTokenValid(): boolean {
+    const token = this.getToken();
+    if (!token) return false;
+    return this.isTokenValidJWT(token);
+  }
+
+  isTokenValidJWT(token: string): boolean {
+    try {
+      // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+      const decoded: any = jwtDecode(token);
+      const currentTime = Date.now() / 1000;
+      return decoded.exp > currentTime;
+    } catch (error) {
+      return false;
+    }
+  }
 }
