@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuItem, MessageService } from 'primeng/api';
+import { AvatarModule } from 'primeng/avatar';
+import { AvatarGroupModule } from 'primeng/avatargroup';
 import { Menu, MenuModule } from 'primeng/menu';
 import { ToastModule } from 'primeng/toast';
 import { Alert } from '../../models/alert.model';
@@ -11,7 +13,7 @@ import { AuthenticationContainerComponent } from '../authentication-container/au
 @Component({
   selector: 'app-user-menu',
   standalone: true,
-  imports: [ToastModule, AuthenticationContainerComponent, MenuModule],
+  imports: [ToastModule, AuthenticationContainerComponent, MenuModule,AvatarModule,AvatarGroupModule],
   templateUrl: './user-menu.component.html',
   styleUrl: './user-menu.component.scss',
   providers: [MessageService]

@@ -21,25 +21,31 @@
   >
     @if (room.images.length === 1) {
     <div class="w-full h-80">
-      <img
+      <p-image
         [src]="room.images[0]"
-        alt="Image 1"
+        alt="Image"
         class="w-full h-full object-cover rounded-md"
+        imageClass="w-full h-full object-cover rounded-md"
+        [preview]="true"
       />
     </div>
     } @if (room.images.length ===2) {
     <div class="h-80">
-      <img
+      <p-image
         [src]="room.images[0]"
-        alt="Image 1"
+        alt="Image"
         class="w-full h-full object-cover rounded-md"
+        imageClass="w-full h-full object-cover rounded-md"
+        [preview]="true"
       />
     </div>
     <div class="h-80">
-      <img
+      <p-image
         [src]="room.images[1]"
-        alt="Image 2"
+        alt="Image"
         class="w-full h-full object-cover rounded-md"
+        imageClass="w-full h-full object-cover rounded-md"
+        [preview]="true"
       />
     </div>
     }
@@ -47,25 +53,31 @@
     <!-- Se houver 3 imagens -->
     @if (room.images.length === 3) {
     <div class="h-full">
-      <img
+      <p-image
         [src]="room.images[0]"
-        alt="Image 1"
-        class="w-full h-full object-cover rounded-md"
+        alt="Image"
+        styleClass="w-full h-full object-cover rounded-md"
+        imageClass="w-full h-full object-cover rounded-md"
+        [preview]="true"
       />
     </div>
     <div class="grid grid-rows-2 gap-2">
       <div class="h-40">
-        <img
+        <p-image
           [src]="room.images[1]"
-          alt="Image 2"
-          class="w-full h-full object-cover rounded-md"
+          alt="Image"
+          styleClass="w-full h-full object-cover rounded-md"
+          imageClass="w-full h-full object-cover rounded-md"
+          [preview]="true"
         />
       </div>
       <div class="h-40">
-        <img
+        <p-image
           [src]="room.images[2]"
-          alt="Image 3"
-          class="w-full h-full object-cover rounded-md"
+          alt="Image"
+          styleClass="w-full h-full object-cover rounded-md"
+          imageClass="w-full h-full object-cover rounded-md"
+          [preview]="true"
         />
       </div>
     </div>
