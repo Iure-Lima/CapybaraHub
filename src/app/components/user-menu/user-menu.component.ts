@@ -2,12 +2,12 @@ import { Component } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { Alert } from '../../models/alert.model';
-import { AuthenticationContainerComponent } from './authentication-container/authentication-container.component';
+import { AuthenticationContainerComponent } from '../authentication-container/authentication-container.component';
 
 @Component({
   selector: 'app-user-menu',
   standalone: true,
-  imports: [AuthenticationContainerComponent,ToastModule],
+  imports: [ToastModule, AuthenticationContainerComponent],
   templateUrl: './user-menu.component.html',
   styleUrl: './user-menu.component.scss',
   providers: [MessageService]

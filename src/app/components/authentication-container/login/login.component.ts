@@ -4,9 +4,9 @@ import { ButtonModule } from 'primeng/button';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
-import { AlertService } from '../../../../services/alert/alert.service';
-import { AuthService } from '../../../../services/auth/auth.service';
-import { LoginService } from '../../../../services/auth/login.service';
+import { AlertService } from '../../../services/alert/alert.service';
+import { AuthService } from '../../../services/auth/auth.service';
+import { LoginService } from '../../../services/auth/login.service';
 
 @Component({
   selector: 'app-login',

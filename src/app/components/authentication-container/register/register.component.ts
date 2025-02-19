@@ -4,10 +4,10 @@ import { ButtonModule } from 'primeng/button';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
-import { UserRegister } from '../../../../models/user.register.model';
-import { AlertService } from '../../../../services/alert/alert.service';
-import { AuthService } from '../../../../services/auth/auth.service';
-import { RegisterService } from '../../../../services/auth/register.service';
+import { UserRegister } from '../../../models/user.register.model';
+import { AlertService } from '../../../services/alert/alert.service';
+import { AuthService } from '../../../services/auth/auth.service';
+import { RegisterService } from '../../../services/auth/register.service';
 
 @Component({
   selector: 'app-register',
