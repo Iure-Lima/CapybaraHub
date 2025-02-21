@@ -2,21 +2,16 @@
   <ng-template pTemplate="listItem" let-bookings>
     @for (booking of bookings; track $index) {
     <div
-      class="max-w-2xl mx-auto bg-white p-4 rounded-lg shadow-md flex items-center justify-between"
+      class="max-w-2xl mb-3 mx-auto bg-white p-4 rounded-lg shadow-md flex items-center justify-between"
     >
       <!-- Product Info -->
       <div class="flex items-center gap-4">
-        <!-- Product Image -->
         <div class="relative">
           <img
-            src="https://via.placeholder.com/80"
+            [src]="getRoomImage(booking.room)"
             alt="Bracelet"
             class="w-20 h-20 rounded-md object-cover"
           />
-          <span
-            class="absolute top-0 left-0 bg-green-200 text-green-800 text-xs font-semibold px-2 py-1 rounded-br-md"
-            >INSTOCK</span
-          >
         </div>
 
         <!-- Product Details -->
