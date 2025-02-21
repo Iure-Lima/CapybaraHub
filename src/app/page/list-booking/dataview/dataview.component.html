@@ -4,7 +4,7 @@
     <div
       class="max-w-2xl mb-3 mx-auto bg-white p-4 rounded-lg shadow-md flex items-center justify-between"
     >
-      <!-- Product Info -->
+      <!-- Room Info -->
       <div class="flex items-center gap-4">
         <div class="relative">
           <img
@@ -16,12 +16,12 @@
 
         <!-- Product Details -->
         <div>
-          <span class="text-gray-500 text-sm">Accessories</span>
-          <h3 class="text-lg font-semibold text-gray-800">Bracelet</h3>
-          <div class="flex items-center gap-1 mt-1">
-            <span class="text-sm font-medium text-gray-700">4</span>
-            <i class="pi pi-star-fill text-yellow-400"></i>
-          </div>
+          <span class="text-gray-500 text-sm"
+            >{{ booking.checkInDate }} - {{ booking.checkoutDate }}</span
+          >
+          <h3 class="text-lg font-semibold text-gray-800">
+            {{ getRoomName(booking.room) }}
+          </h3>
         </div>
       </div>
 

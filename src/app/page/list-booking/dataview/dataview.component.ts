@@ -12,7 +12,8 @@ import { RoomService } from '../../../services/room/room.service';
 })
 export class DataviewComponent implements OnInit{
   @Input() bookingsData!: Booking[]
-  roomImages: { [key: string]: string } = {};
+  roomImageCache: { [key: string]: string } = {};
+  roomNameCache: { [key: string]: string } = {};
 
   constructor(private roomService: RoomService){}
 
@@ -24,14 +25,14 @@ export class DataviewComponent implements OnInit{
     // biome-ignore lint/complexity/noForEach: <explanation>
     this.bookingsData.forEach((booking) => {
       const roomId = booking.room;
-      if (!this.roomImages[roomId]) {
+      if (!this.roomImageCache[roomId] && !this.roomNameCache[roomId]) {
         this.roomService.getRoomById(roomId).subscribe({
           next: (response) => {
-            this.roomImages[roomId] = response.images[0];
+            this.roomImageCache[roomId] = response.images[0];
+            this.roomNameCache[roomId] = response.roomNumber.toString();
           },
           error: (error) => {
             console.error(`Erro ao obter detalhes do quarto ${roomId}:`, error);
-            this.roomImages[roomId] = 'path/to/default-image.jpg';
           }
         });
       }
@@ -39,6 +40,10 @@ export class DataviewComponent implements OnInit{
   }
 
   getRoomImage(roomId: string): string {
-    return this.roomImages[roomId];
+    return this.roomImageCache[roomId];
+  }
+
+  getRoomName(roomId: string): string {
+    return this.roomNameCache[roomId];
   }
 }
