@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { DataViewModule } from 'primeng/dataview';
 import { Booking } from '../../../models/booking.model';
+import { AlertService } from '../../../services/alert/alert.service';
 import { RoomService } from '../../../services/room/room.service';
 
 @Component({
@@ -15,7 +16,7 @@ export class DataviewComponent implements OnInit{
   roomImageCache: { [key: string]: string } = {};
   roomNameCache: { [key: string]: string } = {};
 
-  constructor(private roomService: RoomService){}
+  constructor(private roomService: RoomService, private alertService: AlertService){}
 
   ngOnInit(): void {
     this.preloadRoomDetails();
@@ -32,7 +33,11 @@ export class DataviewComponent implements OnInit{
             this.roomNameCache[roomId] = response.roomNumber.toString();
           },
           error: (error) => {
-            console.error(`Erro ao obter detalhes do quarto ${roomId}:`, error);
+            this.alertService.addAlert({
+              severity: 'error',
+              summary: 'Error while fetching room details',
+              detail: ''
+            });
           }
         });
       }
