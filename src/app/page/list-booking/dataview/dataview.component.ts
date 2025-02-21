@@ -1,5 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
+import { ConfirmationService } from 'primeng/api';
+import { ButtonModule } from 'primeng/button';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { DataViewModule } from 'primeng/dataview';
 import { Booking } from '../../../models/booking.model';
 import { AlertService } from '../../../services/alert/alert.service';
@@ -8,7 +11,8 @@ import { RoomService } from '../../../services/room/room.service';
 @Component({
   selector: 'app-dataview',
   standalone: true,
-  imports: [DataViewModule, CommonModule],
+  imports: [DataViewModule, CommonModule,ConfirmDialogModule, ButtonModule],
+  providers: [ConfirmationService],
   templateUrl: './dataview.component.html',
   styleUrl: './dataview.component.css'
 })
@@ -17,7 +21,7 @@ export class DataviewComponent implements OnInit{
   roomImageCache: { [key: string]: string } = {};
   roomNameCache: { [key: string]: string } = {};
 
-  constructor(private roomService: RoomService, private alertService: AlertService){}
+  constructor(private roomService: RoomService, private alertService: AlertService,private confirmationService: ConfirmationService){}
 
   ngOnInit(): void {
     this.preloadRoomDetails();
@@ -52,4 +56,24 @@ export class DataviewComponent implements OnInit{
   getRoomName(roomId: string): string {
     return this.roomNameCache[roomId];
   }
+
+  showConfirm(event: Event) {
+    this.confirmationService.confirm({
+        target: event.target as EventTarget,
+        message: 'Do you want to Cancel this booking?',
+        header: 'Cancel Booking',
+        icon: 'pi pi-info-circle',
+        acceptButtonStyleClass:"p-button-danger p-button-text",
+        rejectButtonStyleClass:"p-button-text p-button-text",
+        acceptIcon:"none",
+        rejectIcon:"none",
+
+        accept: () => {
+            this.alertService.addAlert({ severity: 'info', summary: 'Confirmed', detail: 'Booking canceled' });
+        },
+        reject: () => {
+            this.alertService.addAlert({ severity: 'error', summary: 'Rejected', detail: 'You have rejected' });
+        }
+    });
+}
 }

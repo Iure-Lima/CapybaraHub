@@ -1,3 +1,4 @@
+<p-confirmDialog />
 <p-dataView [value]="bookingsData" [rows]="5" [paginator]="true" layout="list">
   <ng-template pTemplate="listItem" let-bookings>
     @for (booking of bookings; track $index) {
@@ -26,19 +27,18 @@
       </div>
 
       <!-- Actions and Price -->
-      <div class="flex items-center gap-4">
+      <div class="flex items-center gap-4 flex-col">
         <span class="text-lg font-semibold text-gray-900">{{
           booking.totalPrice | currency : "USD"
         }}</span>
-        <button class="p-2 border rounded-md hover:bg-gray-100">
-          <i class="pi pi-heart text-blue-500"></i>
-        </button>
-        <button
-          class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 flex items-center gap-2"
-        >
-          <i class="pi pi-shopping-cart"></i>
-          Cancel
-        </button>
+        @if (booking.status === "pending" || booking.status ==="confirmed") {
+        <p-button
+          (onClick)="showConfirm($event)"
+          label="Cancel"
+          severity="danger"
+          [outlined]="true"
+        />
+        }
       </div>
     </div>
     }
