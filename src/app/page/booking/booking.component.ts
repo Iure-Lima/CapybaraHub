@@ -57,12 +57,13 @@ export class BookingComponent {
           this.router.navigate(['/home']);
         },
         error: (error) => {
-          console.log(error);
           this.alertService.addAlert({
             severity: 'error',
-            summary: 'Error while booking the room',
+            summary: `${error.error.message}`,
             detail: '',
           });
+          // biome-ignore lint/complexity/useLiteralKeys: <explanation>
+          this.router.navigate(['/reservations', this.route.snapshot.params['id']]);
         },
       });
   }
