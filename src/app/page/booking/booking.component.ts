@@ -2,6 +2,7 @@ import { CurrencyPipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CacheBooking } from '../../models/cache-booking-model';
+import { MongoDecimalPipe } from '../../pipes/mongo-decimal.pipe';
 import { AlertService } from '../../services/alert/alert.service';
 import { BookingService } from '../../services/booking/booking.service';
 import { CacheBookingService } from '../../services/cache/cache-booking.service';
@@ -9,7 +10,7 @@ import { CacheBookingService } from '../../services/cache/cache-booking.service'
 @Component({
   selector: 'app-booking',
   standalone: true,
-  imports: [CurrencyPipe],
+  imports: [CurrencyPipe, MongoDecimalPipe],
   templateUrl: './booking.component.html',
   styleUrl: './booking.component.css',
 })
