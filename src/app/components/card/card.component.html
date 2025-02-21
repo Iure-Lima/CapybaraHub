@@ -37,7 +37,7 @@
     </div>
     <p class="text-gray-500">{{ hotelData?.address?.street }}</p>
     <p class="text-black font-bold">
-      {{ roomCard.pricePerNight | currency : "USD" }}
+      {{ roomCard.pricePerNight | mongoDecimal | currency : "USD" }}
       <span class="font-normal">night</span>
     </p>
   </div>

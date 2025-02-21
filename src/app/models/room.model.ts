@@ -2,7 +2,7 @@ export interface RoomCard {
   _id: string;
   hotel: string,
   roomTypeId: string,
-  pricePerNight: string,
+  pricePerNight: number | {$numberDecimal: string},
   roomNumber: number,
   status:status
   images: string[]

@@ -69,7 +69,7 @@ export class DataviewComponent implements OnInit{
         rejectIcon:"none",
 
         accept: () => {
-            this.alertService.addAlert({ severity: 'info', summary: 'Confirmed', detail: 'Booking canceled' });
+            this.alertService.addAlert({ severity: 'info', summary: 'Confirmed', detail: 'Booking cancelled' });
         },
         reject: () => {
             this.alertService.addAlert({ severity: 'error', summary: 'Rejected', detail: 'You have rejected' });

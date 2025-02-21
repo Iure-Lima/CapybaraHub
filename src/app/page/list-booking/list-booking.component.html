@@ -6,13 +6,13 @@
         <app-dataview [bookingsData]="bookings"></app-dataview>
       </p-tabPanel>
       <p-tabPanel header="Confirmed">
-        <app-dataview [bookingsData]="bookings"></app-dataview>
+        <app-dataview [bookingsData]="bookingsConfirmed"></app-dataview>
       </p-tabPanel>
       <p-tabPanel header="Completed">
-        <app-dataview [bookingsData]="bookings"></app-dataview>
+        <app-dataview [bookingsData]="bookingsCompleted"></app-dataview>
       </p-tabPanel>
       <p-tabPanel header="Cancelled">
-        <app-dataview [bookingsData]="bookings"></app-dataview>
+        <app-dataview [bookingsData]="bookingsCancelled"></app-dataview>
       </p-tabPanel>
     </p-tabView>
   </div>
