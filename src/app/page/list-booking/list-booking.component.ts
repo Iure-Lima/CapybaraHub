@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 
-import { DataViewModule } from 'primeng/dataview';
 import { TabViewModule } from 'primeng/tabview';
 import { Booking } from '../../models/booking.model';
+import { DataviewComponent } from "./dataview/dataview.component";
 
 
 @Component({
   selector: 'app-list-booking',
   standalone: true,
-  imports: [TabViewModule, DataViewModule],
+  imports: [TabViewModule, DataviewComponent],
   templateUrl: './list-booking.component.html',
   styleUrl: './list-booking.component.css'
 })

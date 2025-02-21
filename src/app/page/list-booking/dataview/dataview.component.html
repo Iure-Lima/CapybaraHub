@@ -1,1 +1,49 @@
-<p>dataview works!</p>
+<p-dataView [value]="bookingsData" [rows]="5" [paginator]="true" layout="list">
+  <ng-template pTemplate="listItem" let-bookings>
+    @for (booking of bookings; track $index) {
+    <div
+      class="max-w-2xl mx-auto bg-white p-4 rounded-lg shadow-md flex items-center justify-between"
+    >
+      <!-- Product Info -->
+      <div class="flex items-center gap-4">
+        <!-- Product Image -->
+        <div class="relative">
+          <img
+            src="https://via.placeholder.com/80"
+            alt="Bracelet"
+            class="w-20 h-20 rounded-md object-cover"
+          />
+          <span
+            class="absolute top-0 left-0 bg-green-200 text-green-800 text-xs font-semibold px-2 py-1 rounded-br-md"
+            >INSTOCK</span
+          >
+        </div>
+
+        <!-- Product Details -->
+        <div>
+          <span class="text-gray-500 text-sm">Accessories</span>
+          <h3 class="text-lg font-semibold text-gray-800">Bracelet</h3>
+          <div class="flex items-center gap-1 mt-1">
+            <span class="text-sm font-medium text-gray-700">4</span>
+            <i class="pi pi-star-fill text-yellow-400"></i>
+          </div>
+        </div>
+      </div>
+
+      <!-- Actions and Price -->
+      <div class="flex items-center gap-4">
+        <span class="text-lg font-semibold text-gray-900">$15</span>
+        <button class="p-2 border rounded-md hover:bg-gray-100">
+          <i class="pi pi-heart text-blue-500"></i>
+        </button>
+        <button
+          class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 flex items-center gap-2"
+        >
+          <i class="pi pi-shopping-cart"></i>
+          Buy Now
+        </button>
+      </div>
+    </div>
+    }
+  </ng-template>
+</p-dataView>
