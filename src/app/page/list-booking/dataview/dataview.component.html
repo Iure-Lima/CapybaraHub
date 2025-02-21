@@ -27,7 +27,9 @@
 
       <!-- Actions and Price -->
       <div class="flex items-center gap-4">
-        <span class="text-lg font-semibold text-gray-900">$15</span>
+        <span class="text-lg font-semibold text-gray-900">{{
+          booking.totalPrice | currency : "USD"
+        }}</span>
         <button class="p-2 border rounded-md hover:bg-gray-100">
           <i class="pi pi-heart text-blue-500"></i>
         </button>
@@ -35,7 +37,7 @@
           class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 flex items-center gap-2"
         >
           <i class="pi pi-shopping-cart"></i>
-          Buy Now
+          Cancel
         </button>
       </div>
     </div>

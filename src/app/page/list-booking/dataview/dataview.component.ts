@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { DataViewModule } from 'primeng/dataview';
 import { Booking } from '../../../models/booking.model';
@@ -7,7 +8,7 @@ import { RoomService } from '../../../services/room/room.service';
 @Component({
   selector: 'app-dataview',
   standalone: true,
-  imports: [DataViewModule],
+  imports: [DataViewModule, CommonModule],
   templateUrl: './dataview.component.html',
   styleUrl: './dataview.component.css'
 })
