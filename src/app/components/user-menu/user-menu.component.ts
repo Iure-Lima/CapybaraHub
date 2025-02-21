@@ -31,7 +31,7 @@ export class UserMenuComponent implements OnInit {
       {
         label:"My Bookings",
         icon: 'pi pi-calendar-plus',
-        command: () => this.router.navigate([""])
+        command: () => this.router.navigate(["booking-list"])
       },
       {
         label:'Profile',
