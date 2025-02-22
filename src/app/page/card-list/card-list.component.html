@@ -1,5 +1,5 @@
 <section class="w-full h-auto px-21">
-  <p-dataView [value]="roomList" [rows]="5" [paginator]="true" layout="grid">
+  <p-dataView [value]="roomList" [rows]="8" [paginator]="true" layout="grid">
     <ng-template pTemplate="grid" let-rooms>
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
         @for (room of rooms; track $index) {
