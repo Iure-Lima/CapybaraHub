@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { DataViewModule } from 'primeng/dataview';
 import { CardComponent } from '../../components/card/card.component';
 import { RoomCard } from '../../models/room.model';
 import { AlertService } from '../../services/alert/alert.service';
@@ -7,7 +8,7 @@ import { RoomService } from '../../services/room/room.service';
 @Component({
   selector: 'app-card-list',
   standalone: true,
-  imports: [CardComponent],
+  imports: [CardComponent,DataViewModule],
   templateUrl: './card-list.component.html',
 })
 export class CardListComponent {

@@ -1,7 +1,13 @@
-<section
-  class="w-full grid grid-cols-4 h-auto py-8 px-21 gap-5 justify-items-center"
->
-  @for (item of roomList; track $index) {
-  <app-card [roomCard]="item"></app-card>
-  }
+<section class="w-full h-auto px-21">
+  <p-dataView [value]="roomList" [rows]="8" [paginator]="true" layout="grid">
+    <ng-template pTemplate="grid" let-rooms>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
+        @for (room of rooms; track $index) {
+        <div>
+          <app-card [roomCard]="room"></app-card>
+        </div>
+        }
+      </div>
+    </ng-template>
+  </p-dataView>
 </section>
