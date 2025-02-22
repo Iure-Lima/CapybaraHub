@@ -1,5 +1,5 @@
-import { NgClass } from '@angular/common';
-import { Component, DoCheck, Input } from '@angular/core';
+import { CommonModule, NgClass } from '@angular/common';
+import { Component, DoCheck, Input, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CalendarModule } from 'primeng/calendar';
@@ -8,6 +8,7 @@ import { FloatLabelModule } from 'primeng/floatlabel';
 import { ImageModule } from 'primeng/image';
 import { HotelCard } from '../../models/hotel.card.model';
 import { RoomCard } from '../../models/room.model';
+import { MongoDecimalPipe } from '../../pipes/mongo-decimal.pipe';
 import { AlertService } from '../../services/alert/alert.service';
 import { CacheBookingService } from '../../services/cache/cache-booking.service';
 import { HotelService } from '../../services/hotel/hotel.service';
@@ -17,30 +18,32 @@ import { RoomService } from '../../services/room/room.service';
 @Component({
   selector: 'app-reservations',
   standalone: true,
-  imports: [CalendarModule, FormsModule, DropdownModule, FloatLabelModule, NgClass, ImageModule],
+  imports: [CalendarModule, FormsModule, DropdownModule, FloatLabelModule, NgClass, ImageModule, MongoDecimalPipe,CommonModule],
   templateUrl: './reservations.component.html',
   styleUrl: './reservations.component.css'
 })
-export class ReservationsComponent implements DoCheck {
+export class ReservationsComponent implements DoCheck, OnInit {
   @Input() selectedDates: Date[] = []
   guestOptions: string[] = ["1 Guest","2 Guest"]
   selectedGuests!:string;
   totalPriceWithNights = 0
   totalPrice = 0;
   totalNights = 0;
+  minDate: Date = new Date();
   disabledDates: Date[] = []; //Aqui mais vai entrar os dados referentes as datas com agendamento
-  today: Date = new Date();
+
 
   //Tanto room quanto hotel iniciam com propriedades vazias, para evitar erros
   room: RoomCard = {
     _id: '',
     hotel: '',
     roomTypeId: '',
-    pricePerNight: '',
+    pricePerNight: 0,
     roomNumber: 0,
     status: 'Available',
     images: [],
-    rating: 0
+    rating: 0,
+    name: ''
   };
   hotel: HotelCard = {
     _id: '',
@@ -91,14 +94,23 @@ export class ReservationsComponent implements DoCheck {
       }
     })
   }
+  ngOnInit(): void {
+    this.minDate = new Date(this.minDate)
+    this.minDate.setDate(this.minDate.getDate() + 1)
+  }
   ngDoCheck(): void {
+    const price = typeof this.room.pricePerNight === 'object' && this.room.pricePerNight !== null && '$numberDecimal' in this.room.pricePerNight
+  ? Number.parseFloat(this.room.pricePerNight.$numberDecimal)
+  : Number(this.room.pricePerNight);
+
     if (!(this.selectedDates.length < 2)) {
       if (this.selectedDates[0] && this.selectedDates[1]){
+
         this.totalNights = this.getNumberOfDays(this.selectedDates[0], this.selectedDates[1]);
-        this.totalPriceWithNights = Number(this.room.pricePerNight) * this.totalNights;
+        this.totalPriceWithNights = Number(price) * this.totalNights;
       }else{
         this.totalNights = 1;
-        this.totalPriceWithNights = Number(this.room.pricePerNight);
+        this.totalPriceWithNights = Number(price);
       }
     }
     this.totalPrice = this.totalPriceWithNights + 185

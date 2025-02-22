@@ -1,15 +1,16 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, CurrencyPipe } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { HotelCard } from '../../models/hotel.card.model';
 import { RoomCard } from '../../models/room.model';
+import { MongoDecimalPipe } from '../../pipes/mongo-decimal.pipe';
 import { AlertService } from '../../services/alert/alert.service';
 import { HotelService } from '../../services/hotel/hotel.service';
 
 @Component({
   selector: 'app-card',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, MongoDecimalPipe, CurrencyPipe],
   templateUrl: './card.component.html',
 })
 export class CardComponent implements OnInit {

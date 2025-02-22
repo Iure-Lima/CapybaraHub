@@ -2,7 +2,7 @@
   <!-- Title and Share Button -->
   <div class="flex justify-between items-center mb-4">
     <!-- Aqui vai entrar o nome do quarto, ainda precisamos adicionar isso no backend -->
-    <h1 class="text-2xl font-bold">Flat com vista mar em Porto de Galinhas</h1>
+    <h1 class="text-2xl font-bold">{{ room.name }}</h1>
     <button
       class="px-6 py-3 cursor-pointer text-white font-semibold rounded-lg bg-gradient-to-r from-indigo-500 via-blue-500 to-indigo-500 transition-all duration-300 hover:bg-gradient-to-r hover:from-blue-500 hover:via-indigo-500 hover:to-blue-500 items-center space-x-2"
     >
@@ -16,9 +16,10 @@
     class="grid gap-2 mb-4"
     [ngClass]="{
       'grid-cols-1': room.images.length === 1,
-      'grid-cols-2': room.images.length >= 2,
+      'grid-cols-2': room.images.length >= 2
     }"
   >
+    <!-- Se houver 1 imagem -->
     @if (room.images.length === 1) {
     <div class="w-full h-80">
       <p-image
@@ -26,16 +27,21 @@
         alt="Image"
         class="w-full h-full object-cover rounded-md"
         imageClass="w-full h-full object-cover rounded-md"
+        [style]="{ width: '100%', height: '100%' }"
         [preview]="true"
       />
     </div>
-    } @if (room.images.length ===2) {
+    }
+
+    <!-- Se houver 2 imagens -->
+    @if (room.images.length === 2) {
     <div class="h-80">
       <p-image
         [src]="room.images[0]"
         alt="Image"
         class="w-full h-full object-cover rounded-md"
         imageClass="w-full h-full object-cover rounded-md"
+        [style]="{ width: '100%', height: '100%' }"
         [preview]="true"
       />
     </div>
@@ -45,6 +51,7 @@
         alt="Image"
         class="w-full h-full object-cover rounded-md"
         imageClass="w-full h-full object-cover rounded-md"
+        [style]="{ width: '100%', height: '100%' }"
         [preview]="true"
       />
     </div>
@@ -58,6 +65,7 @@
         alt="Image"
         styleClass="w-full h-full object-cover rounded-md"
         imageClass="w-full h-full object-cover rounded-md"
+        [style]="{ width: '100%', height: '100%' }"
         [preview]="true"
       />
     </div>
@@ -68,6 +76,7 @@
           alt="Image"
           styleClass="w-full h-full object-cover rounded-md"
           imageClass="w-full h-full object-cover rounded-md"
+          [style]="{ width: '100%', height: '100%' }"
           [preview]="true"
         />
       </div>
@@ -77,6 +86,7 @@
           alt="Image"
           styleClass="w-full h-full object-cover rounded-md"
           imageClass="w-full h-full object-cover rounded-md"
+          [style]="{ width: '100%', height: '100%' }"
           [preview]="true"
         />
       </div>
@@ -133,7 +143,7 @@
     <!-- Booking Section -->
     <div class="border p-4 rounded-lg shadow-md w-1/2">
       <div class="text-lg font-bold mb-6">
-        R$ {{ room.pricePerNight }}
+        {{ room.pricePerNight | mongoDecimal | currency : "USD" }}
         <span class="text-sm font-normal">night</span>
       </div>
 
@@ -149,7 +159,7 @@
                 [style]="{ width: '100%' }"
                 dateFormat="dd/mm/yy"
                 [disabledDates]="disabledDates"
-                [minDate]="today"
+                [minDate]="minDate"
                 [showIcon]="true"
                 [showOnFocus]="true"
                 [numberOfMonths]="2"
@@ -180,16 +190,19 @@
 
           @if (selectedDates.length > 0){
           <div class="flex justify-between mt-2">
-            <span>R$ {{ room.pricePerNight }} x {{ totalNights }} nights</span>
-            <span>R$ {{ totalPriceWithNights }}</span>
+            <span
+              >{{ room.pricePerNight | mongoDecimal | currency : "USD" }} x
+              {{ totalNights }} nights</span
+            >
+            <span>{{ totalPriceWithNights | currency : "USD" }}</span>
           </div>
           <div class="flex justify-between">
             <span>Service fee</span>
-            <span>R$ {{ 185 }}</span>
+            <span>{{ 185 | currency : "USD" }}</span>
           </div>
           <div class="flex justify-between font-bold border-t mt-2 pt-2">
             <span>Total booking</span>
-            <span>R$ {{ totalPrice }}</span>
+            <span>{{ totalPrice | currency : "USD" }}</span>
           </div>
           }
         </div>

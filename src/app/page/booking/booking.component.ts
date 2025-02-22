@@ -2,6 +2,7 @@ import { CurrencyPipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CacheBooking } from '../../models/cache-booking-model';
+import { MongoDecimalPipe } from '../../pipes/mongo-decimal.pipe';
 import { AlertService } from '../../services/alert/alert.service';
 import { BookingService } from '../../services/booking/booking.service';
 import { CacheBookingService } from '../../services/cache/cache-booking.service';
@@ -9,7 +10,7 @@ import { CacheBookingService } from '../../services/cache/cache-booking.service'
 @Component({
   selector: 'app-booking',
   standalone: true,
-  imports: [CurrencyPipe],
+  imports: [CurrencyPipe, MongoDecimalPipe],
   templateUrl: './booking.component.html',
   styleUrl: './booking.component.css',
 })
@@ -22,7 +23,7 @@ export class BookingComponent {
     private router: Router,
     private route: ActivatedRoute,
     private bookingService: BookingService,
-    private alertService: AlertService,
+    private alertService: AlertService
   ) {
     this.cacheDatas = this.cacheBookingService.getDataCache();
     if (!this.cacheDatas.room._id) {
@@ -56,12 +57,13 @@ export class BookingComponent {
           this.router.navigate(['/home']);
         },
         error: (error) => {
-          console.log(error);
           this.alertService.addAlert({
             severity: 'error',
-            summary: 'Error while booking the room',
+            summary: `${error.error.message}`,
             detail: '',
           });
+          // biome-ignore lint/complexity/useLiteralKeys: <explanation>
+          this.router.navigate(['/reservations', this.route.snapshot.params['id']]);
         },
       });
   }

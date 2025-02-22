@@ -1,0 +1,47 @@
+<p-confirmDialog />
+<p-dataView [value]="bookingsData" [rows]="3" [paginator]="true" layout="list">
+  <ng-template pTemplate="listItem" let-bookings>
+    @for (booking of bookings; track $index) {
+    <div
+      class="max-w-2xl mb-3 mx-auto bg-white p-4 rounded-lg shadow-md flex items-center justify-between"
+    >
+      <!-- Room Info -->
+      <div class="flex items-center gap-4">
+        <div class="relative">
+          <img
+            [src]="getRoomImage(booking.room)"
+            alt="Bracelet"
+            class="w-20 h-20 rounded-md object-cover"
+          />
+        </div>
+
+        <!-- Product Details -->
+        <div>
+          <span class="text-gray-500 text-sm"
+            >From {{ booking.checkInDate.split("T")[0] }} To
+            {{ booking.checkoutDate.split("T")[0] }}</span
+          >
+          <h3 class="text-lg font-semibold text-gray-800">
+            {{ getRoomName(booking.room) }}
+          </h3>
+        </div>
+      </div>
+
+      <!-- Actions and Price -->
+      <div class="flex items-center gap-4 flex-col">
+        <span class="text-lg font-semibold text-gray-900">{{
+          booking.totalPrice | currency : "USD"
+        }}</span>
+        @if (booking.status === "pending" || booking.status ==="confirmed") {
+        <p-button
+          (onClick)="showConfirm($event)"
+          label="Cancel"
+          severity="danger"
+          [outlined]="true"
+        />
+        }
+      </div>
+    </div>
+    }
+  </ng-template>
+</p-dataView>

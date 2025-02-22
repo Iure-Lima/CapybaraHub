@@ -5,7 +5,7 @@ export type Booking = {
   checkInDate: string;
   checkoutDate: string;
   totalPrice: string;
-  status: Status;
+  status: BookingStatus;
 }
 
-type Status = "pending" | "confirmed" | "completed" | "cancelled"
+export type BookingStatus = "pending" | "confirmed" | "completed" | "cancelled"

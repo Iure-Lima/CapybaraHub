@@ -6,6 +6,7 @@ export const routes: Routes = [
   {path:"home", component: CardListComponent},
   {path: "reservations/:id", loadComponent: () => import("./page/reservations/reservations.component").then(m => m.ReservationsComponent)},
   {path:"booking/:id", loadComponent: () => import('./page/booking/booking.component').then(m => m.BookingComponent), canActivate:[authGuard]},
+  {path:"booking-list", loadComponent: ()=> import("./page/list-booking/list-booking.component").then(m => m.ListBookingComponent), canActivate:[authGuard]},
   {path:"", redirectTo:"home", pathMatch:"full"},
   {path:"**", loadComponent: () => import("../app/page/not-found/not-found.component").then(m => m.NotFoundComponent)}
 ];
