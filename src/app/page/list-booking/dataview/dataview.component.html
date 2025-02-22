@@ -18,7 +18,8 @@
         <!-- Product Details -->
         <div>
           <span class="text-gray-500 text-sm"
-            >{{ booking.checkInDate }} - {{ booking.checkoutDate }}</span
+            >From {{ booking.checkInDate.split("T")[0] }} To
+            {{ booking.checkoutDate.split("T")[0] }}</span
           >
           <h3 class="text-lg font-semibold text-gray-800">
             {{ getRoomName(booking.room) }}
