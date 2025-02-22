@@ -1,0 +1,18 @@
+<button
+  class="flex items-center gap-2 px-4 py-2 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-100 transition duration-200 cursor-pointer"
+  (click)="showFilterDialog()"
+>
+  <i class="pi pi-filter text-gray-600"></i>
+  <span class="text-gray-700 font-medium">Filters</span>
+  <i class="pi pi-caret-down text-gray-600"></i>
+</button>
+<p-dialog
+  header="Filters"
+  [modal]="true"
+  [(visible)]="visible"
+  [style]="{ width: '35rem' }"
+  [dismissableMask]="true"
+  [position]="'center'"
+  [draggable]="false"
+>
+</p-dialog>
