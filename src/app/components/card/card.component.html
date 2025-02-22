@@ -24,11 +24,8 @@
 
   <div class="p-2">
     <div class="flex justify-between items-center">
-      <h2
-        class="text-lg font-bold truncate w-56"
-        [title]="hotelData?.address?.city"
-      >
-        {{ hotelData?.address?.city }}, {{ hotelData?.address?.country }}
+      <h2 class="text-lg font-bold truncate w-56" [title]="roomCard.name">
+        {{ roomCard.name }}
       </h2>
       <div class="flex items-center">
         <span class="text-gray-600">{{ roomCard.rating }}</span>

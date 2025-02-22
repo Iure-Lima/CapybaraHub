@@ -42,7 +42,8 @@ export class ReservationsComponent implements DoCheck, OnInit {
     roomNumber: 0,
     status: 'Available',
     images: [],
-    rating: 0
+    rating: 0,
+    name: ''
   };
   hotel: HotelCard = {
     _id: '',

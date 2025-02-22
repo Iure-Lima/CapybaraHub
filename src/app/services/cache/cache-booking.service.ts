@@ -14,7 +14,8 @@ export class CacheBookingService {
       roomNumber: 0,
       status: 'Available',
       images: [],
-      rating: 0
+      rating: 0,
+      name: ''
     },
     selectDate: [],
     guest: '',
@@ -41,7 +42,8 @@ export class CacheBookingService {
         roomNumber: 0,
         status: 'Available',
         images: [],
-        rating: 0
+        rating: 0,
+        name: ''
       },
       selectDate: [],
       guest: '',
