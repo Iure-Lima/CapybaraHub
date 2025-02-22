@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
-import { Booking } from '../../models/booking.model';
+import { Booking, BookingStatus } from '../../models/booking.model';
 import { AuthService } from '../auth/auth.service';
 
 @Injectable({
@@ -24,5 +24,11 @@ export class BookingService {
         'Content-Type': 'application/json'
       }
     });
+  }
+  getBookings(status: BookingStatus): Observable<Booking[]> {
+    return this.http.get<Booking[]>(`${environment.apiUrl}/bookings`, {params:{status}, headers:{
+      'Authorization': `Bearer ${this.authService.getToken()}`,
+      'Content-Type': 'application/json'
+    }});
   }
 }

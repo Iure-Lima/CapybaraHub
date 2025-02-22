@@ -1,5 +1,5 @@
 <p-confirmDialog />
-<p-dataView [value]="bookingsData" [rows]="5" [paginator]="true" layout="list">
+<p-dataView [value]="bookingsData" [rows]="3" [paginator]="true" layout="list">
   <ng-template pTemplate="listItem" let-bookings>
     @for (booking of bookings; track $index) {
     <div
