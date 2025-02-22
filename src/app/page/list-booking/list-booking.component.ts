@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, DoCheck, OnInit } from '@angular/core';
 
+import { Router } from '@angular/router';
 import { TabViewModule } from 'primeng/tabview';
 import { Booking } from '../../models/booking.model';
+import { AuthService } from '../../services/auth/auth.service';
 import { BookingService } from '../../services/booking/booking.service';
 import { DataviewComponent } from "./dataview/dataview.component";
 
@@ -14,13 +16,16 @@ import { DataviewComponent } from "./dataview/dataview.component";
   templateUrl: './list-booking.component.html',
   styleUrl: './list-booking.component.css'
 })
-export class ListBookingComponent implements OnInit {
+export class ListBookingComponent implements OnInit, DoCheck {
   bookingsPending: Booking[] = []
   bookingsConfirmed: Booking[] = []
   bookingsCompleted: Booking[] = []
   bookingsCancelled: Booking[] = []
 
-  constructor(private bookingService: BookingService){}
+  constructor(private bookingService: BookingService, private router: Router, private authService: AuthService){}
+  ngDoCheck(): void {
+    if (!this.authService.getToken()) this.router.navigate(["/home"])
+  }
   ngOnInit(): void {
     this
   }
