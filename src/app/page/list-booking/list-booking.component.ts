@@ -19,6 +19,7 @@ import { DataviewComponent } from "./dataview/dataview.component";
 })
 export class ListBookingComponent implements DoCheck, OnInit {
   bookings: Booking[] = [];
+  currentStatus: BookingStatus = 'pending';
 
   constructor(private bookingService: BookingService, private router: Router, private authService: AuthService, private alertService: AlertService){}
   ngOnInit(): void {
@@ -29,7 +30,8 @@ export class ListBookingComponent implements DoCheck, OnInit {
   }
 
   tabViewChange(event: TabViewChangeEvent){
-    this.getBookingsWithStatus(event.index === 0 ? 'pending' : event.index === 1 ? 'confirmed' : event.index === 2 ? 'completed' : "cancelled");
+    this.currentStatus = event.index === 0 ? 'pending' : event.index === 1 ? 'confirmed' : event.index === 2 ? 'completed' : 'cancelled';
+    this.getBookingsWithStatus(this.currentStatus);
 
   }
 
@@ -45,6 +47,10 @@ export class ListBookingComponent implements DoCheck, OnInit {
       })
     })
   }
+
+  updateBookingList(status: BookingStatus) {
+    this.getBookingsWithStatus(status);
+}
 
 
 }

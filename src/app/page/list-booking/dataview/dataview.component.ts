@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { ConfirmationService } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
@@ -21,6 +21,7 @@ export class DataviewComponent implements OnChanges{
   @Input() bookingsData!: Booking[]
   roomImageCache: { [key: string]: string } = {};
   roomNameCache: { [key: string]: string } = {};
+  @Output() bookingUpdateList = new EventEmitter<string>();
 
   constructor(private roomService: RoomService, private alertService: AlertService,private confirmationService: ConfirmationService, private bookingService: BookingService){}
   ngOnChanges(changes: SimpleChanges): void {
@@ -77,6 +78,7 @@ export class DataviewComponent implements OnChanges{
             next: (response) => {
               //Adicionar aqui um alerta para quando o booking foi criado com sucesso. Usar o alertService
               console.log(response)
+              this.bookingUpdateList.emit("cancelled");
             },
             error: (error) => {
               //Adicionar aqui um alerta para quando o tivemos algum erro booking. Usar o alertService
