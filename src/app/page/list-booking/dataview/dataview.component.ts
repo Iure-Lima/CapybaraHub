@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { ConfirmationService } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
@@ -16,16 +16,19 @@ import { RoomService } from '../../../services/room/room.service';
   templateUrl: './dataview.component.html',
   styleUrl: './dataview.component.css'
 })
-export class DataviewComponent implements OnInit{
+export class DataviewComponent implements OnChanges{
   @Input() bookingsData!: Booking[]
   roomImageCache: { [key: string]: string } = {};
   roomNameCache: { [key: string]: string } = {};
 
   constructor(private roomService: RoomService, private alertService: AlertService,private confirmationService: ConfirmationService){}
-
-  ngOnInit(): void {
-    this.preloadRoomDetails();
+  ngOnChanges(changes: SimpleChanges): void {
+    // biome-ignore lint/complexity/useLiteralKeys: <explanation>
+    if(changes["bookingsData"].isFirstChange() || changes["bookingsData"]){
+      this.preloadRoomDetails();
+    }
   }
+
 
   preloadRoomDetails(): void {
     // biome-ignore lint/complexity/noForEach: <explanation>
@@ -35,7 +38,7 @@ export class DataviewComponent implements OnInit{
         this.roomService.getRoomById(roomId).subscribe({
           next: (response) => {
             this.roomImageCache[roomId] = response.images[0];
-            this.roomNameCache[roomId] = response.roomNumber.toString();
+            this.roomNameCache[roomId] = response.name;
           },
           error: (error) => {
             this.alertService.addAlert({
