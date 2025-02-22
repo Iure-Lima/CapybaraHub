@@ -16,8 +16,8 @@
       </div>
       <p class="text-gray-700 text-sm">
         <!-- Adicionar o nome do quarto -->
-        Book the <span class="font-bold">[room name]</span> now with an
-        exclusive discount for a limited time. Don't miss out!
+        Book the <span class="font-bold">{{ cacheDatas.room.name }}</span> now
+        with an exclusive discount for a limited time. Don't miss out!
       </p>
       <i class="pi pi-tag"></i>
     </div>
@@ -93,8 +93,7 @@
         class="w-16 h-16 rounded-lg"
       />
       <div class="ml-4">
-        <!-- Aqui vai vim o nome do quarto (Ainda precisa ser adicionado no banco de dados) -->
-        <p class="font-medium text-gray-800">Flat com vista mar em Porto ...</p>
+        <p class="font-medium text-gray-800">{{ cacheDatas.room.name }}</p>
         <div class="flex items-center text-sm text-gray-600">
           <i class="pi pi-star-fill" style="color: yellow"></i>
           <!-- Aqui vai entrar as avaliações do quarto (Ainda precisa de adição dessa propriedade na base de dados) -->
@@ -107,9 +106,7 @@
     <div class="border-t mt-4 pt-4 text-sm text-gray-600">
       <div class="flex justify-between">
         <p>
-          {{
-            cacheDatas.room.pricePerNight | mongoDecimal | currency : "USD"
-          }}
+          {{ cacheDatas.room.pricePerNight | mongoDecimal | currency : "USD" }}
           × {{ cacheDatas.totalNights }} nights
         </p>
         <p class="font-medium text-gray-800">
