@@ -6,6 +6,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { DataViewModule } from 'primeng/dataview';
 import { Booking } from '../../../models/booking.model';
 import { AlertService } from '../../../services/alert/alert.service';
+import { BookingService } from '../../../services/booking/booking.service';
 import { RoomService } from '../../../services/room/room.service';
 
 @Component({
@@ -21,7 +22,7 @@ export class DataviewComponent implements OnChanges{
   roomImageCache: { [key: string]: string } = {};
   roomNameCache: { [key: string]: string } = {};
 
-  constructor(private roomService: RoomService, private alertService: AlertService,private confirmationService: ConfirmationService){}
+  constructor(private roomService: RoomService, private alertService: AlertService,private confirmationService: ConfirmationService, private bookingService: BookingService){}
   ngOnChanges(changes: SimpleChanges): void {
     // biome-ignore lint/complexity/useLiteralKeys: <explanation>
     if(changes["bookingsData"].isFirstChange() || changes["bookingsData"]){
@@ -60,7 +61,8 @@ export class DataviewComponent implements OnChanges{
     return this.roomNameCache[roomId];
   }
 
-  showConfirm(event: Event) {
+  showConfirm(event: Event, id: string) {
+    console.log(event)
     this.confirmationService.confirm({
         target: event.target as EventTarget,
         message: 'Do you want to Cancel this booking?',
@@ -72,11 +74,12 @@ export class DataviewComponent implements OnChanges{
         rejectIcon:"none",
 
         accept: () => {
+          console.log(id)
             this.alertService.addAlert({ severity: 'info', summary: 'Confirmed', detail: 'Booking cancelled' });
         },
         reject: () => {
             this.alertService.addAlert({ severity: 'error', summary: 'Rejected', detail: 'You have rejected' });
         }
     });
-}
+  }
 }

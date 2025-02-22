@@ -34,7 +34,7 @@
         }}</span>
         @if (booking.status === "pending" || booking.status ==="confirmed") {
         <p-button
-          (onClick)="showConfirm($event)"
+          (onClick)="showConfirm($event, booking._id)"
           label="Cancel"
           severity="danger"
           [outlined]="true"
