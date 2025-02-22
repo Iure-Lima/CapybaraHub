@@ -1,4 +1,5 @@
 export type Booking = {
+  _id?:string;
   customer: string;
   hotel: string;
   room: string;

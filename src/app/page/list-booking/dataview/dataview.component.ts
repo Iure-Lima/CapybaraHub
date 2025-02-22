@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { ConfirmationService } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { DataViewModule } from 'primeng/dataview';
 import { Booking } from '../../../models/booking.model';
 import { AlertService } from '../../../services/alert/alert.service';
+import { BookingService } from '../../../services/booking/booking.service';
 import { RoomService } from '../../../services/room/room.service';
 
 @Component({
@@ -20,8 +21,9 @@ export class DataviewComponent implements OnChanges{
   @Input() bookingsData!: Booking[]
   roomImageCache: { [key: string]: string } = {};
   roomNameCache: { [key: string]: string } = {};
+  @Output() bookingUpdateList = new EventEmitter<string>();
 
-  constructor(private roomService: RoomService, private alertService: AlertService,private confirmationService: ConfirmationService){}
+  constructor(private roomService: RoomService, private alertService: AlertService,private confirmationService: ConfirmationService, private bookingService: BookingService){}
   ngOnChanges(changes: SimpleChanges): void {
     // biome-ignore lint/complexity/useLiteralKeys: <explanation>
     if(changes["bookingsData"].isFirstChange() || changes["bookingsData"]){
@@ -60,7 +62,7 @@ export class DataviewComponent implements OnChanges{
     return this.roomNameCache[roomId];
   }
 
-  showConfirm(event: Event) {
+  showConfirm(event: Event, id: string) {
     this.confirmationService.confirm({
         target: event.target as EventTarget,
         message: 'Do you want to Cancel this booking?',
@@ -72,11 +74,21 @@ export class DataviewComponent implements OnChanges{
         rejectIcon:"none",
 
         accept: () => {
-            this.alertService.addAlert({ severity: 'info', summary: 'Confirmed', detail: 'Booking cancelled' });
+          this.bookingService.cancelBooking(id).subscribe({
+            next: (response) => {
+              //Adicionar aqui um alerta para quando o booking foi criado com sucesso. Usar o alertService
+              console.log(response)
+              this.bookingUpdateList.emit("cancelled");
+            },
+            error: (error) => {
+              //Adicionar aqui um alerta para quando o tivemos algum erro booking. Usar o alertService
+              console.log(error)
+            }
+          });
         },
         reject: () => {
             this.alertService.addAlert({ severity: 'error', summary: 'Rejected', detail: 'You have rejected' });
         }
     });
-}
+  }
 }

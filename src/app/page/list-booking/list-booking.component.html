@@ -3,7 +3,10 @@
     <h2 class="text-2xl font-bold mb-10">My Bookings</h2>
     <p-tabView (onChange)="tabViewChange($event)">
       <p-tabPanel header="Pending">
-        <app-dataview [bookingsData]="bookings"></app-dataview>
+        <app-dataview
+          [bookingsData]="bookings"
+          (bookingUpdateList)="updateBookingList(currentStatus)"
+        ></app-dataview>
       </p-tabPanel>
       <p-tabPanel header="Confirmed">
         <app-dataview [bookingsData]="bookings"></app-dataview>
