@@ -34,7 +34,7 @@ export class BookingService {
 
   // biome-ignore lint/suspicious/noExplicitAny: <explanation>
   cancelBooking(id: string): Observable<any> {
-    return this.http.delete(`${environment.apiUrl}/booking/${id}`, {headers:{
+    return this.http.delete(`${environment.apiUrl}/bookings/${id}`, {headers:{
       'Authorization': `Bearer ${this.authService.getToken()}`,
       'Content-Type': 'application/json'
     }});

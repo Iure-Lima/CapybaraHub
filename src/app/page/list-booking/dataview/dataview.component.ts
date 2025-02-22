@@ -62,7 +62,6 @@ export class DataviewComponent implements OnChanges{
   }
 
   showConfirm(event: Event, id: string) {
-    console.log(event)
     this.confirmationService.confirm({
         target: event.target as EventTarget,
         message: 'Do you want to Cancel this booking?',
@@ -74,8 +73,16 @@ export class DataviewComponent implements OnChanges{
         rejectIcon:"none",
 
         accept: () => {
-          console.log(id)
-            this.alertService.addAlert({ severity: 'info', summary: 'Confirmed', detail: 'Booking cancelled' });
+          this.bookingService.cancelBooking(id).subscribe({
+            next: (response) => {
+              //Adicionar aqui um alerta para quando o booking foi criado com sucesso. Usar o alertService
+              console.log(response)
+            },
+            error: (error) => {
+              //Adicionar aqui um alerta para quando o tivemos algum erro booking. Usar o alertService
+              console.log(error)
+            }
+          });
         },
         reject: () => {
             this.alertService.addAlert({ severity: 'error', summary: 'Rejected', detail: 'You have rejected' });
