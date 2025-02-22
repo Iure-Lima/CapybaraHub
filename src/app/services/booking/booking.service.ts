@@ -6,37 +6,44 @@ import { Booking, BookingStatus } from '../../models/booking.model';
 import { AuthService } from '../auth/auth.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class BookingService {
-
-  constructor(private http: HttpClient, private authService: AuthService) { }
+  constructor(
+    private http: HttpClient,
+    private authService: AuthService,
+  ) {}
 
   // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-  createBooking(data:Booking): Observable<any> {
+  createBooking(data: Booking): Observable<any> {
     const userId = this.authService.getUserId();
     if (userId) {
       data.customer = userId;
     }
     return this.http.post(`${environment.apiUrl}/bookings`, data, {
       headers: {
-        'Authorization': `Bearer ${this.authService.getToken()}`,
-        'Content-Type': 'application/json'
-      }
+        Authorization: `Bearer ${this.authService.getToken()}`,
+        'Content-Type': 'application/json',
+      },
     });
   }
   getBookings(status: BookingStatus): Observable<Booking[]> {
-    return this.http.get<Booking[]>(`${environment.apiUrl}/bookings`, {params:{status}, headers:{
-      'Authorization': `Bearer ${this.authService.getToken()}`,
-      'Content-Type': 'application/json'
-    }});
+    return this.http.get<Booking[]>(`${environment.apiUrl}/bookings`, {
+      params: { status },
+      headers: {
+        Authorization: `Bearer ${this.authService.getToken()}`,
+        'Content-Type': 'application/json',
+      },
+    });
   }
 
   // biome-ignore lint/suspicious/noExplicitAny: <explanation>
   cancelBooking(id: string): Observable<any> {
-    return this.http.delete(`${environment.apiUrl}/bookings/${id}`, {headers:{
-      'Authorization': `Bearer ${this.authService.getToken()}`,
-      'Content-Type': 'application/json'
-    }});
+    return this.http.delete(`${environment.apiUrl}/bookings/${id}`, {
+      headers: {
+        Authorization: `Bearer ${this.authService.getToken()}`,
+        'Content-Type': 'application/json',
+      },
+    });
   }
 }

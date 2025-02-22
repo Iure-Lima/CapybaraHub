@@ -1,1 +1,1 @@
-export type OrderModel = "asc" | 'desc';
+export type OrderModel = 'asc' | 'desc';

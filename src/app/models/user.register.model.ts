@@ -1,6 +1,6 @@
 export type UserRegister = {
   name?: string;
-  email?:string;
-  password?:string;
-  phone?:string
-}
+  email?: string;
+  password?: string;
+  phone?: string;
+};

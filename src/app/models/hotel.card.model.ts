@@ -1,4 +1,4 @@
-import { Location } from "./location.model";
+import { Location } from './location.model';
 
 export interface HotelCard {
   _id: string;
@@ -8,4 +8,4 @@ export interface HotelCard {
   rating: number;
   address: Location;
   image: string;
-};
+}

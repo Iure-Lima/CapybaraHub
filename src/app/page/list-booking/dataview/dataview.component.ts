@@ -1,5 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import { ConfirmationService } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
@@ -12,25 +19,29 @@ import { RoomService } from '../../../services/room/room.service';
 @Component({
   selector: 'app-dataview',
   standalone: true,
-  imports: [DataViewModule, CommonModule,ConfirmDialogModule, ButtonModule],
+  imports: [DataViewModule, CommonModule, ConfirmDialogModule, ButtonModule],
   providers: [ConfirmationService],
   templateUrl: './dataview.component.html',
-  styleUrl: './dataview.component.css'
+  styleUrl: './dataview.component.css',
 })
-export class DataviewComponent implements OnChanges{
-  @Input() bookingsData!: Booking[]
+export class DataviewComponent implements OnChanges {
+  @Input() bookingsData!: Booking[];
   roomImageCache: { [key: string]: string } = {};
   roomNameCache: { [key: string]: string } = {};
   @Output() bookingUpdateList = new EventEmitter<string>();
 
-  constructor(private roomService: RoomService, private alertService: AlertService,private confirmationService: ConfirmationService, private bookingService: BookingService){}
+  constructor(
+    private roomService: RoomService,
+    private alertService: AlertService,
+    private confirmationService: ConfirmationService,
+    private bookingService: BookingService,
+  ) {}
   ngOnChanges(changes: SimpleChanges): void {
     // biome-ignore lint/complexity/useLiteralKeys: <explanation>
-    if(changes["bookingsData"].isFirstChange() || changes["bookingsData"]){
+    if (changes['bookingsData'].isFirstChange() || changes['bookingsData']) {
       this.preloadRoomDetails();
     }
   }
-
 
   preloadRoomDetails(): void {
     // biome-ignore lint/complexity/noForEach: <explanation>
@@ -46,9 +57,9 @@ export class DataviewComponent implements OnChanges{
             this.alertService.addAlert({
               severity: 'error',
               summary: 'Error while fetching room details',
-              detail: ''
+              detail: '',
             });
-          }
+          },
         });
       }
     });
@@ -64,31 +75,35 @@ export class DataviewComponent implements OnChanges{
 
   showConfirm(event: Event, id: string) {
     this.confirmationService.confirm({
-        target: event.target as EventTarget,
-        message: 'Do you want to Cancel this booking?',
-        header: 'Cancel Booking',
-        icon: 'pi pi-info-circle',
-        acceptButtonStyleClass:"p-button-danger p-button-text",
-        rejectButtonStyleClass:"p-button-text p-button-text",
-        acceptIcon:"none",
-        rejectIcon:"none",
+      target: event.target as EventTarget,
+      message: 'Do you want to Cancel this booking?',
+      header: 'Cancel Booking',
+      icon: 'pi pi-info-circle',
+      acceptButtonStyleClass: 'p-button-danger p-button-text',
+      rejectButtonStyleClass: 'p-button-text p-button-text',
+      acceptIcon: 'none',
+      rejectIcon: 'none',
 
-        accept: () => {
-          this.bookingService.cancelBooking(id).subscribe({
-            next: (response) => {
-              //Adicionar aqui um alerta para quando o booking foi criado com sucesso. Usar o alertService
-              console.log(response)
-              this.bookingUpdateList.emit("cancelled");
-            },
-            error: (error) => {
-              //Adicionar aqui um alerta para quando o tivemos algum erro booking. Usar o alertService
-              console.log(error)
-            }
-          });
-        },
-        reject: () => {
-            this.alertService.addAlert({ severity: 'error', summary: 'Rejected', detail: 'You have rejected' });
-        }
+      accept: () => {
+        this.bookingService.cancelBooking(id).subscribe({
+          next: (response) => {
+            //Adicionar aqui um alerta para quando o booking foi criado com sucesso. Usar o alertService
+            console.log(response);
+            this.bookingUpdateList.emit('cancelled');
+          },
+          error: (error) => {
+            //Adicionar aqui um alerta para quando o tivemos algum erro booking. Usar o alertService
+            console.log(error);
+          },
+        });
+      },
+      reject: () => {
+        this.alertService.addAlert({
+          severity: 'error',
+          summary: 'Rejected',
+          detail: 'You have rejected',
+        });
+      },
     });
   }
 }

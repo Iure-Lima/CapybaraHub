@@ -23,7 +23,7 @@ export class BookingComponent {
     private router: Router,
     private route: ActivatedRoute,
     private bookingService: BookingService,
-    private alertService: AlertService
+    private alertService: AlertService,
   ) {
     this.cacheDatas = this.cacheBookingService.getDataCache();
     if (!this.cacheDatas.room._id) {
@@ -62,8 +62,11 @@ export class BookingComponent {
             summary: `${error.error.message}`,
             detail: '',
           });
-          // biome-ignore lint/complexity/useLiteralKeys: <explanation>
-          this.router.navigate(['/reservations', this.route.snapshot.params['id']]);
+          this.router.navigate([
+            '/reservations',
+            // biome-ignore lint/complexity/useLiteralKeys: <explanation>
+            this.route.snapshot.params['id'],
+          ]);
         },
       });
   }

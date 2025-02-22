@@ -2,10 +2,9 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
   name: 'mongoDecimal',
-  standalone: true
+  standalone: true,
 })
 export class MongoDecimalPipe implements PipeTransform {
-
   // biome-ignore lint/suspicious/noExplicitAny: <explanation>
   transform(value: any): number | null {
     if (typeof value === 'object' && value?.$numberDecimal) {
@@ -18,5 +17,4 @@ export class MongoDecimalPipe implements PipeTransform {
 
     return null;
   }
-
 }

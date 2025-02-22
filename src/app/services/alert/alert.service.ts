@@ -3,19 +3,18 @@ import { BehaviorSubject } from 'rxjs';
 import { Alert } from '../../models/alert.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AlertService {
-  private alert = new BehaviorSubject<Alert | null>(null)
+  private alert = new BehaviorSubject<Alert | null>(null);
 
   alertObservable = this.alert.asObservable();
 
-
-  getAlert(){
-    return this.alert.getValue()
+  getAlert() {
+    return this.alert.getValue();
   }
 
-  addAlert(alert: Alert){
+  addAlert(alert: Alert) {
     this.alert.next(alert);
   }
 }

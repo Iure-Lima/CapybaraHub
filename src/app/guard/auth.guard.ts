@@ -16,8 +16,8 @@ export const authGuard: CanActivateFn = (route, state) => {
   alertService.addAlert({
     severity: 'error',
     summary: 'Authentication failed',
-    detail: 'Please log in to make a reservation.'
-  })
+    detail: 'Please log in to make a reservation.',
+  });
   router.navigate(['/home']);
   return false;
 };

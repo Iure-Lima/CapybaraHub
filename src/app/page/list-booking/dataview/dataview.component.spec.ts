@@ -8,10 +8,9 @@ describe('DataviewComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DataviewComponent]
-    })
-    .compileComponents();
-    
+      imports: [DataviewComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(DataviewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

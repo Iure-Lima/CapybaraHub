@@ -1,5 +1,5 @@
 export type Booking = {
-  _id?:string;
+  _id?: string;
   customer: string;
   hotel: string;
   room: string;
@@ -7,6 +7,6 @@ export type Booking = {
   checkoutDate: string;
   totalPrice: string;
   status: BookingStatus;
-}
+};
 
-export type BookingStatus = "pending" | "confirmed" | "completed" | "cancelled"
+export type BookingStatus = 'pending' | 'confirmed' | 'completed' | 'cancelled';

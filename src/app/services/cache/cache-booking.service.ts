@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { CacheBooking } from '../../models/cache-booking-model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CacheBookingService {
   private dataCache: CacheBooking = {
@@ -15,16 +15,16 @@ export class CacheBookingService {
       status: 'Available',
       images: [],
       rating: 0,
-      name: ''
+      name: '',
     },
     selectDate: [],
     guest: '',
     totalPrice: '',
     totalNights: 0,
-    totalPriceWithNights: 0
+    totalPriceWithNights: 0,
   };
 
-  setDataCache(data: CacheBooking){
+  setDataCache(data: CacheBooking) {
     this.dataCache = data;
   }
 
@@ -32,7 +32,7 @@ export class CacheBookingService {
     return this.dataCache;
   }
 
-  clearDataCache(){
+  clearDataCache() {
     this.dataCache = {
       room: {
         _id: '',
@@ -43,13 +43,13 @@ export class CacheBookingService {
         status: 'Available',
         images: [],
         rating: 0,
-        name: ''
+        name: '',
       },
       selectDate: [],
       guest: '',
       totalPrice: '',
       totalNights: 0,
-      totalPriceWithNights: 0
+      totalPriceWithNights: 0,
     };
   }
 }

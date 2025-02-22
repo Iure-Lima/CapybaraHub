@@ -5,14 +5,13 @@ import { environment } from '../../../environments/environment';
 import { UserRegister } from '../../models/user.register.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class RegisterService {
-  constructor(private http: HttpClient){}
+  constructor(private http: HttpClient) {}
 
   // biome-ignore lint/suspicious/noExplicitAny: <explanation>
   registerUser(user: UserRegister): Observable<any> {
-    return this.http.post(`${environment.apiUrl}/auth/signup`, user)
+    return this.http.post(`${environment.apiUrl}/auth/signup`, user);
   }
-
 }

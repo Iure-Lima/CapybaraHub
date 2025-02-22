@@ -2,23 +2,23 @@ import { Injectable } from '@angular/core';
 import { jwtDecode } from 'jwt-decode';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-  saveToken(token:string){
+  saveToken(token: string) {
     localStorage.setItem('accessToken', token);
   }
 
-  getToken(): string | null{
+  getToken(): string | null {
     return localStorage.getItem('accessToken');
   }
 
-  getUserId():string | null{
+  getUserId(): string | null {
     const decodedToken = this.getDecodedToken();
     return decodedToken?.sub || null;
   }
 
-  logout(): void{
+  logout(): void {
     localStorage.removeItem('accessToken');
   }
 

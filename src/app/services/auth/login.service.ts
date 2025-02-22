@@ -4,14 +4,16 @@ import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LoginService {
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   // biome-ignore lint/suspicious/noExplicitAny: <explanation>
   login(email: string, password: string): Observable<any> {
-    return this.http.post(`${environment.apiUrl}/auth/signin`, { email, password })
+    return this.http.post(`${environment.apiUrl}/auth/signin`, {
+      email,
+      password,
+    });
   }
 }

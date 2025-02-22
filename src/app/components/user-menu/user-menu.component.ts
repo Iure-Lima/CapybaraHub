@@ -9,65 +9,74 @@ import { Alert } from '../../models/alert.model';
 import { AuthService } from '../../services/auth/auth.service';
 import { AuthenticationContainerComponent } from '../authentication-container/authentication-container.component';
 
-
 @Component({
   selector: 'app-user-menu',
   standalone: true,
-  imports: [ToastModule, AuthenticationContainerComponent, MenuModule,AvatarModule,AvatarGroupModule],
+  imports: [
+    ToastModule,
+    AuthenticationContainerComponent,
+    MenuModule,
+    AvatarModule,
+    AvatarGroupModule,
+  ],
   templateUrl: './user-menu.component.html',
   styleUrl: './user-menu.component.scss',
-  providers: [MessageService]
+  providers: [MessageService],
 })
 export class UserMenuComponent implements OnInit {
   authenticationContainerActive = false;
   userIsAuthenticated = false;
-  @ViewChild('menu') menu!:Menu;
-  optionsMenu: MenuItem[] | undefined
+  @ViewChild('menu') menu!: Menu;
+  optionsMenu: MenuItem[] | undefined;
 
-  constructor(private message: MessageService, private router: Router, private authService: AuthService){}
+  constructor(
+    private message: MessageService,
+    private router: Router,
+    private authService: AuthService,
+  ) {}
 
   ngOnInit(): void {
     this.optionsMenu = [
       {
-        label:"My Bookings",
+        label: 'My Bookings',
         icon: 'pi pi-calendar-plus',
-        command: () => this.router.navigate(["booking-list"])
+        command: () => this.router.navigate(['booking-list']),
       },
       {
-        label:'Profile',
+        label: 'Profile',
         icon: 'pi pi-user',
-        command: () => this.router.navigate([''])
+        command: () => this.router.navigate(['']),
       },
       {
         label: 'Logout',
         icon: 'pi pi-power-off',
         command: () => {
           this.authService.logout();
-          this.userIsAuthenticated = false
-        }
-      }
+          this.userIsAuthenticated = false;
+        },
+      },
     ];
   }
 
   toggleAuthenticationContainer() {
-    this.authenticationContainerActive  = !this.authenticationContainerActive;
+    this.authenticationContainerActive = !this.authenticationContainerActive;
   }
 
-  eventCloseAuthentication(){
+  eventCloseAuthentication() {
     this.toggleAuthenticationContainer();
   }
 
-  show(data: Alert){
-    this.message.add(data)
-    this.eventCloseAuthentication()
+  show(data: Alert) {
+    this.message.add(data);
+    this.eventCloseAuthentication();
   }
 
-  userEvent(event: Event){
+  userEvent(event: Event) {
     this.userIsAuthenticated = this.authService.isTokenValid();
-    if (this.userIsAuthenticated){
-      this.menu.toggle(event)
-    }else{
-      this.toggleAuthenticationContainer()
+    if (this.userIsAuthenticated) {
+      this.menu.toggle(event);
+    } else {
+      this.toggleAuthenticationContainer();
     }
   }
 }
