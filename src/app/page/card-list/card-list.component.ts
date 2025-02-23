@@ -15,19 +15,14 @@ export class CardListComponent {
   roomList!: RoomCard[];
 
   constructor(
-    private room: RoomService,
+    private roomService: RoomService,
     private alertService: AlertService,
   ) {
-    this.room.getAllRooms().subscribe({
-      next: (response) => {
-        this.roomList = response.data;
-      },
-      error: (error) =>
-        this.alertService.addAlert({
-          severity: 'error',
-          summary: `${error.status} ${error.statusText}`,
-          detail: 'An error occurred while loading rooms.',
-        }),
-    });
+    this.roomService.getAllRooms();
+    this.roomService.roomObservable.subscribe((room) =>{
+      if (room){
+        this.roomList = room;
+      }
+    })
   }
 }
