@@ -16,11 +16,21 @@ export class RoomService {
   getAllRooms() {
     this.http.get<{data: RoomCard[]}>(`${environment.apiUrl}/rooms`).subscribe({
       next: (response) => {
-        console.log(response)
         this.roomSubjects.next(response.data);
       },
       error: (error) => {
         console.error('Error fetching rooms:', error);
+      },
+    })
+  }
+
+  getByNumber(number: number){
+    this.http.get<{rooms:RoomCard[]}>(`${environment.apiUrl}/rooms`, {params:{number}}).subscribe({
+      next: (response) => {
+        this.roomSubjects.next(response.rooms);
+      },
+      error: (error) => {
+        console.error('Error fetching rooms by number:', error);
       },
     })
   }
