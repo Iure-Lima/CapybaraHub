@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
+import { FilterComponent } from './components/filter/filter.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { SearchComponent } from './components/search/search.component';
@@ -17,6 +18,7 @@ import { AlertService } from './services/alert/alert.service';
     RouterModule,
     ToastModule,
     SearchComponent,
+    FilterComponent,
   ],
   providers: [MessageService],
   templateUrl: './app.component.html',

@@ -1,0 +1,133 @@
+<button
+  class="flex items-center gap-2 px-4 py-2 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-100 transition duration-200 cursor-pointer"
+  (click)="showFilterDialog()"
+>
+  <i class="pi pi-filter text-gray-600"></i>
+  <span class="text-gray-700 font-medium">Filters</span>
+  <i class="pi pi-caret-down text-gray-600"></i>
+</button>
+
+<p-dialog
+  header="Filters"
+  [modal]="true"
+  [(visible)]="visible"
+  [style]="{ width: '35rem', height: '47rem' }"
+  [dismissableMask]="true"
+  [focusOnShow]="false"
+  [position]="'center'"
+  [draggable]="false"
+>
+  <form [formGroup]="filterForm">
+    <div class="py-4 space-y-6">
+      <!-- Faixa de preço -->
+      <div>
+        <h3 class="text-base font-medium mb-2">Price range</h3>
+        <p class="text-sm text-gray-500 mb-3">
+          Nightly prices before fees and taxes
+        </p>
+        <!-- [(ngModel)]="rangeValues" -->
+        <p-slider
+          [range]="true"
+          styleClass="w-14rem"
+          [min]="69"
+          [max]="1560"
+          (onChange)="handleRangeChange($event)"
+          [disabled]="true"
+        ></p-slider>
+        <div class="flex justify-between items-center w-full mt-4">
+          <div class="flex flex-col items-center">
+            <span class="text-sm text-gray-500 mb-1">Minimum</span>
+            <span
+              class="px-4 py-2 border border-black rounded-full text-black text-sm font-medium"
+            >
+              {{ minPrice | currency : "USD" }}
+            </span>
+          </div>
+          <div class="flex flex-col items-center">
+            <span class="text-sm text-gray-500 mb-1">Maximum</span>
+            <span
+              class="px-4 py-2 border border-black rounded-full text-black text-sm font-medium"
+            >
+              {{ maxPrice | currency : "USD" }}
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Rooms and beds -->
+      <div class="border-t border-gray-300 pt-5">
+        <h3 class="text-base font-medium mb-2">Rooms and beds</h3>
+        <!-- [(ngModel)]="selectedRoomsAndBeds" -->
+        <p-dropdown
+          [options]="roomsAndBeds"
+          optionLabel="name"
+          placeholder="Select a type of room and bed"
+          [style]="{ width: '100%' }"
+          [disabled]="true"
+        ></p-dropdown>
+      </div>
+
+      <!-- Data select -->
+      <div class="border-t border-gray-300 pt-5">
+        <h3 class="text-base font-medium mb-4">Data Select</h3>
+        <p-floatLabel>
+          <!-- <p-calendar
+            [disabled]="true"
+            selectionMode="range"
+            formControlName="rangeDate"
+            [styleClass]="'custom-calendar'"
+            [style]="{ width: '100%' }"
+            dateFormat="dd/mm/yy"
+            [disabledDates]="disabledDates"
+            [minDate]="minDate"
+            [showIcon]="true"
+            [showOnFocus]="true"
+            appendTo="body"
+            [numberOfMonths]="2"
+            inputId="buttondisplay"
+            [touchUI]="true"
+            [readonlyInput]="true"
+          ></p-calendar> -->
+          <label for="buttondisplay">Data Range Selection</label>
+        </p-floatLabel>
+      </div>
+
+      <!-- Room Number -->
+      <div class="border-t border-gray-300 pt-5">
+        <h3 class="text-base font-medium mb-2">Room Number</h3>
+        <p-floatLabel>
+          <p-inputNumber
+            formControlName="roomNumber"
+            [style]="{ width: '32rem', height: '40px' }"
+            inputId="minmax"
+            mode="decimal"
+            [min]="1"
+            [max]="7500"
+            inputId="buttonNumber"
+            [useGrouping]="false"
+            [minFractionDigits]="0"
+            [maxFractionDigits]="0"
+            [maxlength]="4"
+          />
+          <label for="buttonNumber">Room Number</label>
+        </p-floatLabel>
+      </div>
+    </div>
+  </form>
+
+  <div class="flex items-center justify-between border-t pt-4">
+    <button
+      class="text-sm text-gray-600 hover:underline cursor-pointer"
+      (click)="clearFilters()"
+    >
+      Clear all
+    </button>
+    <button
+      type="submit"
+      (click)="onSubmit()"
+      class="px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded-md hover:bg-indigo-700 focus:outline-none cursor-pointer"
+    >
+      Apply Filters
+    </button>
+  </div>
+</p-dialog>

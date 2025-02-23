@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { RoomCard } from '../../models/room.model';
 
@@ -8,12 +8,37 @@ import { RoomCard } from '../../models/room.model';
   providedIn: 'root',
 })
 export class RoomService {
+  private roomSubjects = new BehaviorSubject<RoomCard[]>([]);
+  roomObservable = this.roomSubjects.asObservable();
+
   constructor(private http: HttpClient) {}
 
-  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-  getAllRooms(): Observable<any> {
-    // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-    return this.http.get<any>(`${environment.apiUrl}/rooms`);
+  getAllRooms() {
+    this.http
+      .get<{ data: RoomCard[] }>(`${environment.apiUrl}/rooms`)
+      .subscribe({
+        next: (response) => {
+          this.roomSubjects.next(response.data);
+        },
+        error: (error) => {
+          console.error('Error fetching rooms:', error);
+        },
+      });
+  }
+
+  getByNumber(number: number) {
+    this.http
+      .get<{ rooms: RoomCard[] }>(`${environment.apiUrl}/rooms`, {
+        params: { number },
+      })
+      .subscribe({
+        next: (response) => {
+          this.roomSubjects.next(response.rooms);
+        },
+        error: (error) => {
+          console.error('Error fetching rooms by number:', error);
+        },
+      });
   }
 
   getRoomById(id: string): Observable<RoomCard> {

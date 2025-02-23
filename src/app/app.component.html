@@ -2,7 +2,9 @@
   <p-toast preventOpenDuplicates="true" [life]="1500" />
   <app-header></app-header>
   @if (router.url === "/" || router.url === "/home") {
-  <div class="flex my-6 px-20"><app-search></app-search></div>
+  <div class="flex my-6 px-20 justify-between">
+    <app-search></app-search><app-filter></app-filter>
+  </div>
   }
   <div class="flex-grow">
     <router-outlet></router-outlet>

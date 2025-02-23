@@ -8,26 +8,21 @@ import { RoomService } from '../../services/room/room.service';
 @Component({
   selector: 'app-card-list',
   standalone: true,
-  imports: [CardComponent,DataViewModule],
+  imports: [CardComponent, DataViewModule],
   templateUrl: './card-list.component.html',
 })
 export class CardListComponent {
   roomList!: RoomCard[];
 
   constructor(
-    private room: RoomService,
+    private roomService: RoomService,
     private alertService: AlertService,
   ) {
-    this.room.getAllRooms().subscribe({
-      next: (response) => {
-        this.roomList = response.data;
-      },
-      error: (error) =>
-        this.alertService.addAlert({
-          severity: 'error',
-          summary: `${error.status} ${error.statusText}`,
-          detail: 'An error occurred while loading rooms.',
-        }),
+    this.roomService.getAllRooms();
+    this.roomService.roomObservable.subscribe((room) => {
+      if (room) {
+        this.roomList = room;
+      }
     });
   }
 }
