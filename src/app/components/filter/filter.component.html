@@ -10,7 +10,7 @@
   header="Filters"
   [modal]="true"
   [(visible)]="visible"
-  [style]="{ width: '35rem' }"
+  [style]="{ width: '35rem', height: '50rem' }"
   [dismissableMask]="true"
   [position]="'center'"
   [draggable]="false"
@@ -54,6 +54,13 @@
     <!-- Rooms and beds -->
     <div class="border-t border-gray-300 pt-5">
       <h3 class="text-base font-medium mb-2">Rooms and beds</h3>
+      <p-dropdown
+        [options]="roomsAndBeds"
+        [(ngModel)]="selectedRoomsAndBeds"
+        optionLabel="name"
+        placeholder="Select a type of room and bed"
+        [style]="{ width: '100%' }"
+      />
     </div>
   </div>
 
