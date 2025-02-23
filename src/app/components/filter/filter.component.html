@@ -11,7 +11,7 @@
   header="Filters"
   [modal]="true"
   [(visible)]="visible"
-  [style]="{ width: '35rem', height: '50rem' }"
+  [style]="{ width: '35rem', height: '47rem' }"
   [dismissableMask]="true"
   [focusOnShow]="false"
   [position]="'center'"
@@ -88,6 +88,27 @@
           [readonlyInput]="true"
         ></p-calendar>
         <label for="buttondisplay">Data Range Selection</label>
+      </p-floatLabel>
+    </div>
+
+    <!-- Room Number -->
+    <div class="border-t border-gray-300 pt-5">
+      <h3 class="text-base font-medium mb-2">Room Number</h3>
+      <p-floatLabel>
+        <p-inputNumber
+          [(ngModel)]="inputNumber"
+          [style]="{ width: '32rem', height: '40px' }"
+          inputId="minmax"
+          mode="decimal"
+          [min]="1"
+          [max]="7500"
+          inputId="buttonNumber"
+          [useGrouping]="false"
+          [minFractionDigits]="0"
+          [maxFractionDigits]="0"
+          [maxlength]="4"
+        />
+        <label for="buttonNumber">Room Number</label>
       </p-floatLabel>
     </div>
   </div>

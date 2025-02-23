@@ -5,14 +5,16 @@ import { CalendarModule } from 'primeng/calendar';
 import { DialogModule } from 'primeng/dialog';
 import { DropdownModule } from 'primeng/dropdown';
 import { FloatLabelModule } from 'primeng/floatlabel';
+import { InputNumberModule } from 'primeng/inputnumber';
 import { SliderModule } from 'primeng/slider';
+
 
 
 
 @Component({
   selector: 'app-filter',
   standalone: true,
-  imports: [FormsModule, DialogModule,SliderModule, CommonModule,DropdownModule,CalendarModule,FloatLabelModule],
+  imports: [FormsModule,InputNumberModule, DialogModule,SliderModule, CommonModule,DropdownModule,CalendarModule,FloatLabelModule],
   templateUrl: './filter.component.html',
   styleUrl: './filter.component.css'
 })
@@ -26,6 +28,9 @@ export class FilterComponent implements OnInit{
   @Input() selectedDates: Date[] = [];
   minDate: Date = new Date();
   disabledDates: Date[] = [];
+
+  //Input Number
+  inputNumber!: number;
 
 
   //Esses dados vão vir da api de um modelo que ainda esta em desenvolvimento
@@ -52,5 +57,4 @@ export class FilterComponent implements OnInit{
       this.maxPrice = event.values[1];
     }
   }
-
 }
