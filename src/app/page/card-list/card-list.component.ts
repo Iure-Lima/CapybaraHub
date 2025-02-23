@@ -8,7 +8,7 @@ import { RoomService } from '../../services/room/room.service';
 @Component({
   selector: 'app-card-list',
   standalone: true,
-  imports: [CardComponent,DataViewModule],
+  imports: [CardComponent, DataViewModule],
   templateUrl: './card-list.component.html',
 })
 export class CardListComponent {
@@ -19,10 +19,10 @@ export class CardListComponent {
     private alertService: AlertService,
   ) {
     this.roomService.getAllRooms();
-    this.roomService.roomObservable.subscribe((room) =>{
-      if (room){
+    this.roomService.roomObservable.subscribe((room) => {
+      if (room) {
         this.roomList = room;
       }
-    })
+    });
   }
 }
