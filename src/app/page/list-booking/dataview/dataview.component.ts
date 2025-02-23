@@ -87,12 +87,20 @@ export class DataviewComponent implements OnChanges {
       accept: () => {
         this.bookingService.cancelBooking(id).subscribe({
           next: (response) => {
-            //Adicionar aqui um alerta para quando o booking foi criado com sucesso. Usar o alertService
+            this.alertService.addAlert({
+              severity: 'success',
+              summary: 'Booking cancelled successfully',
+              detail: '',
+            });
             console.log(response);
             this.bookingUpdateList.emit('cancelled');
           },
           error: (error) => {
-            //Adicionar aqui um alerta para quando o tivemos algum erro booking. Usar o alertService
+            this.alertService.addAlert({
+              severity: 'error',
+              summary: 'Error while cancelling booking',
+              detail: error.message,
+            });
             console.log(error);
           },
         });
