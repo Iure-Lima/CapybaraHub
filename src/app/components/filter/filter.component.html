@@ -30,14 +30,30 @@
         [max]="1560"
         (onChange)="handleRangeChange($event)"
       ></p-slider>
-      <div class="flex justify-between mt-2">
-        <span class="text-sm font-medium">{{
-          minPrice | currency : "USD"
-        }}</span>
-        <span class="text-sm font-medium">{{
-          maxPrice | currency : "USD"
-        }}</span>
+      <div class="flex justify-between items-center w-full mt-4">
+        <div class="flex flex-col items-center">
+          <span class="text-sm text-gray-500 mb-1">Minimum</span>
+          <span
+            class="px-4 py-2 border border-black rounded-full text-black text-sm font-medium"
+          >
+            {{ minPrice | currency : "USD" }}
+          </span>
+        </div>
+
+        <div class="flex flex-col items-center">
+          <span class="text-sm text-gray-500 mb-1">Maximum</span>
+          <span
+            class="px-4 py-2 border border-black rounded-full text-black text-sm font-medium"
+          >
+            {{ maxPrice | currency : "USD" }}
+          </span>
+        </div>
       </div>
+    </div>
+
+    <!-- Rooms and beds -->
+    <div class="border-t border-gray-300 pt-5">
+      <h3 class="text-base font-medium mb-2">Rooms and beds</h3>
     </div>
   </div>
 
