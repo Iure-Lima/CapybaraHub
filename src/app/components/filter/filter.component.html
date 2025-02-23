@@ -15,4 +15,38 @@
   [position]="'center'"
   [draggable]="false"
 >
+  <div class="py-4 space-y-6">
+    <!-- Faixa de preço -->
+    <div>
+      <h3 class="text-base font-medium mb-2">Price range</h3>
+      <p class="text-sm text-gray-500 mb-3">
+        Nightly prices before fees and taxes
+      </p>
+      <p-slider
+        [(ngModel)]="rangeValues"
+        [range]="true"
+        styleClass="w-14rem"
+        [min]="69"
+        [max]="1560"
+        (onChange)="handleRangeChange($event)"
+      ></p-slider>
+      <div class="flex justify-between mt-2">
+        <span class="text-sm font-medium">{{
+          minPrice | currency : "USD"
+        }}</span>
+        <span class="text-sm font-medium">{{
+          maxPrice | currency : "USD"
+        }}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="flex items-center justify-between border-t pt-4">
+    <button class="text-sm text-gray-600 hover:underline">Clear all</button>
+    <button
+      class="px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded-md hover:bg-indigo-700 focus:outline-none"
+    >
+      Apply Filters
+    </button>
+  </div>
 </p-dialog>
