@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CalendarModule } from 'primeng/calendar';
 import { DialogModule } from 'primeng/dialog';
@@ -11,8 +11,6 @@ import { AlertService } from '../../services/alert/alert.service';
 import { RoomService } from '../../services/room/room.service';
 
 
-
-
 @Component({
   selector: 'app-filter',
   standalone: true,
@@ -21,13 +19,12 @@ import { RoomService } from '../../services/room/room.service';
   styleUrl: './filter.component.css'
 })
 export class FilterComponent implements OnInit{
-  visible = true;
+  visible = false;
   rangeValues: number[] = [69, 1560];
   minPrice = this.rangeValues[0]
   maxPrice = this.rangeValues[1]
 
   //Calendar data
-  @Input() selectedDates: Date[] = [];
   minDate: Date = new Date();
   disabledDates: Date[] = [];
 
@@ -40,7 +37,8 @@ export class FilterComponent implements OnInit{
 
   //Filter form
   filterForm = new FormGroup({
-    roomNumber: new FormControl()
+    roomNumber: new FormControl(),
+    rangeDate: new FormControl()
   })
 
   constructor(private roomsService: RoomService, private alertService: AlertService){}
@@ -68,8 +66,10 @@ export class FilterComponent implements OnInit{
     if (this.filterForm.get("roomNumber")?.valid && this.filterForm.get("roomNumber")?.value){
       this.roomsService.getByNumber(this.filterForm.get("roomNumber")?.value)
       this.showFilterDialog();
-    }else{
-      this.alertService.addAlert({severity:'error', summary:'Error', detail:'Please enter a valid room number'})
+    }
+
+    if (this.filterForm.get("rangeDate")?.value && this.filterForm.get("rangeDate")?.valid){
+      console.log(this.filterForm.get("rangeDate")?.value)
     }
   }
 
