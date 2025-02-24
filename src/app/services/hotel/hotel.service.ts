@@ -11,8 +11,8 @@ import { OrderModel } from '../../models/order.hotel.model';
 export class HotelService {
   constructor(private http: HttpClient) {}
 
-  getAllHotels(): Observable<HotelCard[]> {
-    return this.http.get<HotelCard[]>(`${environment.apiUrl}/hotels`);
+  getAllHotels(): Observable<{data: HotelCard[]}> {
+    return this.http.get<{data: HotelCard[]}>(`${environment.apiUrl}/hotels`);
   }
 
   getHotelById(id: string): Observable<HotelCard> {
