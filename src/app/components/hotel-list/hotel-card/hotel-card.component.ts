@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { AvatarModule } from 'primeng/avatar';
+import { HotelCard } from '../../../models/hotel.card.model';
 
 
 @Component({
@@ -10,5 +11,6 @@ import { AvatarModule } from 'primeng/avatar';
   styleUrl: './hotel-card.component.css'
 })
 export class HotelCardComponent {
+  @Input() hotel!: HotelCard;
 
 }

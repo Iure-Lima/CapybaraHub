@@ -1,9 +1,11 @@
 <div class="flex flex-col mr-5 items-center">
   <p-avatar
-    image="../../../../assets/logo.svg"
+    image="{{ hotel.image }}"
     styleClass="mr-1"
     size="large"
     shape="circle"
   />
-  <p class="text-sm font-semibold">Nome do hotel</p>
+  <p class="text-sm font-semibold">
+    {{ hotel.name }}
+  </p>
 </div>

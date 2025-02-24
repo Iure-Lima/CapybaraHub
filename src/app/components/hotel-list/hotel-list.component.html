@@ -7,7 +7,7 @@
     autoplayInterval="5000"
   >
     <ng-template let-hotel pTemplate="hotel">
-      <app-hotel-card></app-hotel-card>
+      <app-hotel-card [hotel]="hotel"></app-hotel-card>
     </ng-template>
   </p-carousel>
 </section>
