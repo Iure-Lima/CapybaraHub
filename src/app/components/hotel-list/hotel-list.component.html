@@ -1,8 +1,12 @@
-<section class="flex">
-  <app-hotel-card></app-hotel-card>
-  <app-hotel-card></app-hotel-card>
-  <app-hotel-card></app-hotel-card>
-  <app-hotel-card></app-hotel-card>
-  <app-hotel-card></app-hotel-card>
-  <app-hotel-card></app-hotel-card>
+<section class="flex overflow-x-auto space-x-4 w-full max-w-screen-lg">
+  <p-carousel
+    [value]="hotels"
+    [numVisible]="3"
+    [numScroll]="3"
+    [circular]="true"
+    [responsiveOptions]="responsiveOptions"
+    autoplayInterval="3000"
+  >
+    <ng-template let-product pTemplate="item"></ng-template>
+  </p-carousel>
 </section>
