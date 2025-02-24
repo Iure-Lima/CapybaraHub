@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { AvatarModule } from 'primeng/avatar';
 import { HotelCard } from '../../../models/hotel.card.model';
 
@@ -12,5 +13,11 @@ import { HotelCard } from '../../../models/hotel.card.model';
 })
 export class HotelCardComponent {
   @Input() hotel!: HotelCard;
+
+  constructor(private router: Router){}
+
+  navigateToHotel(){
+    this.router.navigate(['/hotel-detail', this.hotel._id]);
+  }
 
 }
