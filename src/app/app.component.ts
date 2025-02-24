@@ -5,6 +5,7 @@ import { ToastModule } from 'primeng/toast';
 import { FilterComponent } from './components/filter/filter.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
+import { HotelListComponent } from "./components/hotel-list/hotel-list.component";
 import { SearchComponent } from './components/search/search.component';
 import { Alert } from './models/alert.model';
 import { AlertService } from './services/alert/alert.service';
@@ -19,7 +20,8 @@ import { AlertService } from './services/alert/alert.service';
     ToastModule,
     SearchComponent,
     FilterComponent,
-  ],
+    HotelListComponent
+],
   providers: [MessageService],
   templateUrl: './app.component.html',
 })
