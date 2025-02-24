@@ -11,7 +11,324 @@ import { HotelCardComponent } from "./hotel-card/hotel-card.component";
   styleUrl: './hotel-list.component.css'
 })
 export class HotelListComponent {
-  hotels: HotelCard[] = [];
-  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-  responsiveOptions: any[] | undefined;
+  hotelsList: HotelCard[] = [];
+
+  constructor(){
+    this.hotelsList = [{
+      _id: '1',
+      name: '',
+      email: '',
+      phone: '',
+      rating: 0,
+      address: {
+        street: '',
+        number: 0,
+        postalCode: '',
+        city: '',
+        state: '',
+        country: ''
+      },
+      image: ''
+    },{
+      _id: '2',
+      name: '',
+      email: '',
+      phone: '',
+      rating: 0,
+      address: {
+        street: '',
+        number: 0,
+        postalCode: '',
+        city: '',
+        state: '',
+        country: ''
+      },
+      image: ''
+    },{
+      _id: '3',
+      name: '',
+      email: '',
+      phone: '',
+      rating: 0,
+      address: {
+        street: '',
+        number: 0,
+        postalCode: '',
+        city: '',
+        state: '',
+        country: ''
+      },
+      image: ''
+    },{
+      _id: '1',
+      name: '',
+      email: '',
+      phone: '',
+      rating: 0,
+      address: {
+        street: '',
+        number: 0,
+        postalCode: '',
+        city: '',
+        state: '',
+        country: ''
+      },
+      image: ''
+    },{
+      _id: '2',
+      name: '',
+      email: '',
+      phone: '',
+      rating: 0,
+      address: {
+        street: '',
+        number: 0,
+        postalCode: '',
+        city: '',
+        state: '',
+        country: ''
+      },
+      image: ''
+    },{
+      _id: '3',
+      name: '',
+      email: '',
+      phone: '',
+      rating: 0,
+      address: {
+        street: '',
+        number: 0,
+        postalCode: '',
+        city: '',
+        state: '',
+        country: ''
+      },
+      image: ''
+    },{
+      _id: '1',
+      name: '',
+      email: '',
+      phone: '',
+      rating: 0,
+      address: {
+        street: '',
+        number: 0,
+        postalCode: '',
+        city: '',
+        state: '',
+        country: ''
+      },
+      image: ''
+    },{
+      _id: '2',
+      name: '',
+      email: '',
+      phone: '',
+      rating: 0,
+      address: {
+        street: '',
+        number: 0,
+        postalCode: '',
+        city: '',
+        state: '',
+        country: ''
+      },
+      image: ''
+    },{
+      _id: '3',
+      name: '',
+      email: '',
+      phone: '',
+      rating: 0,
+      address: {
+        street: '',
+        number: 0,
+        postalCode: '',
+        city: '',
+        state: '',
+        country: ''
+      },
+      image: ''
+    },{
+      _id: '1',
+      name: '',
+      email: '',
+      phone: '',
+      rating: 0,
+      address: {
+        street: '',
+        number: 0,
+        postalCode: '',
+        city: '',
+        state: '',
+        country: ''
+      },
+      image: ''
+    },{
+      _id: '2',
+      name: '',
+      email: '',
+      phone: '',
+      rating: 0,
+      address: {
+        street: '',
+        number: 0,
+        postalCode: '',
+        city: '',
+        state: '',
+        country: ''
+      },
+      image: ''
+    },{
+      _id: '3',
+      name: '',
+      email: '',
+      phone: '',
+      rating: 0,
+      address: {
+        street: '',
+        number: 0,
+        postalCode: '',
+        city: '',
+        state: '',
+        country: ''
+      },
+      image: ''
+    },{
+      _id: '1',
+      name: '',
+      email: '',
+      phone: '',
+      rating: 0,
+      address: {
+        street: '',
+        number: 0,
+        postalCode: '',
+        city: '',
+        state: '',
+        country: ''
+      },
+      image: ''
+    },{
+      _id: '2',
+      name: '',
+      email: '',
+      phone: '',
+      rating: 0,
+      address: {
+        street: '',
+        number: 0,
+        postalCode: '',
+        city: '',
+        state: '',
+        country: ''
+      },
+      image: ''
+    },{
+      _id: '3',
+      name: '',
+      email: '',
+      phone: '',
+      rating: 0,
+      address: {
+        street: '',
+        number: 0,
+        postalCode: '',
+        city: '',
+        state: '',
+        country: ''
+      },
+      image: ''
+    },{
+      _id: '1',
+      name: '',
+      email: '',
+      phone: '',
+      rating: 0,
+      address: {
+        street: '',
+        number: 0,
+        postalCode: '',
+        city: '',
+        state: '',
+        country: ''
+      },
+      image: ''
+    },{
+      _id: '2',
+      name: '',
+      email: '',
+      phone: '',
+      rating: 0,
+      address: {
+        street: '',
+        number: 0,
+        postalCode: '',
+        city: '',
+        state: '',
+        country: ''
+      },
+      image: ''
+    },{
+      _id: '3',
+      name: '',
+      email: '',
+      phone: '',
+      rating: 0,
+      address: {
+        street: '',
+        number: 0,
+        postalCode: '',
+        city: '',
+        state: '',
+        country: ''
+      },
+      image: ''
+    },{
+      _id: '1',
+      name: '',
+      email: '',
+      phone: '',
+      rating: 0,
+      address: {
+        street: '',
+        number: 0,
+        postalCode: '',
+        city: '',
+        state: '',
+        country: ''
+      },
+      image: ''
+    },{
+      _id: '2',
+      name: '',
+      email: '',
+      phone: '',
+      rating: 0,
+      address: {
+        street: '',
+        number: 0,
+        postalCode: '',
+        city: '',
+        state: '',
+        country: ''
+      },
+      image: ''
+    },{
+      _id: '3',
+      name: '',
+      email: '',
+      phone: '',
+      rating: 0,
+      address: {
+        street: '',
+        number: 0,
+        postalCode: '',
+        city: '',
+        state: '',
+        country: ''
+      },
+      image: ''
+    }]
+  }
 }
