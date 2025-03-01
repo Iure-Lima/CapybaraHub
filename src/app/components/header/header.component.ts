@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { UserMenuComponent } from '../user-menu/user-menu.component';
 
 @Component({
@@ -6,5 +6,6 @@ import { UserMenuComponent } from '../user-menu/user-menu.component';
   standalone: true,
   imports: [UserMenuComponent],
   templateUrl: './header.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HeaderComponent {}
