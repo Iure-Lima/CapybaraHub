@@ -1,0 +1,13 @@
+<section class="w-full max-w-screen-lg h-20">
+  <p-carousel
+    [value]="hotelsList"
+    [numVisible]="5"
+    [numScroll]="3"
+    [circular]="true"
+    autoplayInterval="4000"
+  >
+    <ng-template let-hotel pTemplate="hotel">
+      <app-hotel-card [hotel]="hotel"></app-hotel-card>
+    </ng-template>
+  </p-carousel>
+</section>
