@@ -1,5 +1,5 @@
 import { CommonModule, CurrencyPipe } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { HotelCard } from '../../models/hotel.card.model';
 import { RoomCard } from '../../models/room.model';
@@ -12,6 +12,7 @@ import { HotelService } from '../../services/hotel/hotel.service';
   standalone: true,
   imports: [CommonModule, RouterModule, MongoDecimalPipe, CurrencyPipe],
   templateUrl: './card.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CardComponent implements OnInit {
   @Input() roomCard!: RoomCard;
