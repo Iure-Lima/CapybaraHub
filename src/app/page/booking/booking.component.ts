@@ -1,5 +1,5 @@
 import { CurrencyPipe } from '@angular/common';
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CacheBooking } from '../../models/cache-booking-model';
 import { MongoDecimalPipe } from '../../pipes/mongo-decimal.pipe';
@@ -13,6 +13,7 @@ import { CacheBookingService } from '../../services/cache/cache-booking.service'
   imports: [CurrencyPipe, MongoDecimalPipe],
   templateUrl: './booking.component.html',
   styleUrl: './booking.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BookingComponent {
   cacheDatas: CacheBooking;

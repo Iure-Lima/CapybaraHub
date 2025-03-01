@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuItem, MessageService } from 'primeng/api';
 import { AvatarModule } from 'primeng/avatar';
@@ -22,6 +22,7 @@ import { AuthenticationContainerComponent } from '../authentication-container/au
   templateUrl: './user-menu.component.html',
   styleUrl: './user-menu.component.scss',
   providers: [MessageService],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UserMenuComponent implements OnInit {
   authenticationContainerActive = false;

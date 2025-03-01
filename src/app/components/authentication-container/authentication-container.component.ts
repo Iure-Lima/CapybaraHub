@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angular/core';
 import { DialogModule } from 'primeng/dialog';
 import { TabViewModule } from 'primeng/tabview';
 import { Alert } from '../../models/alert.model';
@@ -13,6 +13,7 @@ import { RegisterComponent } from './register/register.component';
   templateUrl: './authentication-container.component.html',
   styleUrl: './authentication-container.component.scss',
   providers: [],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AuthenticationContainerComponent {
   visible = true;

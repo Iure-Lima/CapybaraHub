@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angular/core';
 import {
   type AbstractControl,
   FormControl,
@@ -29,6 +29,7 @@ import { RegisterService } from '../../../services/auth/register.service';
   ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RegisterComponent {
   registerForm = new FormGroup(

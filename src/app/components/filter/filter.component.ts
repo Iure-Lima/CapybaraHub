@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -31,6 +31,7 @@ import { RoomService } from '../../services/room/room.service';
   ],
   templateUrl: './filter.component.html',
   styleUrl: './filter.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FilterComponent implements OnInit {
   visible = false;
