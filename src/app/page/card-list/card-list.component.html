@@ -4,7 +4,11 @@
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
         @for (room of rooms; track $index) {
         <div>
+          @defer {
           <app-card [roomCard]="room"></app-card>
+          } @loading {
+          <div class="loading-placeholder">Loading room details...</div>
+          }
         </div>
         }
       </div>
