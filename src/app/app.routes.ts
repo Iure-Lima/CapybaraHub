@@ -5,13 +5,6 @@ import { CardListComponent } from './page/card-list/card-list.component';
 export const routes: Routes = [
   { path: 'home', component: CardListComponent },
   {
-    path: 'reservations/:id',
-    loadComponent: () =>
-      import('./page/reservations/reservations.component').then(
-        (m) => m.ReservationsComponent,
-      ),
-  },
-  {
     path: 'booking/:id',
     loadComponent: () =>
       import('./page/booking/booking.component').then(
@@ -26,6 +19,13 @@ export const routes: Routes = [
         (m) => m.ListBookingComponent,
       ),
     canActivate: [authGuard],
+  },
+  {
+    path: 'reservations/:id',
+    loadComponent: () =>
+      import('./page/reservations/reservations.component').then(
+        (m) => m.ReservationsComponent,
+      ),
   },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   {
