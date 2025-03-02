@@ -13,19 +13,19 @@ export const routes: Routes = [
     canActivate: [authGuard],
   },
   {
-    path: 'reservations/:id',
-    loadComponent: () =>
-      import('./page/reservations/reservations.component').then(
-        (m) => m.ReservationsComponent,
-      ),
-  },
-  {
     path: 'booking-list',
     loadComponent: () =>
       import('./page/list-booking/list-booking.component').then(
         (m) => m.ListBookingComponent,
       ),
     canActivate: [authGuard],
+  },
+  {
+    path: 'reservations/:id',
+    loadComponent: () =>
+      import('./page/reservations/reservations.component').then(
+        (m) => m.ReservationsComponent,
+      ),
   },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   {
