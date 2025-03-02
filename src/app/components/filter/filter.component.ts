@@ -12,7 +12,6 @@ import { DropdownModule } from 'primeng/dropdown';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { SliderModule } from 'primeng/slider';
-import { AlertService } from '../../services/alert/alert.service';
 import { RoomService } from '../../services/room/room.service';
 
 @Component({
@@ -60,9 +59,7 @@ export class FilterComponent implements OnInit {
   });
 
   constructor(
-    private roomsService: RoomService,
-    private alertService: AlertService,
-  ) {}
+    private roomsService: RoomService) {}
 
   ngOnInit(): void {
     this.minDate = new Date(this.minDate);
