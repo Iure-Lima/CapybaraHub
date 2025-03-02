@@ -5,7 +5,6 @@ import { AvatarModule } from 'primeng/avatar';
 import { AvatarGroupModule } from 'primeng/avatargroup';
 import { Menu, MenuModule } from 'primeng/menu';
 import { ToastModule } from 'primeng/toast';
-import { Alert } from '../../models/alert.model';
 import { AuthService } from '../../services/auth/auth.service';
 import { AuthenticationContainerComponent } from '../authentication-container/authentication-container.component';
 
@@ -31,7 +30,6 @@ export class UserMenuComponent implements OnInit {
   optionsMenu: MenuItem[] | undefined;
 
   constructor(
-    private message: MessageService,
     private router: Router,
     private authService: AuthService,
   ) {}
@@ -65,11 +63,6 @@ export class UserMenuComponent implements OnInit {
 
   eventCloseAuthentication() {
     this.toggleAuthenticationContainer();
-  }
-
-  show(data: Alert) {
-    this.message.add(data);
-    this.eventCloseAuthentication();
   }
 
   userEvent(event: Event) {
