@@ -15,7 +15,6 @@ import { PasswordModule } from 'primeng/password';
 import { UserRegister } from '../../../models/user.register.model';
 import { AlertService } from '../../../services/alert/alert.service';
 import { AuthService } from '../../../services/auth/auth.service';
-import { RegisterService } from '../../../services/auth/register.service';
 
 @Component({
   selector: 'app-register',
@@ -57,7 +56,6 @@ export class RegisterComponent {
   @Output() closeEvent = new EventEmitter();
 
   constructor(
-    private register: RegisterService,
     private auth: AuthService,
     private alertService: AlertService,
   ) {}
@@ -71,7 +69,7 @@ export class RegisterComponent {
         phone: this.registerForm.get('phone')?.value ?? 'unknown',
         password: this.registerForm.get('password')?.value ?? 'unknown',
       };
-      this.register.registerUser(user).subscribe({
+      this.auth.registerUser(user).subscribe({
         next: (response) => {
           this.auth.saveToken(response?.accessToken);
           this.alertService.addAlert({
