@@ -11,7 +11,6 @@ import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import { AlertService } from '../../../services/alert/alert.service';
 import { AuthService } from '../../../services/auth/auth.service';
-import { LoginService } from '../../../services/auth/login.service';
 
 @Component({
   selector: 'app-login',
@@ -31,7 +30,6 @@ export class LoginComponent {
   sendLogin = false;
 
   constructor(
-    private login: LoginService,
     private auth: AuthService,
     private alertService: AlertService,
   ) {}
@@ -57,7 +55,7 @@ export class LoginComponent {
       const email: string = this.formLogin.get('email')?.value ?? 'unknown';
       const password: string =
         this.formLogin.get('password')?.value ?? 'unknown';
-      this.login.login(email, password).subscribe({
+      this.auth.login(email, password).subscribe({
         next: (response) => {
           this.auth.saveToken(response?.accessToken);
           this.alertService.addAlert({
