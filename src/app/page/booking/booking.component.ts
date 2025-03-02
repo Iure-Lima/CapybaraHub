@@ -16,7 +16,7 @@ import { CacheBookingService } from '../../services/cache/cache-booking.service'
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BookingComponent {
-  cacheDatas: CacheBooking;
+  cacheDatas: CacheBooking | null;
   isOneDate = false;
 
   constructor(
@@ -27,15 +27,16 @@ export class BookingComponent {
     private alertService: AlertService,
   ) {
     this.cacheDatas = this.cacheBookingService.getDataCache();
-    if (!this.cacheDatas.room._id) {
+    if (!this.cacheDatas?.room._id) {
       // biome-ignore lint/complexity/useLiteralKeys: <explanation>
       this.router.navigate(['/reservations', this.route.snapshot.params['id']]);
     }
-    if (!this.cacheDatas.selectDate[1]) this.isOneDate = true;
+    if (!this.cacheDatas?.selectDate[1]) this.isOneDate = true;
   }
 
   book() {
-    this.bookingService
+    if (this.cacheDatas){
+      this.bookingService
       .createBooking({
         customer: '',
         hotel: this.cacheDatas.room._id,
@@ -70,5 +71,6 @@ export class BookingComponent {
           ]);
         },
       });
+    }
   }
 }
