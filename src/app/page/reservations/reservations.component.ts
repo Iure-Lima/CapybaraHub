@@ -40,34 +40,8 @@ export class ReservationsComponent implements DoCheck, OnInit {
   minDate: Date = new Date();
   disabledDates: Date[] = []; //Aqui mais vai entrar os dados referentes as datas com agendamento
 
-  //Tanto room quanto hotel iniciam com propriedades vazias, para evitar erros
-  room: RoomCard = {
-    _id: '',
-    hotel: '',
-    roomTypeId: '',
-    pricePerNight: 0,
-    roomNumber: 0,
-    status: 'Available',
-    images: [],
-    rating: 0,
-    name: '',
-  };
-  hotel: HotelCard = {
-    _id: '',
-    name: '',
-    email: '',
-    phone: '',
-    rating: 0,
-    address: {
-      street: '',
-      city: '',
-      state: '',
-      country: '',
-      number: 0,
-      postalCode: '',
-    },
-    image: '',
-  };
+  room!: RoomCard
+  hotel!: HotelCard
 
   constructor(
     private roomService: RoomService,

@@ -1,10 +1,17 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { jwtDecode } from 'jwt-decode';
+import { Observable } from 'rxjs';
+import { environment } from '../../../environments/environment';
+import { UserRegister } from '../../models/user.register.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
+
+  constructor(private http: HttpClient) {}
+
   saveToken(token: string) {
     localStorage.setItem('accessToken', token);
   }
@@ -48,5 +55,18 @@ export class AuthService {
     } catch (error) {
       return false;
     }
+  }
+
+  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+  login(email: string, password: string): Observable<any> {
+    return this.http.post(`${environment.apiUrl}/auth/signin`, {
+      email,
+      password,
+    });
+  }
+
+  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+  registerUser(user: UserRegister): Observable<any> {
+    return this.http.post(`${environment.apiUrl}/auth/signup`, user);
   }
 }

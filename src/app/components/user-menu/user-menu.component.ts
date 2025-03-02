@@ -5,7 +5,7 @@ import { AvatarModule } from 'primeng/avatar';
 import { AvatarGroupModule } from 'primeng/avatargroup';
 import { Menu, MenuModule } from 'primeng/menu';
 import { ToastModule } from 'primeng/toast';
-import { Alert } from '../../models/alert.model';
+import { AlertService } from '../../services/alert/alert.service';
 import { AuthService } from '../../services/auth/auth.service';
 import { AuthenticationContainerComponent } from '../authentication-container/authentication-container.component';
 
@@ -31,9 +31,9 @@ export class UserMenuComponent implements OnInit {
   optionsMenu: MenuItem[] | undefined;
 
   constructor(
-    private message: MessageService,
     private router: Router,
     private authService: AuthService,
+    private alertService: AlertService
   ) {}
 
   ngOnInit(): void {
@@ -54,6 +54,7 @@ export class UserMenuComponent implements OnInit {
         command: () => {
           this.authService.logout();
           this.userIsAuthenticated = false;
+          this.showLogoutMessage();
         },
       },
     ];
@@ -63,13 +64,18 @@ export class UserMenuComponent implements OnInit {
     this.authenticationContainerActive = !this.authenticationContainerActive;
   }
 
-  eventCloseAuthentication() {
-    this.toggleAuthenticationContainer();
+  showLogoutMessage(){
+    this.alertService.addAlert({
+      severity: 'info',
+      summary: 'Logout',
+      detail: 'You are successfully logged out',
+    });
+    this.router.navigate(['/home']);
+
   }
 
-  show(data: Alert) {
-    this.message.add(data);
-    this.eventCloseAuthentication();
+  eventCloseAuthentication() {
+    this.toggleAuthenticationContainer();
   }
 
   userEvent(event: Event) {
